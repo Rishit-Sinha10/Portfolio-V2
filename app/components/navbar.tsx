@@ -11,7 +11,6 @@ import { useActiveSection } from "../hooks/useActiveSection";
 
 const NAV_LINKS = [
   { label: "Home", href: "/", section: null },
-  { label: "About", href: "/about", section: null },
   { label: "Blog", href: "/blog", section: null },
   { label: "Projects", href: "/projects", section: null },
   { label: "Experience", href: "/experience", section: null },

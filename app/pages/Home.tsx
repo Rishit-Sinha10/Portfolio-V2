@@ -127,32 +127,45 @@ export default function Portfolio() {
             Rishit Sinha
           </span>
         </LinkPreview>
-        , a final year Computer Science student and developer building products
-        for frontend, full-stack and AI. I have hands-on experience through
-        internships like Shopify development at
-        <LinkPreview url="https://thetastymillets.com/">
-          {" "}
-          <span className="font-medium text-[var(--foreground)]">
-            TheTastyMillets
-          </span>
-        </LinkPreview>{" "}
-        and web design at{" "}
+        , a final-year Computer Science student and developer building
+        full-stack products with a growing focus on backend engineering and AI.
+        Currently, I work as a Shopify Developer, building and maintaining
+        production storefronts, frontend experiences, and integrations.
+        Previously, I worked as a Full Stack Developer Intern at{" "}
         <LinkPreview url="https://www.nextlearn.in/">
           <span className="font-medium text-[var(--foreground)]">
             NextLearn Technologies
           </span>
         </LinkPreview>
-        . I’ve also created products like{" "}
-        <LinkPreview url="https://klryo.vercel.app/">
+        . Outside of work, I build and ship products like{" "}
+        <LinkPreview url="https://code.rishitsinha.online/">
           <span className="font-medium text-[var(--foreground)]">Klyro</span>
         </LinkPreview>
-        , a browser-based coding environment, and{" "}
-        <LinkPreview url="https://echo-rizz.vercel.app/">
-          <span className="font-medium text-[var(--foreground)]">Flux</span>
+        , was Also Selected as Open Source Program for{" "}
+        <span className="font-medium text-[var(--foreground)]">Sentry </span> ,{" "}
+        for{" "}
+        <LinkPreview url="https://www.linkedin.com/posts/rishit-sinha-6953ab363_excited-to-share-that-klyro-has-been-selected-share-7506795350159118336-fHg-/">
+          <span className="font-medium text-[var(--foreground)]">Proof</span>
         </LinkPreview>
-        , a real-time streaming platform. I’m currently getting my hands dirty
-        with backend engineering, system design, and AI, and I’m focusing on
-        creating software that’s polished, maintainable, and actually works.
+        ,{" "}
+        <LinkPreview url="https://finan-cino.vercel.app/">
+          <span className="font-medium text-[var(--foreground)]">
+            Financcino
+          </span>
+        </LinkPreview>
+        , and{" "}
+        <LinkPreview url="https://claritycxr.vercel.app/">
+          <span className="font-medium text-[var(--foreground)]">
+            ClarityCXR
+          </span>
+        </LinkPreview>
+        , and I’m currently building{" "}
+        <LinkPreview url="">
+          <span className="font-medium text-[var(--foreground)]">OpenLink</span>
+        </LinkPreview>
+        , a unified AI provider infrastructure project. I’m going deeper into
+        TypeScript, Node.js, backend architecture, system design, and AI
+        systems.
       </p>
       <div className="mt-4 flex flex-wrap items-center gap-2.5 sm:gap-3">
         <a
@@ -242,11 +255,9 @@ export default function Portfolio() {
           </a>
         </div>
       </div>
-
       <div className="mt-6 overflow-hidden">
         <ContributionGraph />
       </div>
-
       <div className="mt-6">
         <p className="mb-3 text-left text-[0.68rem] font-bold uppercase tracking-[0.28em] text-[var(--muted)] sm:text-[0.72rem]">
           Core technologies
@@ -274,7 +285,6 @@ export default function Portfolio() {
           })}
         </div>
       </div>
-
       <div className="mt-8">
         <p className="mb-3 text-left text-[0.68rem] font-bold uppercase tracking-[0.28em] text-[var(--muted)] sm:text-[0.72rem]">
           Selected work
@@ -290,7 +300,6 @@ export default function Portfolio() {
           ))}
         </div>
       </div>
-
       <div className="mt-8 flex justify-center">
         <a
           href="/projects"
