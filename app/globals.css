@@ -7,13 +7,13 @@
 
 :root {
   /* Colors */
-  --background: #FFFFFF;
-  --background-secondary: #FAFAFA;
-  --surface: #FFFFFF;
-  --border: #EAEAEA;
+  --background: #ffffff;
+  --background-secondary: #fafafa;
+  --surface: #ffffff;
+  --border: #eaeaea;
   --foreground: #111111;
-  --muted: #6B7280;
-  --accent: #ffffff;
+  --muted: #6b7280;
+  --accent: #0a0a0a;
   --accent-hover: #333333;
   --accent-light: rgba(0, 0, 0, 0.04);
   /* Spacing */
@@ -23,14 +23,14 @@
 }
 
 .dark {
-  --background: #0A0A0A;
-  --background-secondary: #1A1A1A;
+  --background: #0a0a0a;
+  --background-secondary: #1a1a1a;
   --surface: #141414;
   --border: #262626;
-  --foreground: #EDEDED;
-  --muted: #A1A1AA;
-  --accent: #FFFFFF;
-  --accent-hover: #D4D4D4;
+  --foreground: #ededed;
+  --muted: #a1a1aa;
+  --accent: #ffffff;
+  --accent-hover: #d4d4d4;
   --accent-light: rgba(255, 255, 255, 0.06);
 }
 
@@ -68,7 +68,9 @@ body {
   box-sizing: border-box;
 }
 
-img, video, svg {
+img,
+video,
+svg {
   max-width: 100%;
   height: auto;
 }
@@ -108,7 +110,12 @@ body::before {
    TYPOGRAPHY
    ═══════════════════════════════════════════════ */
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   color: var(--foreground);
   font-weight: 700;
   line-height: 1.1;

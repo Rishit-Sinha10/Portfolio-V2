@@ -132,13 +132,6 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-
-        <Script
-          src="https://t.raah.dev/script.js"
-          data-pid="proj_0t7r13nwb3r09cr3"
-          data-domain="rishitsinha.online"
-          strategy="afterInteractive"
-        />
       </head>
       <body className="min-h-full flex flex-col overflow-x-hidden bg-[var(--background)] text-[var(--foreground)] transition-colors">
         <a href="#main-content" className="skip-link">
