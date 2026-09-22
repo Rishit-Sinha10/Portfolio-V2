@@ -170,7 +170,7 @@ function ProjectCaseStudyView({ project }: { project: (typeof PROJECTS)[0] }) {
             ))}
           </div>
           <div className="flex flex-col gap-2">
-            {project.architecture.flow.map((step) => (
+            {project.architecture.flow?.map((step) => (
               <p
                 key={step}
                 className="text-[14px] leading-relaxed text-[var(--muted)]"

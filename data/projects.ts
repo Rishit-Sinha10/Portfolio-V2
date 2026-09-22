@@ -85,24 +85,23 @@ export const PROJECTS: ProjectCaseStudy[] = [
     status: "In dev",
 
     summary: [
-      "OpenLink is an AI infrastructure project that provides a unified API interface for integrating multiple AI model providers without coupling application code directly to provider-specific SDKs and response formats.",
-      "The system uses a provider-adapter architecture to normalize requests, responses, errors, and configuration while keeping the application layer independent from individual AI providers.",
+      "OpenLink is an AI infrastructure project that offers a common API interface to integrate multiple AI model providers without application code being locked into provider-specific SDKs and response formats.",
     ],
 
     problem: [
-      "Applications integrating multiple AI providers often become tightly coupled to provider-specific SDKs, request formats, and response structures.",
-      "Switching providers can require changes across application logic instead of changing a single integration layer.",
-      "Different providers expose different error formats, authentication mechanisms, model identifiers, and response structures.",
-      "Managing multiple provider APIs directly increases integration complexity and makes fallback or provider switching harder to maintain.",
+      "Applications that compose multiple AI providers tend to become strongly coupled to provider-specific SDKs, request formats, and response structures.",
+      "Switching providers can require changes across application logic rather than at a single integration layer.",
+      "Different providers expose different error formats, authentication mechanisms, model identifiers, response structures, etc.",
+      "Directly handling multiple provider APIs increases integration complexity and makes fallback or provider switching more difficult to maintain.",
     ],
 
     solution: [
-      "A unified API interface that allows applications to communicate with different AI providers through a consistent contract.",
-      "Provider adapters isolate provider-specific SDKs, authentication, request formats, and response handling from the core application.",
-      "A normalized response layer converts provider-specific outputs into a consistent structure for consumers.",
-      "Centralized validation ensures incoming requests follow a predictable schema before reaching provider adapters.",
-      "Structured error handling gives applications consistent error responses regardless of which provider fails.",
-      "The architecture is designed so additional providers can be added without rewriting the core API layer.",
+      "A single API surface that lets apps talk to any AI provider via a shared contract.",
+      "Provider adapters hide provider specific SDKs, authentication, request formats, and response handling from the core app.",
+      "A normalized response layer converts provider specific responses into a consistent structure for consumers.",
+      "Centralized validation makes sure incoming requests conform to a predictable schema before being passed to provider adapters.",
+      "Structured error handling gives apps consistent error responses regardless of which provider fails.",
+      "The architecture is such that more providers can be added without rewriting the core API layer.",
     ],
 
     features: [
@@ -157,13 +156,13 @@ export const PROJECTS: ProjectCaseStudy[] = [
 
     architecture: {
       flow: [
-        "Client applications send AI requests to the OpenLink API through a unified interface.",
-        "The API layer validates incoming requests using shared schemas before processing them.",
-        "The provider selection layer determines which AI provider and model should handle the request.",
-        "A provider adapter translates the normalized request into the provider-specific format required by that API.",
-        "The provider response is returned to the adapter and transformed into OpenLink's normalized response structure.",
-        "Provider-specific errors are mapped into a consistent error format before being returned to the client.",
-        "The core application remains independent from individual provider SDKs, allowing providers to be added, replaced, or extended without changing consumer-facing API contracts.",
+        "All client applications send AI requests to the OpenLink API through a common interface.",
+        "The API layer uses common schemas to validate incoming requests before processing them.",
+        "The provider selection layer determines which AI provider and model to use for the request.",
+        "A provider adapter transforms the normalized request into the format required by the specific API of that provider.",
+        "The response of the provider is passed back to the adapter and transformed into OpenLink's normalized response structure.",
+        "Provider-specific errors are translated into a unified error format before returning to the client.",
+        "The core application is decoupled from any specific provider SDK, allowing providers to be added, replaced or extended without impacting consumer-facing API contracts.",
       ],
 
       description:
@@ -195,11 +194,7 @@ export type AIResponse = {
     },
 
     results: [
-      "Unified multiple AI provider integrations behind a common API contract.",
-      "Provider-specific implementation is isolated through adapter interfaces.",
-      "Normalized response handling reduces provider-specific logic in consuming applications.",
-      "Structured validation and error handling provide a consistent integration surface.",
-      "Adding a new provider can be implemented as an isolated adapter instead of modifying consumer-facing API logic.",
+      "Unified multiple AI provider integrations with a single API contract Isolated provider-specific implementation with adapter interfaces Normalized response handling reduces provider-specific logic in consuming applications Structured validation and error handling provides a consistent integration surface Adding a new provider can be accomplished as an isolated adapter instead of changing consumer-facing API logic",
     ],
 
     techStack: {
@@ -395,6 +390,8 @@ export type AIResponse = {
 
     liveUrl: "https://claritycxr.vercel.app/",
     githubUrl: "https://github.com/Rishit-Sinha10/ClarityCXR",
+
+    accent: "#0f766e",
 
     skills: [
       {
