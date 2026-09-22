@@ -42,7 +42,11 @@ function StatusDot({ status, accent }: { status: string; accent: string }) {
     </span>
   );
 }
-export function ProjectOverviewCard({ project }: { project: ProjectCaseStudy }) {
+export function ProjectOverviewCard({
+  project,
+}: {
+  project: ProjectCaseStudy;
+}) {
   return (
     <Link href={`/work/${project.id}`} className="block w-full no-underline">
       <div className="mx-auto flex w-full max-w-4xl flex-col px-4 py-6 sm:px-6 md:px-8 lg:px-10 transition duration-150 ease-out hover:bg-[var(--accent-light)]">
@@ -55,11 +59,6 @@ export function ProjectOverviewCard({ project }: { project: ProjectCaseStudy }) 
         <p className="mb-3 text-[15px] leading-relaxed text-[var(--muted)]">
           {project.tagline}
         </p>
-        <div className="mb-3 flex flex-wrap items-center gap-2">
-          {project.skills.map((skill) => (
-            <SkillBadge key={skill.name} skill={skill} />
-          ))}
-        </div>
         <div className="flex items-center gap-1.5 text-xs font-semibold text-[var(--muted)] transition hover:text-[var(--foreground)]">
           Read case study
           <ArrowUpRight size={12} />

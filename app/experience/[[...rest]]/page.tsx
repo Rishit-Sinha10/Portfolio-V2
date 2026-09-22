@@ -1,17 +1,19 @@
 "use client";
+import { useState } from "react";
+import { ChevronDown } from "lucide-react";
 import { Reveal } from "../../pages/reavel";
-import { motion } from "motion/react";
-
-const EXPERIENCES = [
+const experience = [
   {
     id: "01",
     title: "Frontend Developer",
     company: "TheTastyMillets",
     period: "May 2026 — Aug 2026",
-    description: [
-      "Built 12+ responsive page components with React.js and Tailwind CSS, achieving full component reusability across the product.",
-      "Implemented WCAG 2.1 AA accessibility standards — keyboard navigation, screen reader support, and color contrast — reducing user navigation friction measurably.",
-      "Collaborated with design and backend teams to ship a production-ready frontend in a 3-month sprint cycle.",
+    description:
+      "Built and optimized responsive frontend experiences for a production Shopify storefront.",
+    responsibilities: [
+      "Built 12+ responsive page components with React.js and Tailwind CSS, improving component reusability across the storefront.",
+      "Implemented accessibility improvements including keyboard navigation, screen-reader support, and color-contrast improvements.",
+      "Collaborated with design and backend teams to ship production-ready frontend features within a 3-month development cycle.",
     ],
   },
   {
@@ -19,15 +21,23 @@ const EXPERIENCES = [
     title: "Full Stack Intern",
     company: "NextLearn Technologies",
     period: "Apr 2026 — May 2026",
-    description: [
-      "Designed and deployed a learning application with React + Node.js, reducing page load time by 65% (4.2s → 1.1s) through code splitting, lazy loading, and bundle optimization.",
-      "Shipped 8 product features on schedule — including auth, dashboards, and real-time notifications — balancing speed with production-quality code.",
-      "Built RESTful API endpoints with Express.js and integrated MongoDB for flexible data storage across course modules and user progress.",
+    description:
+      "Developed and optimized full-stack features for a learning platform using React, Node.js, Express, and MongoDB.",
+    responsibilities: [
+      "Designed and deployed learning-platform features using React and Node.js, improving page load performance through code splitting, lazy loading, and bundle optimization.",
+      "Shipped 8 product features including authentication, dashboards, and real-time notifications.",
+      "Built RESTful API endpoints with Express.js and integrated MongoDB for course modules and user-progress data.",
     ],
   },
 ];
 
 export default function Experience() {
+  const [openJobId, setOpenJobId] = useState<string | null>(null);
+
+  const handleToggle = (id: string) => {
+    setOpenJobId((prev) => (prev === id ? null : id));
+  };
+
   return (
     <section
       id="experience"
@@ -35,61 +45,74 @@ export default function Experience() {
     >
       <Reveal>
         <div className="mb-8">
-          <p className="text-label mb-2">Experience</p>
-          <h2 className="heading-section text-[var(--foreground)]">
-            Where I&apos;ve worked
-          </h2>
+          <p className="mb-3 flex justify-center text-left text-[0.68rem] font-bold uppercase tracking-[0.28em] text-[var(--muted)] sm:text-[0.72rem]">
+            Experience
+          </p>
         </div>
       </Reveal>
 
-      <div className="flex flex-col">
-        {EXPERIENCES.map((exp, index) => (
-          <Reveal key={exp.id}>
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.35, delay: index * 0.06 }}
-              className="flex gap-4 border-b border-[var(--border)] py-5"
+      <div className="overflow-hidden rounded-lg border border-[var(--border)]">
+        {experience.map((job) => {
+          const isOpen = openJobId === job.id;
+
+          return (
+            <article
+              key={job.id}
+              className="border-b border-[var(--border)] last:border-b-0"
             >
-              <div className="shrink-0 pt-0.5 text-xs font-bold tracking-[0.16em] text-[var(--muted)] opacity-80 min-w-[42px]">
-                {exp.id}
-              </div>
-
-              <details className="group min-w-0 flex-1">
-                <summary className="flex cursor-pointer list-none flex-col gap-1 outline-none sm:flex-row sm:items-baseline sm:justify-between sm:gap-2 [&::-webkit-details-marker]:hidden">
-                  <div className="flex items-start gap-2">
-                    <div>
-                      <h3 className="text-base font-semibold text-[var(--foreground)]">
-                        {exp.title}
-                      </h3>
-                      <p className="text-sm text-[var(--muted)]">
-                        {exp.company}
-                      </p>
-                    </div>
+              <div className="px-4 py-5 sm:px-6">
+                <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between sm:gap-6">
+                  <div>
+                    <h2 className="text-base font-semibold text-[var(--foreground)]">
+                      {job.title}
+                    </h2>
+                    <p className="mt-1 text-sm text-[var(--muted)]">
+                      {job.company}
+                    </p>
                   </div>
-                  <span className="shrink-0 text-xs font-medium text-[var(--muted)]">
-                    {exp.period}
-                  </span>
-                </summary>
+                  <time className="text-xs font-medium uppercase tracking-[0.12em] text-[var(--muted)] sm:pt-1">
+                    {job.period}
+                  </time>
+                </div>
 
-                <ul className="mt-3 flex flex-col gap-1.5 pl-1">
-                  {exp.description.map((desc, i) => (
-                    <li
-                      key={i}
-                      className="relative pl-1 text-[12px] leading-relaxed text-[var(--muted)]"
-                    >
-                      <span className="absolute left-0 top-0 text-[var(--border)]">
-                        •
-                      </span>
-                      {desc}
-                    </li>
-                  ))}
-                </ul>
-              </details>
-            </motion.div>
-          </Reveal>
-        ))}
+                <p className="mt-4 text-[15px] leading-relaxed text-[var(--muted)]">
+                  {job.description}
+                </p>
+
+                <button
+                  type="button"
+                  onClick={() => handleToggle(job.id)}
+                  className="mt-4 inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.12em] text-[var(--muted)] transition-colors hover:text-[var(--foreground)]"
+                  aria-expanded={isOpen}
+                  aria-controls={`responsibilities-content-${job.id}`}
+                >
+                  {isOpen ? "Hide responsibilities" : "Key responsibilities"}
+                  <ChevronDown
+                    size={14}
+                    aria-hidden="true"
+                    className={`transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
+                  />
+                </button>
+
+                {isOpen && (
+                  <div
+                    id={`responsibilities-content-${job.id}`}
+                    className="mt-4 border-t border-[var(--border)] pt-4"
+                  >
+                    <ul className="space-y-2 text-sm leading-relaxed text-[var(--muted)]">
+                      {job.responsibilities.map((responsibility) => (
+                        <li key={responsibility} className="flex gap-3">
+                          <span className="mt-[0.65em] h-1 w-1 shrink-0 rounded-full bg-[var(--foreground)]" />
+                          <span>{responsibility}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
+            </article>
+          );
+        })}
       </div>
     </section>
   );

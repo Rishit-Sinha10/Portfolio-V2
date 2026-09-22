@@ -1,27 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowUpRight, Github } from "lucide-react";
-import {
-  PROJECTS,
-  type Skill,
-  type SkillCategory,
-} from "../../../data/projects";
-
-const CATEGORY_LABELS: Record<SkillCategory, string> = {
-  frontend: "Frontend",
-  backend: "Backend",
-  database: "Database",
-  devops: "DevOps & Tooling",
-  AI: "AI & ML",
-};
-
-const CATEGORY_ORDER: SkillCategory[] = [
-  "frontend",
-  "backend",
-  "database",
-  "devops",
-  "AI",
-];
+import { PROJECTS, type Skill } from "../../../data/projects";
 
 function iconUrl(skill: Skill) {
   return skill.color
@@ -94,11 +74,7 @@ function CodeBlock({
   );
 }
 
-function ProjectCaseStudyView({
-  project,
-}: {
-  project: (typeof PROJECTS)[0];
-}) {
+function ProjectCaseStudyView({ project }: { project: (typeof PROJECTS)[0] }) {
   return (
     <div className="flex flex-col gap-6">
       <div className="border-b border-[var(--border)] pb-6">
@@ -188,25 +164,10 @@ function ProjectCaseStudyView({
       <section className="border-b border-[var(--border)] py-4">
         <Eyebrow label="Architecture" />
         <div className="flex flex-col gap-4">
-          <div className="flex flex-col gap-2.5">
-            {CATEGORY_ORDER.map((cat) => {
-              const skillsInCat = project.skills.filter(
-                (s) => s.category === cat,
-              );
-              if (skillsInCat.length === 0) return null;
-              return (
-                <div key={cat}>
-                  <p className="text-label mb-1.5 opacity-60">
-                    {CATEGORY_LABELS[cat]}
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {skillsInCat.map((skill) => (
-                      <SkillBadge key={skill.name} skill={skill} />
-                    ))}
-                  </div>
-                </div>
-              );
-            })}
+          <div className="flex flex-wrap gap-1.5 sm:gap-2">
+            {project.skills.map((skill) => (
+              <SkillBadge key={skill.name} skill={skill} />
+            ))}
           </div>
           <div className="flex flex-col gap-2">
             {project.architecture.flow.map((step) => (
