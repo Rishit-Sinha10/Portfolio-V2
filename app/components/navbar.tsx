@@ -9,7 +9,8 @@ import { cn } from "../../lib/utils";
 import Proof from "../../public/Images/imag1.png";
 import { useActiveSection } from "../hooks/useActiveSection";
 import GithubIcon from "./github";
-
+import { playSound } from "../../lib/sound-engine";
+import { click003Sound } from "../../lib/click-003";
 const NAV_LINKS = [
   { label: "Home", href: "/", section: null },
   { label: "Blog", href: "/blog", section: null },
@@ -97,9 +98,10 @@ export default function Navbar() {
             <GithubIcon />
           </a>
           <button
-            onClick={() =>
-              setTheme(resolvedTheme === "dark" ? "light" : "dark")
-            }
+            onClick={() => {
+              void playSound(click003Sound.dataUri, { volume: 0.5 });
+              setTheme(resolvedTheme === "dark" ? "light" : "dark");
+            }}
             className={cn(
               "rounded-full border p-2 transition",
               mounted && resolvedTheme === "dark",
