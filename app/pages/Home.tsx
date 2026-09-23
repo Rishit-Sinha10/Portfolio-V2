@@ -126,7 +126,7 @@ export default function Portfolio() {
         </a>
       </div>
       <div className="mt-6">
-        <p className="mb-3 text-left text-[0.68rem] font-bold uppercase tracking-[0.28em] text-[var(--muted)] sm:text-[0.72rem] flex justify-center">
+        <p className="mb-3 text-left text-[0.68rem] font-bold uppercase tracking-[0.28em] text-[var(--muted)] sm:text-[0.72rem] ">
           Skills
         </p>
         <div className="flex flex-col gap-3">
@@ -142,7 +142,7 @@ export default function Portfolio() {
         </div>
       </div>
       <div className="mt-8">
-        <p className="mb-3 text-left text-[0.68rem] font-bold uppercase tracking-[0.28em] text-[var(--muted)] sm:text-[0.72rem] flex justify-center">
+        <p className="mb-3 text-left text-[0.68rem] font-bold uppercase tracking-[0.28em] text-[var(--muted)] sm:text-[0.72rem]">
           Selected work
         </p>
         <div className="flex flex-col gap-0 overflow-hidden rounded-lg border border-[var(--border)]">

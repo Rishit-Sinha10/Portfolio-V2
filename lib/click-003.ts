@@ -1,4 +1,4 @@
-import type { SoundAsset } from "../lib/sound-types";
+import type { SoundAsset } from "../types/sound-types";
 export const click003Sound: SoundAsset = {
   name: "click-003",
   dataUri:

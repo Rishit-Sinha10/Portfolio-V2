@@ -45,7 +45,7 @@ export default function Experience() {
     >
       <Reveal>
         <div className="mb-8">
-          <p className="mb-3 flex justify-center text-left text-[0.68rem] font-bold uppercase tracking-[0.28em] text-[var(--muted)] sm:text-[0.72rem]">
+          <p className="mb-3  text-left text-[0.68rem] font-bold uppercase tracking-[0.28em] text-[var(--muted)] sm:text-[0.72rem]">
             Experience
           </p>
         </div>
