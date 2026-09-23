@@ -9,6 +9,7 @@ import {
   siMongodb,
   siGit,
   siGithub,
+  siMysql,
 } from "simple-icons";
 import { type SkillCategory, PROJECTS } from "../../data/projects";
 import type { SimpleIcon } from "simple-icons";
@@ -31,9 +32,7 @@ const SKILLS: {
   { name: "Express", icon: siExpress },
   // Database
   { name: "MongoDB", icon: siMongodb },
-  // Tools
-  { name: "Git", icon: siGit },
-  { name: "GitHub", icon: siGithub },
+  { name: "MySQL", icon: siMysql },
 ];
 function SkillIcon({ icon }: { icon: SimpleIcon }) {
   return (
