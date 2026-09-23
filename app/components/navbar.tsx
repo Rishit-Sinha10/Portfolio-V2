@@ -8,6 +8,7 @@ import { useTheme } from "next-themes";
 import { cn } from "../../lib/utils";
 import Proof from "../../public/Images/imag1.png";
 import { useActiveSection } from "../hooks/useActiveSection";
+import GithubIcon from "./github";
 
 const NAV_LINKS = [
   { label: "Home", href: "/", section: null },
@@ -87,6 +88,14 @@ export default function Navbar() {
             })}
           </div>
 
+          <a
+            href="https://github.com/Rishit-Sinha10"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub"
+          >
+            <GithubIcon />
+          </a>
           <button
             onClick={() =>
               setTheme(resolvedTheme === "dark" ? "light" : "dark")
