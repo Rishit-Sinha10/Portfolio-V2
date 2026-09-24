@@ -62,51 +62,34 @@ export default function Portfolio() {
     <section className="mx-auto flex w-full max-w-4xl flex-col px-4 py-6 sm:px-6 md:px-8 lg:px-10">
       <div className="mx-auto w-full max-w-[900px]"></div>
       <p className="mt-4 text-left text-sm leading-6 text-[var(--muted)] sm:text-base sm:leading-7">
-        Hey, I’m{" "}
+        I’m{" "}
         <LinkPreview url="https://www.rishitsinha.online/">
           <span className="font-medium text-[var(--foreground)]">
             Rishit Sinha
           </span>
         </LinkPreview>
-        , a final-year Computer Science student and developer building
-        full-stack products with a growing focus on backend engineering and AI.
-        Currently, I work as a Shopify Developer, building and maintaining
-        production storefronts, frontend experiences, and integrations.
-        Previously, I worked as a Full Stack Developer Intern at{" "}
+        , a final-year Computer Science student and developer focused on
+        building thoughtful, production-ready software. I currently work as a
+        Shopify Developer, building and maintaining production storefronts,
+        frontend experiences, and integrations. Previously, I worked as a Full
+        Stack Developer Intern at{" "}
         <LinkPreview url="https://www.nextlearn.in/">
           <span className="font-medium text-[var(--foreground)]">
             NextLearn Technologies
           </span>
         </LinkPreview>
-        . Outside of work, I build and ship products like{" "}
-        <LinkPreview url="https://code.rishitsinha.online/">
-          <span className="font-medium text-[var(--foreground)]">Klyro</span>
-        </LinkPreview>
-        , was Also Selected as Open Source Program for{" "}
-        <span className="font-medium text-[var(--foreground)]">Sentry </span> ,{" "}
-        for{" "}
-        <LinkPreview url="https://www.linkedin.com/posts/rishit-sinha-6953ab363_excited-to-share-that-klyro-has-been-selected-share-7506795350159118336-fHg-/">
-          <span className="font-medium text-[var(--foreground)]">Proof</span>
-        </LinkPreview>
-        ,{" "}
-        <LinkPreview url="https://finan-cino.vercel.app/">
-          <span className="font-medium text-[var(--foreground)]">
-            Financcino
-          </span>
-        </LinkPreview>
-        , and{" "}
-        <LinkPreview url="https://claritycxr.vercel.app/">
-          <span className="font-medium text-[var(--foreground)]">
-            ClarityCXR
-          </span>
-        </LinkPreview>
-        , and I’m currently building{" "}
-        <LinkPreview url="">
-          <span className="font-medium text-[var(--foreground)]">OpenLink</span>
-        </LinkPreview>
-        , a unified AI provider infrastructure project. I’m going deeper into
-        TypeScript, Node.js, backend architecture, system design, and AI
-        systems.
+        .
+      </p>
+
+      <p className="mt-4 text-left text-sm leading-6 text-[var(--muted)] sm:text-base sm:leading-7">
+        Alongside work, I build and ship independent products while going deeper
+        into TypeScript, Node.js, backend architecture, and AI systems. My work
+        was selected for{" "}
+        <span className="font-medium text-[var(--foreground)]">
+          Sentry’s Open Source Program
+        </span>
+        , and I continue to explore the intersection of product engineering,
+        backend systems, and AI.
       </p>
       <div className="mt-4 flex flex-wrap items-center gap-2.5 sm:gap-3">
         <a

@@ -54,7 +54,6 @@ export default function Experience() {
       <div className="overflow-hidden rounded-lg border border-[var(--border)]">
         {experience.map((job) => {
           const isOpen = openJobId === job.id;
-
           return (
             <article
               key={job.id}
