@@ -17,7 +17,7 @@ import FileDescriptionIcon from "../components/file";
 import { LinkPreview } from "../components/link_preview";
 import SendIcon from "../components/send-icon";
 import { ProjectOverviewCard } from "../components/project-card";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Quote, TextQuote } from "lucide-react";
 const SKILLS: {
   name: string;
   icon: SimpleIcon;
@@ -62,17 +62,19 @@ export default function Portfolio() {
     <section className="mx-auto flex w-full max-w-4xl flex-col px-4 py-6 sm:px-6 md:px-8 lg:px-10">
       <div className="mx-auto w-full max-w-[900px]"></div>
       <p className="mt-4 text-left text-sm leading-6 text-[var(--muted)] sm:text-base sm:leading-7">
-        I’m{" "}
+        I'm{" "}
         <LinkPreview url="https://www.rishitsinha.online/">
           <span className="font-medium text-[var(--foreground)]">
             Rishit Sinha
           </span>
         </LinkPreview>
-        , a final-year Computer Science student and developer focused on
-        building thoughtful, production-ready software. I currently work as a
-        Shopify Developer, building and maintaining production storefronts,
-        frontend experiences, and integrations. Previously, I worked as a Full
-        Stack Developer Intern at{" "}
+        , a final Year Student Who Is Currently Working As Shopify Developer For{" "}
+        <LinkPreview url="https://www.TheTastyMillets.com">
+          <span className="font-medium text-[var(--foreground)]">
+            TheTastyMillets
+          </span>
+        </LinkPreview>{" "}
+        And Previously Working As Full Stack Intern At{" "}
         <LinkPreview url="https://www.nextlearn.in/">
           <span className="font-medium text-[var(--foreground)]">
             NextLearn Technologies
@@ -80,7 +82,6 @@ export default function Portfolio() {
         </LinkPreview>
         .
       </p>
-
       <p className="mt-4 text-left text-sm leading-6 text-[var(--muted)] sm:text-base sm:leading-7">
         Alongside work, I build and ship independent products while going deeper
         into TypeScript, Node.js, backend architecture, and AI systems. My work
@@ -90,6 +91,13 @@ export default function Portfolio() {
         </span>
         , and I continue to explore the intersection of product engineering,
         backend systems, and AI.
+      </p>
+      <p className="mt-4 text-left text-sm leading-6 text-[var(--muted)] sm:text-base sm:leading-7">
+        At The End Of The Colophn &quot;I am Saying That I Targeting All At Once
+        Likes OSS Program For Sarvam AI OpenSource Programs , Vercel OpenSource
+        Programs Claude OpenSource Progran&quot; And At Last I am Also Trying To
+        Get In{" "}
+        <span className="font-medium text-[var(--foreground)]">GSOC</span>
       </p>
       <div className="mt-4 flex flex-wrap items-center gap-2.5 sm:gap-3">
         <a

@@ -5,15 +5,15 @@ import { Reveal } from "../../pages/reavel";
 const experience = [
   {
     id: "01",
-    title: "Frontend Developer",
+    title: "Frontend Developer Intern",
     company: "TheTastyMillets",
     period: "May 2026 — Aug 2026",
     description:
-      "Built and optimized responsive frontend experiences for a production Shopify storefront.",
+      "Optimized responsive frontend experiences for a production Shopify storefront.",
     responsibilities: [
-      "Built 12+ responsive page components with React.js and Tailwind CSS, improving component reusability across the storefront.",
+      "Built 12+ responsive page components with Liquid Extension Which Consist of HTML CSS JS Ruby On Rails improving UI Ux Improvement.",
       "Implemented accessibility improvements including keyboard navigation, screen-reader support, and color-contrast improvements.",
-      "Collaborated with design and backend teams to ship production-ready frontend features within a 3-month development cycle.",
+      "Collaborated with design Engineer to ship production-ready frontend Components within a 3-month development cycle.",
     ],
   },
   {
@@ -22,11 +22,10 @@ const experience = [
     company: "NextLearn Technologies",
     period: "Apr 2026 — May 2026",
     description:
-      "Developed and optimized full-stack features for a learning platform using React, Node.js, Express, and MongoDB.",
+      "Developed and optimized full-stack features for a  Employee Management System With Mysql NodeJs Express HTML CSS JS Google Cloud  Keys",
     responsibilities: [
-      "Designed and deployed learning-platform features using React and Node.js, improving page load performance through code splitting, lazy loading, and bundle optimization.",
       "Shipped 8 product features including authentication, dashboards, and real-time notifications.",
-      "Built RESTful API endpoints with Express.js and integrated MongoDB for course modules and user-progress data.",
+      "Built RESTful API endpoints with Express.js and integrated MySQL for Secure Entry and Employee-progress data.",
     ],
   },
 ];
