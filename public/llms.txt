@@ -1,0 +1,31 @@
+# Rishit Sinha
+
+> Final-year Computer Science student and full-stack developer with a growing focus on backend engineering and AI. Currently working as a Shopify Developer on production storefronts, and building independent products.
+
+Rishit ships full-stack products: Klryo (selected for Sentry's Open Source Program), Financcino, and Flux are live; ClarityCXR and OpenLink are in development. Stack: React, Next.js, TypeScript, Tailwind CSS, Node.js, Express, MongoDB, MySQL.
+
+## Pages
+
+- [Home](https://www.rishitsinha.online/): Portfolio overview — intro, skills, selected work, and experience.
+- [Projects](https://www.rishitsinha.online/projects): All project case studies.
+- [Blog](https://www.rishitsinha.online/blog): Technical writing on real-time systems and full-stack development.
+- [Experience](https://www.rishitsinha.online/experience): Work history.
+- [Manifesto](https://www.rishitsinha.online/manifesto): Principles Rishit builds software by.
+- [Uses](https://www.rishitsinha.online/uses): The stack, and where each piece is used.
+- [Now](https://www.rishitsinha.online/now): Current focus and project statuses, updated periodically.
+- [Acknowledgements](https://www.rishitsinha.online/acknowledgement): Programs, teams, and open-source projects the work stands on.
+
+## Project case studies
+
+- [Klryo](https://www.rishitsinha.online/work/klryo): Browser-based development environment — Monaco editor, multi-language execution via Judge0, AI assistance, real-time collaboration. Status: Live. Selected for Sentry's Open Source Program.
+- [OpenLink](https://www.rishitsinha.online/work/openlink): Provider-agnostic AI API layer with adapters, response normalization, and schema validation. Status: In development.
+- [Financcino](https://www.rishitsinha.online/work/financcino): Personal finance workspace — expenses, OCR receipt processing, budgets, analytics, and AI insights. Status: Live.
+- [ClarityCXR](https://www.rishitsinha.online/work/ClarityCXR): Multimodal AI workspace for chest X-rays. Status: In development.
+- [Flux](https://www.rishitsinha.online/work/flux): Real-time streaming platform — RTMP ingest, adaptive HLS playback, live chat. Status: Live.
+
+## Other
+
+- [Resume](https://www.rishitsinha.online/resume.pdf)
+- GitHub: https://github.com/Rishit-Sinha10
+- LinkedIn: https://www.linkedin.com/in/rishit-sinha-6953ab363
+- Email: Sinharishit04@gmail.com

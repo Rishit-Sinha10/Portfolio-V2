@@ -130,6 +130,15 @@ h6 {
   line-height: 0.95;
 }
 
+.serif-display {
+  font-family: var(--font-instrument-serif);
+  font-size: clamp(24px, 3vw, 32px);
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  line-height: 1.08;
+  color: var(--foreground);
+}
+
 .heading-section {
   font-size: clamp(32px, 5vw, 56px);
   font-weight: 700;

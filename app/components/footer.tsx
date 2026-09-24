@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import Link from "next/link";
 import GithubIcon from "./github";
 import LinkedinIcon from "./linkedin";
 import TwitterXIcon from "./x-icon";
@@ -57,27 +58,27 @@ export default function Footer() {
               Resume
             </a>
             <span aria-hidden="true">·</span>
-            <a
-              href="#acknowledgements"
+            <Link
+              href="/acknowledgement"
               className="transition hover:text-[var(--muted)]"
             >
               Acknowledgements
-            </a>
+            </Link>
             <span aria-hidden="true">·</span>
-            <a href="#uses" className="transition hover:text-[var(--muted)]">
+            <Link href="/uses" className="transition hover:text-[var(--muted)]">
               Uses
-            </a>
+            </Link>
             <span aria-hidden="true">·</span>
-            <a
-              href="#manifesto"
+            <Link
+              href="/manifesto"
               className="transition hover:text-[var(--muted)]"
             >
               Manifesto
-            </a>
+            </Link>
             <span aria-hidden="true">·</span>
-            <a href="#now" className="transition hover:text-[var(--muted)]">
+            <Link href="/now" className="transition hover:text-[var(--muted)]">
               Now
-            </a>
+            </Link>
             <span aria-hidden="true">·</span>
             <a
               href="/llms.txt"
