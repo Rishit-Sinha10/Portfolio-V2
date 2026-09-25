@@ -11,7 +11,7 @@ import {
   siGithub,
   siMysql,
 } from "simple-icons";
-import { type SkillCategory, PROJECTS } from "../../data/projects";
+import { PROJECTS } from "../../data/projects";
 import type { SimpleIcon } from "simple-icons";
 import FileDescriptionIcon from "../components/file";
 import { LinkPreview } from "../components/link_preview";
@@ -107,17 +107,6 @@ export default function Portfolio() {
         <p className="mb-3 text-left text-[0.68rem] font-bold uppercase tracking-[0.28em] text-[var(--muted)] sm:text-[0.72rem] ">
           Skills
         </p>
-        <div className="flex flex-col gap-3">
-          <div className="flex flex-wrap gap-1.5 sm:gap-2">
-            {SKILLS.map((skill) => (
-              <SkillBadge
-                key={skill.name}
-                name={skill.name}
-                icon={skill.icon}
-              />
-            ))}
-          </div>
-        </div>
       </div>
       <div className="mt-8">
         <p className="mb-3 text-left text-[0.68rem] font-bold uppercase tracking-[0.28em] text-[var(--muted)] sm:text-[0.72rem]">
