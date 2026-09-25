@@ -91,11 +91,6 @@ export default function Footer() {
 
         {/* Footer quote + copyright */}
         <div className="mt-4 text-center font-mono text-xs text-[var(--muted)] sm:mt-6 sm:text-sm">
-          <p className="italic">
-            &quot;Everyone has the right to freedom of thought, conscience, and
-            expression.&quot;
-          </p>
-
           <p className="mt-3">
             &copy; {new Date().getFullYear()} Rishit Sinha
             <span className="px-2">·</span>

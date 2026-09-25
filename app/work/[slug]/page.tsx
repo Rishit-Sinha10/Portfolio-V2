@@ -1,37 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowUpRight, Github } from "lucide-react";
-import { PROJECTS, type Skill } from "../../../data/projects";
-
-function iconUrl(skill: Skill) {
-  return skill.color
-    ? `https://cdn.simpleicons.org/${skill.slug}/${skill.color}`
-    : `https://cdn.simpleicons.org/${skill.slug}`;
-}
-
-function SkillBadge({ skill }: { skill: Skill }) {
-  return (
-    <div className="group relative flex">
-      <span
-        title={skill.name}
-        className="inline-flex h-6 w-6 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--surface)]"
-      >
-        <img
-          src={iconUrl(skill)}
-          alt={skill.name}
-          width={12}
-          height={12}
-          loading="lazy"
-          className="block"
-        />
-      </span>
-      <span className="pointer-events-none absolute left-1/2 top-full z-20 mt-1.5 -translate-x-1/2 whitespace-nowrap rounded-md bg-[var(--foreground)] px-2 py-1 text-[10px] font-medium text-[var(--background)] opacity-0 shadow-md transition duration-150 group-hover:opacity-100">
-        {skill.name}
-      </span>
-    </div>
-  );
-}
-
+import { PROJECTS } from "../../../data/projects";
 function StatusDot({ status, accent }: { status: string; accent: string }) {
   return (
     <span className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-[0.14em]">
@@ -114,94 +84,6 @@ function ProjectCaseStudyView({ project }: { project: (typeof PROJECTS)[0] }) {
           {project.tagline}
         </p>
       </div>
-
-      <section className="border-b border-[var(--border)] py-4">
-        <Eyebrow label="Summary" />
-        <div className="flex flex-col gap-2">
-          {project.summary.map((item) => (
-            <p
-              key={item}
-              className="text-[15px] leading-relaxed text-[var(--foreground)]"
-            >
-              {item}
-            </p>
-          ))}
-        </div>
-      </section>
-
-      <section className="border-b border-[var(--border)] py-4">
-        <Eyebrow label="Problem" />
-        <p className="text-[15px] leading-relaxed text-[var(--foreground)]">
-          {project.problem}
-        </p>
-      </section>
-
-      <section className="border-b border-[var(--border)] py-4">
-        <Eyebrow label="Solution" />
-        <p className="text-[15px] leading-relaxed text-[var(--foreground)]">
-          {project.solution}
-        </p>
-      </section>
-
-      <section className="border-b border-[var(--border)] py-4">
-        <Eyebrow label="Features" />
-        <div className="flex flex-col gap-3">
-          {project.features.map((feature) => (
-            <div key={feature.label} className="flex flex-col gap-0.5">
-              <div className="flex flex-col gap-0.5 sm:flex-row sm:items-baseline sm:gap-1.5">
-                <strong className="text-[15px] text-[var(--foreground)]">
-                  {feature.label}
-                </strong>
-                <span className="text-[14px] leading-relaxed text-[var(--muted)]">
-                  {feature.detail}
-                </span>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="border-b border-[var(--border)] py-4">
-        <Eyebrow label="Architecture" />
-        <div className="flex flex-col gap-4">
-          <div className="flex flex-wrap gap-1.5 sm:gap-2">
-            {project.skills.map((skill) => (
-              <SkillBadge key={skill.name} skill={skill} />
-            ))}
-          </div>
-          <div className="flex flex-col gap-2">
-            {project.architecture.flow?.map((step) => (
-              <p
-                key={step}
-                className="text-[14px] leading-relaxed text-[var(--muted)]"
-              >
-                {step}
-              </p>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {project.codeSnippet && (
-        <section className="border-b border-[var(--border)] py-4">
-          <Eyebrow label="Key code" />
-          <CodeBlock snippet={project.codeSnippet} />
-        </section>
-      )}
-
-      <section className="pt-4">
-        <Eyebrow label="Results" />
-        <div className="flex flex-col gap-2">
-          {project.results.map((result) => (
-            <p
-              key={result}
-              className="text-[15px] leading-relaxed text-[var(--foreground)]"
-            >
-              {result}
-            </p>
-          ))}
-        </div>
-      </section>
     </div>
   );
 }

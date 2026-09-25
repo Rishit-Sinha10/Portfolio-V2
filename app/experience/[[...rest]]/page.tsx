@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { Reveal } from "../../pages/reavel";
+import { title } from "process";
 const experience = [
   {
     id: "01",
@@ -26,6 +27,18 @@ const experience = [
     responsibilities: [
       "Shipped 8 product features including authentication, dashboards, and real-time notifications.",
       "Built RESTful API endpoints with Express.js and integrated MySQL for Secure Entry and Employee-progress data.",
+    ],
+  },
+  {
+    id: "03",
+    title: "Shopify Developer",
+    company: "The Tasty Millets",
+    period: "Sept 15 2026 - ∞",
+    description:
+      "Optimzed SEO For The Company With Use Of Screaming Frog Seo Spider And Lighthouse",
+    responsibilities: [
+      "I improved Shopify storefront performance. I cut the page payload from forty megabytes, to about nine megabytes. I did this by optimizing media and assets.",
+      "Optimized 200+ Assest With Correct Alt Text and Image Name and Improve Image Seo By 10%",
     ],
   },
 ];

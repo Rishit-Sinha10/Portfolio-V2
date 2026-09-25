@@ -18,6 +18,8 @@ import { LinkPreview } from "../components/link_preview";
 import SendIcon from "../components/send-icon";
 import { ProjectOverviewCard } from "../components/project-card";
 import { ArrowUpRight, Quote, TextQuote } from "lucide-react";
+import GithubIcon from "../components/github";
+import TwitterXIcon from "../components/x-icon";
 const SKILLS: {
   name: string;
   icon: SimpleIcon;
@@ -61,44 +63,29 @@ export default function Portfolio() {
   return (
     <section className="mx-auto flex w-full max-w-4xl flex-col px-4 py-6 sm:px-6 md:px-8 lg:px-10">
       <div className="mx-auto w-full max-w-[900px]"></div>
-      <p className="mt-4 text-left text-sm leading-6 text-[var(--muted)] sm:text-base sm:leading-7">
-        I'm{" "}
-        <LinkPreview url="https://www.rishitsinha.online/">
-          <span className="font-medium text-[var(--foreground)]">
-            Rishit Sinha
-          </span>
-        </LinkPreview>
-        , a final Year Student Who Is Currently Working As Shopify Developer For{" "}
-        <LinkPreview url="https://www.TheTastyMillets.com">
-          <span className="font-medium text-[var(--foreground)]">
-            TheTastyMillets
-          </span>
-        </LinkPreview>{" "}
-        And Previously Working As Full Stack Intern At{" "}
-        <LinkPreview url="https://www.nextlearn.in/">
-          <span className="font-medium text-[var(--foreground)]">
-            NextLearn Technologies
-          </span>
-        </LinkPreview>
-        .
+
+      {/* Name */}
+      <h1 className="text-4xl font-bold leading-tight tracking-tight text-[var(--foreground)] sm:text-5xl">
+        Rishit Sinha
+      </h1>
+
+      {/* Role / eyebrow line */}
+      <p className="mt-3 font-mono text-xs uppercase tracking-wider text-[var(--muted)]">
+        Full Stack Developer &amp; Shopify Seo
       </p>
-      <p className="mt-4 text-left text-sm leading-6 text-[var(--muted)] sm:text-base sm:leading-7">
-        Alongside work, I build and ship independent products while going deeper
-        into TypeScript, Node.js, backend architecture, and AI systems. My work
-        was selected for{" "}
-        <span className="font-medium text-[var(--foreground)]">
-          Sentry’s Open Source Program
-        </span>
-        , and I continue to explore the intersection of product engineering,
-        backend systems, and AI.
+
+      <hr className="mt-6 border-[var(--border)]" />
+
+      {/* Description */}
+      <p className="mt-6 text-left text-sm leading-6 text-[var(--muted)] sm:text-base sm:leading-7">
+        Software Engineer focusing on full-stack applications, backend systems,
+        AI-powered products and developer tooling. Builds production-ready
+        services, real-time applications, APIs, and high-performance web
+        experiences with TypeScript, React, Next.js, Node.js, and MongoDB — and
+        explores systems programming, distributed architecture, and developer
+        infrastructure.
       </p>
-      <p className="mt-4 text-left text-sm leading-6 text-[var(--muted)] sm:text-base sm:leading-7">
-        At The End Of The Colophn &quot;I am Saying That I Targeting All At Once
-        Likes OSS Program For Sarvam AI OpenSource Programs , Vercel OpenSource
-        Programs Claude OpenSource Progran&quot; And At Last I am Also Trying To
-        Get In{" "}
-        <span className="font-medium text-[var(--foreground)]">GSOC</span>
-      </p>
+      <hr className="mt-8 border-[var(--border)]" />
       <div className="mt-4 flex flex-wrap items-center gap-2.5 sm:gap-3">
         <a
           href="https://cal.com/rishit-sinha-eku02v/30min?overlayCalendar=true"
@@ -137,7 +124,7 @@ export default function Portfolio() {
           Selected work
         </p>
         <div className="flex flex-col gap-0 overflow-hidden rounded-lg border border-[var(--border)]">
-          {PROJECTS.slice(0, 3).map((project) => (
+          {PROJECTS.slice(0, 6).map((project) => (
             <div
               key={project.id}
               className="border-b border-[var(--border)] last:border-b-0"
