@@ -1,11 +1,9 @@
 import type { Metadata } from "next";
-
 export const metadata: Metadata = {
   title: "Now",
   description:
     "What I am focused on right now — the current state of my work and projects.",
 };
-
 const FOCUS = [
   {
     title: "Final year of Computer Science",
@@ -27,10 +25,18 @@ const PROJECTS = [
     status: "Live",
     note: "Selected for Sentry’s Open Source Program.",
   },
-  { name: "Financcino", status: "Live", note: "Personal finance, in production." },
-  { name: "Flux", status: "Live", note: "Real-time streaming platform." },
+  {
+    name: "Financcino",
+    status: "Live",
+    note: "Personal finance, in production.",
+  },
+  { name: "Flux", status: "Live", note: "Real-time Live streaming platform." },
   { name: "OpenLink", status: "In dev", note: "Unified AI provider layer." },
-  { name: "ClarityCXR", status: "In dev", note: "Multimodal chest X-ray workspace." },
+  {
+    name: "ClarityCXR",
+    status: "In dev",
+    note: "Multimodal chest X-ray workspace.",
+  },
 ];
 
 export default function NowPage() {

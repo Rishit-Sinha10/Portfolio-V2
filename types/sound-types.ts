@@ -4,7 +4,7 @@ export interface SoundAsset {
   /** Base64-encoded data URI (data:audio/mpeg;base64,...) */
   dataUri: string;
   /** Duration in seconds */
-  duration: number;
+  duration?: number;
   /** Audio format */
   format: "mp3" | "wav" | "ogg";
   /** License identifier */
