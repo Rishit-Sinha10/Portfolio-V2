@@ -71,7 +71,7 @@ export default function Portfolio() {
 
       {/* Role / eyebrow line */}
       <p className="mt-3 font-mono text-xs uppercase tracking-wider text-[var(--muted)]">
-        Full Stack Developer &amp; Shopify Seo
+        Software Engineer &amp; Shopify Seo
       </p>
 
       <hr className="mt-6 border-[var(--border)]" />
