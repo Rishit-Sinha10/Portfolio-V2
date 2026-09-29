@@ -1,4 +1,6 @@
 "use client";
+import Proof from "../../public/Images/Levi_Ackermann_29_character_image.png";
+import Image from "next/image";
 import {
   siReact,
   siNextdotjs,
@@ -64,15 +66,22 @@ export default function Portfolio() {
     <section className="mx-auto flex w-full max-w-4xl flex-col px-4 py-6 sm:px-6 md:px-8 lg:px-10">
       <div className="mx-auto w-full max-w-[900px]"></div>
 
-      {/* Name */}
-      <h1 className="text-4xl font-bold leading-tight tracking-tight text-[var(--foreground)] sm:text-5xl">
-        Rishit Sinha
-      </h1>
+      <div className="flex items-start justify-between">
+        <div>
+          <h1 className="text-5xl font-bold">Rishit Sinha</h1>
+          <p className="font-mono text-sm uppercase">
+            Software Engineer & Shopify SEO
+          </p>
+        </div>
 
-      {/* Role / eyebrow line */}
-      <p className="mt-3 font-mono text-xs uppercase tracking-wider text-[var(--muted)]">
-        Software Engineer &amp; Shopify Seo
-      </p>
+        <Image
+          src={Proof}
+          alt="Rishit Image"
+          width={70}
+          height={70}
+          className="rounded-md object-cover"
+        />
+      </div>
 
       <hr className="mt-6 border-[var(--border)]" />
 
