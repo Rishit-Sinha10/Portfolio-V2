@@ -39,7 +39,10 @@ export function ProjectOverviewCard({
       </div>
 
       <p className="mb-3 text-[15px] leading-relaxed text-[var(--muted)]">
-        {project.tagline}
+        {project.summary}
+      </p>
+      <p className="text-[12px] leading-relaxed text-[var(--muted)]">
+        Tech Stack
       </p>
       <p className="mt-3 mb-3 text-xs leading-5 text-[var(--muted)]">
         {project.techStack.skill.join(" · ")}

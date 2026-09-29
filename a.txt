@@ -1,11 +1,2 @@
- Compiled successfully in 24.4s
-  Running TypeScript  ..Failed to type check.
-./lib/click-003.ts:1:33
-Type error: File 'C:/Users/DELL/Desktop/Portfolio-V2/lib/sound-types.ts' is not a module.
-> 1 | import type { SoundAsset } from "../lib/sound-types";
-    |                                 ^
-  2 | export const click003Sound: SoundAsset = {
-  3 |   name: "click-003",
-  4 |   dataUri:
-Next.js build worker exited with code: 1 and signal: null
-error: script "build" exited with code 1
+<label for="form-field-field_ed7e8b7" class="elementor-field-label elementor-screen-only">
+								Country							</label>

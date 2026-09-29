@@ -13,17 +13,13 @@ export default function Footer() {
           {/* Contact */}
           <div className="flex items-center gap-3">
             <span className="whitespace-nowrap">Get in touch:</span>
-
             <a
               href="mailto:Sinharishit04@gmail.com"
-              className="font-semibold underline underline-offset-2 transition hover:text-[var(--muted)]"
+              className="font-semibold underline underline-offset-2 transition hover:text-[var(--muted)] flex justify-center"
             >
               Sinharishit04@gmail.com
             </a>
           </div>
-
-          <span aria-hidden="true">·</span>
-
           {/* Social + navigation */}
           <nav
             aria-label="Footer navigation"

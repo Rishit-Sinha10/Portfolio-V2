@@ -6,7 +6,7 @@ import { useState, useEffect, useMemo } from "react";
 import { Moon, Sun, Menu, X } from "lucide-react";
 import { useTheme } from "next-themes";
 import { cn } from "../../lib/utils";
-import Proof from "../../public/Images/imag1.png";
+import Proof from "../../public/Images/Levi_Ackermann_29_character_image.png";
 import { useActiveSection } from "../hooks/useActiveSection";
 import GithubIcon from "./github";
 import { playSound } from "../../lib/sound-engine";
@@ -60,8 +60,8 @@ export default function Navbar() {
           <Image
             src={Proof}
             alt="Rishit Image"
-            width={18}
-            height={18}
+            width={20}
+            height={20}
             className="rounded-full object-cover"
           />
           <div></div>
