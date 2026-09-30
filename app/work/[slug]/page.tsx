@@ -16,34 +16,6 @@ function StatusDot({ status, accent }: { status: string; accent: string }) {
   );
 }
 
-function Eyebrow({ label }: { label: string }) {
-  return <p className="text-label mb-2">{label}</p>;
-}
-
-function CodeBlock({
-  snippet,
-}: {
-  snippet: { language: string; filename: string; code: string };
-}) {
-  return (
-    <div className="code-block">
-      <div className="flex items-center gap-2 border-b border-[var(--border)] px-4 py-2">
-        <div className="flex gap-1.5">
-          <span className="h-2.5 w-2.5 rounded-full bg-[var(--muted)] opacity-30" />
-          <span className="h-2.5 w-2.5 rounded-full bg-[var(--muted)] opacity-30" />
-          <span className="h-2.5 w-2.5 rounded-full bg-[var(--muted)] opacity-30" />
-        </div>
-        <span className="ml-2 text-[11px] text-[var(--muted)]">
-          {snippet.filename}
-        </span>
-      </div>
-      <pre className="overflow-x-auto p-4 text-[13px] leading-relaxed">
-        <code className="text-[var(--foreground)]">{snippet.code}</code>
-      </pre>
-    </div>
-  );
-}
-
 function ProjectCaseStudyView({ project }: { project: (typeof PROJECTS)[0] }) {
   return (
     <div className="flex flex-col gap-6">
@@ -81,7 +53,7 @@ function ProjectCaseStudyView({ project }: { project: (typeof PROJECTS)[0] }) {
           </div>
         </div>
         <p className="mt-3 text-[15px] leading-relaxed text-[var(--muted)]">
-          {project.tagline}
+          {project.summary}
         </p>
       </div>
     </div>
@@ -98,10 +70,10 @@ export async function generateMetadata({
   if (!project) return {};
   return {
     title: `${project.title} — Case Study`,
-    description: project.tagline,
+    description: project.summary,
     openGraph: {
       title: `${project.title} | Rishit Sinha`,
-      description: project.tagline,
+      description: project.summary,
     },
   };
 }
