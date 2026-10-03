@@ -6,8 +6,20 @@ import { title } from "process";
 const experience = [
   {
     id: "01",
+    title: "Full Stack Intern",
+    company: "NextLearn Technologies",
+    period: "Apr 2026 — May 2026",
+    description:
+      "Developed and optimized full-stack features for a  Employee Management System",
+    responsibilities: [
+      "Shipped 8 product features including authentication, dashboards, and real-time notifications.",
+      "Built RESTful API endpoints with Express.js and integrated MySQL for Secure Entry and Employee-progress data.",
+    ],
+  },
+  {
+    id: "02",
     title: "Frontend Developer Intern",
-    company: "TheTastyMillets",
+    company: "The Tasty Millets",
     period: "May 2026 — Aug 2026",
     description:
       "Optimized responsive frontend experiences for a production Shopify storefront.",
@@ -18,24 +30,11 @@ const experience = [
     ],
   },
   {
-    id: "02",
-    title: "Full Stack Intern",
-    company: "NextLearn Technologies",
-    period: "Apr 2026 — May 2026",
-    description:
-      "Developed and optimized full-stack features for a  Employee Management System With Mysql NodeJs Express HTML CSS JS Google Cloud  Keys",
-    responsibilities: [
-      "Shipped 8 product features including authentication, dashboards, and real-time notifications.",
-      "Built RESTful API endpoints with Express.js and integrated MySQL for Secure Entry and Employee-progress data.",
-    ],
-  },
-  {
     id: "03",
     title: "Shopify Developer",
     company: "The Tasty Millets",
-    period: "Sept 15 2026 - ∞",
-    description:
-      "Optimzed SEO For The Company With Use Of Screaming Frog Seo Spider And Lighthouse",
+    period: "Sept 15 2026 - Present",
+    description: "Mainly Focused On Seo And Performance",
     responsibilities: [
       "I improved Shopify storefront performance. I cut the page payload from forty megabytes, to about nine megabytes. I did this by optimizing media and assets.",
       "Optimized 200+ Assest With Correct Alt Text and Image Name and Improve Image Seo By 10%",

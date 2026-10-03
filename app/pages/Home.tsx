@@ -65,7 +65,6 @@ export default function Portfolio() {
   return (
     <section className="mx-auto flex w-full max-w-4xl flex-col px-4 py-6 sm:px-6 md:px-8 lg:px-10">
       <div className="mx-auto w-full max-w-[900px]"></div>
-
       <div className="flex items-start justify-between">
         <div>
           <h1 className="text-5xl font-bold">Rishit Sinha</h1>
@@ -82,17 +81,23 @@ export default function Portfolio() {
           className="rounded-md object-cover"
         />
       </div>
-
       <hr className="mt-6 border-[var(--border)]" />
-
       {/* Description */}
       <p className="mt-6 text-left text-sm leading-6 text-[var(--muted)] sm:text-base sm:leading-7">
-        Software Engineer focusing on full-stack applications, backend systems,
-        AI-powered products and developer tooling. Builds production-ready
-        services, real-time applications, APIs, and high-performance web
-        experiences with TypeScript, React, Next.js, Node.js, and MongoDB — and
-        explores systems programming, distributed architecture, and developer
-        infrastructure.
+        I'm a software engineer with a focus on frontend development. I enjoy
+        transforming pixel-perfect designs into clean, minimal, and performant
+        interfaces.
+        <br />
+        I am currently working as a Shopify Developer and I spend a lot of my
+        time working on frontend development, technical SEO, performance and
+        production websites.
+        <br />
+        My current stack is about React, Next.js, TypeScript and modern web
+        technologies. My favorite place to work is frontend but I’m exploring
+        backend engineering, APIs, system design and software architecture.
+        <br />I am working toward becoming a well-rounded Software Engineer,
+        taking a product from a polished interface to a reliable production
+        system.
       </p>
       <hr className="mt-8 border-[var(--border)]" />
       <div className="mt-4 flex flex-wrap items-center gap-2.5 sm:gap-3">
@@ -128,7 +133,6 @@ export default function Portfolio() {
           </div>
         </div>
       </div>
-
       <div className="mt-8">
         <p className="mb-3 text-left text-[0.68rem] font-bold uppercase tracking-[0.28em] text-[var(--muted)] sm:text-[0.72rem]">
           Selected work
