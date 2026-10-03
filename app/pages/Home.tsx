@@ -110,13 +110,15 @@ export default function Portfolio() {
           <SendIcon size={10} className="h-4 w-4" />
         </a>
         <a
-          href="/Rishit_resume.pdf"
+          href="/resume.pdf"
           className="inline-flex items-center gap-2 rounded-lg bg-[var(--surface)] px-4 py-2.5 text-sm font-semibold"
         >
           Resume
           <FileDescriptionIcon size={10} className="h-4 w-4" />
         </a>
       </div>
+
+      <div
       <div className="mt-6">
         <p className="mb-3 text-left text-[0.68rem] font-bold uppercase tracking-[0.28em] text-[var(--muted)] sm:text-[0.72rem] ">
           Skills
