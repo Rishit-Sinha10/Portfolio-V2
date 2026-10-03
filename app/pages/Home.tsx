@@ -118,7 +118,6 @@ export default function Portfolio() {
         </a>
       </div>
 
-      <div
       <div className="mt-6">
         <p className="mb-3 text-left text-[0.68rem] font-bold uppercase tracking-[0.28em] text-[var(--muted)] sm:text-[0.72rem] ">
           Skills
