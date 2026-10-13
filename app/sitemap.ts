@@ -1,7 +1,6 @@
 import type { MetadataRoute } from "next";
 import { PROJECTS } from "../data/projects";
 import { getAllBlogSlugs } from "../lib/blog";
-
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://www.rishitsinha.online";
   const staticPages = [
@@ -18,25 +17,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/manifesto`,
-      lastModified: new Date(),
-      changeFrequency: "monthly" as const,
-      priority: 0.6,
-    },
-    {
-      url: `${baseUrl}/uses`,
-      lastModified: new Date(),
-      changeFrequency: "monthly" as const,
-      priority: 0.6,
-    },
-    {
       url: `${baseUrl}/now`,
-      lastModified: new Date(),
-      changeFrequency: "monthly" as const,
-      priority: 0.6,
-    },
-    {
-      url: `${baseUrl}/acknowledgement`,
       lastModified: new Date(),
       changeFrequency: "monthly" as const,
       priority: 0.6,
