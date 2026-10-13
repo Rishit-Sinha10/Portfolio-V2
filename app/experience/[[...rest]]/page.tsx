@@ -2,7 +2,6 @@
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { Reveal } from "../../pages/reavel";
-import { title } from "process";
 const experience = [
   {
     id: "01",
@@ -10,10 +9,10 @@ const experience = [
     company: "NextLearn Technologies",
     period: "Apr 2026 — May 2026",
     description:
-      "Developed and optimized full-stack features for a  Employee Management System",
+      "Developed and optimized full-stack features for an Employee Management System.",
     responsibilities: [
       "Shipped 8 product features including authentication, dashboards, and real-time notifications.",
-      "Built RESTful API endpoints with Express.js and integrated MySQL for Secure Entry and Employee-progress data.",
+      "Built RESTful API endpoints with Express.js and integrated MySQL for secure entry and employee progress data.",
     ],
   },
   {
@@ -24,20 +23,20 @@ const experience = [
     description:
       "Optimized responsive frontend experiences for a production Shopify storefront.",
     responsibilities: [
-      "Built 12+ responsive page components with Liquid Extension Which Consist of HTML CSS JS Ruby On Rails improving UI Ux Improvement.",
+      "Built 12+ responsive page components using Liquid, HTML, CSS, JavaScript, and Ruby on Rails to improve the storefront experience.",
       "Implemented accessibility improvements including keyboard navigation, screen-reader support, and color-contrast improvements.",
-      "Collaborated with design Engineer to ship production-ready frontend Components within a 3-month development cycle.",
+      "Collaborated with design engineers to ship production-ready frontend components within a 3-month development cycle.",
     ],
   },
   {
     id: "03",
     title: "Shopify Developer",
     company: "The Tasty Millets",
-    period: "Sept 15 2026 - Present",
-    description: "Mainly Focused On Seo And Performance",
+    period: "Sep 15, 2026 — Present",
+    description: "Focused on SEO and storefront performance.",
     responsibilities: [
-      "I improved Shopify storefront performance. I cut the page payload from forty megabytes, to about nine megabytes. I did this by optimizing media and assets.",
-      "Optimized 200+ Assest With Correct Alt Text and Image Name and Improve Image Seo By 10%",
+      "Improved Shopify storefront performance by reducing the page payload from 40 MB to about 9 MB through media and asset optimization.",
+      "Optimized 200+ assets with descriptive alt text and image filenames, improving image SEO by 10%.",
     ],
   },
 ];

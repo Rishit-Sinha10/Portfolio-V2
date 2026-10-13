@@ -10,7 +10,6 @@ export default function Footer() {
       <div className="mx-auto max-w-[925px]">
         <div className="flex flex-col gap-6 font-mono text-xs text-[var(--foreground)] md:flex-row md:items-start md:justify-center md:gap-8">
           {/* Contact */}
-          {/* Contact */}
           <div className="flex items-center gap-3">
             <span className="whitespace-nowrap">Get in touch:</span>
             <a

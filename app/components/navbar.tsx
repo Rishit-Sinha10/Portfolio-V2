@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect, useMemo } from "react";
-import { Moon, Sun, Menu, X } from "lucide-react";
+import { Moon, Sun, Menu, X, Volume2, VolumeX } from "lucide-react";
 import { useTheme } from "next-themes";
 import { cn } from "../../lib/utils";
 import Proof from "../../public/Images/Levi_Ackermann_29_character_image.png";
@@ -13,9 +13,11 @@ import { playSound } from "../../lib/sound-engine";
 import { click003Sound } from "../../lib/click-003";
 const NAV_LINKS = [
   { label: "Home", href: "/", section: null },
+  { label: "Work", href: "/projects", section: "work" },
+  { label: "Experience", href: "/experience", section: "experience" },
   { label: "Blog", href: "/blog", section: null },
-  { label: "Projects", href: "/projects", section: null },
-  { label: "Experience", href: "/experience", section: null },
+  { label: "Now", href: "/now", section: null },
+  { label: "Contact", href: "/contact", section: null },
 ];
 
 export default function Navbar() {
@@ -23,6 +25,7 @@ export default function Navbar() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [soundEnabled, setSoundEnabled] = useState(true);
 
   const isHome = pathname === "/";
   const sectionIds = useMemo(
@@ -30,6 +33,20 @@ export default function Navbar() {
     [],
   );
   const activeSection = useActiveSection(isHome ? sectionIds : []);
+  const isLinkActive = (link: (typeof NAV_LINKS)[number]) => {
+    if (link.section && isHome && activeSection === link.section) {
+      return true;
+    }
+
+    if (link.href === "/") {
+      return isHome && !activeSection;
+    }
+
+    return (
+      pathname === link.href ||
+      (link.href === "/projects" && pathname.startsWith("/work/"))
+    );
+  };
 
   useEffect(() => {
     setMounted(true);
@@ -56,32 +73,44 @@ export default function Navbar() {
       aria-label="Main navigation"
     >
       <div className="mx-auto flex max-w-[768px] items-center justify-between px-5 py-3">
-        <Link href="/" className="flex items-center gap-2.5 no-underline">
+        <Link
+          href="/"
+          className="flex items-center gap-2.5 no-underline"
+          aria-label="Rishit Sinha home"
+        >
           <Image
             src={Proof}
-            alt="Rishit Image"
+            alt=""
             width={20}
             height={20}
             className="rounded-full object-cover"
           />
-          <div></div>
+          <span className="text-sm font-semibold tracking-tight text-[var(--foreground)]">
+            Rishit Sinha
+          </span>
         </Link>
 
         <div className="flex items-center gap-1">
           <div className="hidden items-center gap-1 sm:flex">
             {NAV_LINKS.map((link) => {
-              const isActive = link.section
-                ? isHome && activeSection === link.section
-                : link.href === "/"
-                  ? isHome && !activeSection
-                  : pathname === link.href;
+              const isActive = isLinkActive(link);
               return (
                 <Link
                   key={link.href}
                   href={link.href}
                   className={cn(
                     "rounded-md px-2.5 py-1.5 text-[13px] font-medium transition no-underline",
+                    isActive
+                      ? "bg-[var(--accent-light)] text-[var(--foreground)]"
+                      : "text-[var(--muted)] hover:bg-[var(--accent-light)] hover:text-[var(--foreground)]",
                   )}
+                  aria-current={
+                    isActive
+                      ? link.section && isHome
+                        ? "location"
+                        : "page"
+                      : undefined
+                  }
                 >
                   {link.label}
                 </Link>
@@ -98,8 +127,20 @@ export default function Navbar() {
             <GithubIcon />
           </a>
           <button
+            type="button"
+            onClick={() => setSoundEnabled((enabled) => !enabled)}
+            className="rounded-full border p-2 transition"
+            aria-label="Interface sounds"
+            aria-pressed={soundEnabled}
+            title={soundEnabled ? "Interface sounds on" : "Interface sounds off"}
+          >
+            {soundEnabled ? <Volume2 size={15} /> : <VolumeX size={15} />}
+          </button>
+          <button
             onClick={() => {
-              void playSound(click003Sound.dataUri, { volume: 0.5 });
+              if (soundEnabled) {
+                void playSound(click003Sound.dataUri, { volume: 0.5 });
+              }
               setTheme(resolvedTheme === "dark" ? "light" : "dark");
             }}
             className={cn(
@@ -134,11 +175,7 @@ export default function Navbar() {
         <div className="border-t border-[var(--border)] bg-[var(--background)] px-5 py-3 sm:hidden">
           <div className="flex flex-col gap-1">
             {NAV_LINKS.map((link) => {
-              const isActive = link.section
-                ? isHome && activeSection === link.section
-                : link.href === "/"
-                  ? isHome && !activeSection
-                  : pathname === link.href;
+              const isActive = isLinkActive(link);
               return (
                 <Link
                   key={link.href}
@@ -149,6 +186,13 @@ export default function Navbar() {
                       ? "bg-[var(--accent-light)] text-[var(--accent)]"
                       : "text-[var(--muted)] hover:bg-[var(--accent-light)] hover:text-[var(--foreground)]",
                   )}
+                  aria-current={
+                    isActive
+                      ? link.section && isHome
+                        ? "location"
+                        : "page"
+                      : undefined
+                  }
                 >
                   {link.label}
                 </Link>

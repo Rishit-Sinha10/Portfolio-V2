@@ -32,24 +32,28 @@ function ProjectCaseStudyView({ project }: { project: (typeof PROJECTS)[0] }) {
           </div>
           <div className="flex flex-wrap items-center gap-3">
             <StatusDot status={project.status} accent={project.accent} />
-            <a
-              href={project.liveUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-1 text-xs font-semibold no-underline text-[var(--muted)] transition hover:text-[var(--foreground)]"
-            >
-              Visit
-              <ArrowUpRight size={12} />
-            </a>
-            <a
-              href={project.githubUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-1 text-xs font-semibold text-[var(--muted)] no-underline transition hover:text-[var(--foreground)]"
-            >
-              <Github size={12} />
-              Code
-            </a>
+            {project.liveUrl && (
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-1 text-xs font-semibold no-underline text-[var(--muted)] transition hover:text-[var(--foreground)]"
+              >
+                Visit
+                <ArrowUpRight size={12} />
+              </a>
+            )}
+            {project.githubUrl && (
+              <a
+                href={project.githubUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-1 text-xs font-semibold text-[var(--muted)] no-underline transition hover:text-[var(--foreground)]"
+              >
+                <Github size={12} />
+                Code
+              </a>
+            )}
           </div>
         </div>
         <p className="mt-3 text-[15px] leading-relaxed text-[var(--muted)]">

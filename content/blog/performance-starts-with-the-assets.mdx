@@ -1,0 +1,60 @@
+---
+title: "Frontend Performance Starts With the Assets"
+date: "2026-10-13"
+excerpt: "What optimizing a Shopify storefront taught me about measuring page weight, prioritizing media, and treating performance as part of the interface."
+tags: ["frontend", "performance", "shopify", "web-vitals"]
+---
+
+When a page feels slow, it is tempting to reach for a code-level fix first. But on a storefront, the biggest opportunity may be sitting in plain sight: the images and other assets the page has to download.
+
+While working on a Shopify storefront, I reduced the reported page payload from about 40 MB to about 9 MB by optimizing media and assets. I also worked through more than 200 assets to improve their image names and alt text.
+
+Those numbers made the work tangible, but the more useful lesson was the process: measure what the page sends, find the heaviest contributors, and improve them without losing the visual detail the page needs.
+
+## Start with evidence
+
+“The site feels heavy” is a useful observation, but it does not tell you what to fix. Before changing anything, establish what is contributing to the page weight.
+
+Look at the resources a real page loads and identify the largest files. On an image-led storefront, product photography, banners, and other large media can outweigh the scripts and styles. If you optimize the wrong layer, you can spend time reducing code while the main content remains expensive to load.
+
+Keep a before-and-after measurement. A change is only an improvement if the page sends less data or becomes meaningfully faster under the conditions your visitors experience.
+
+## Prioritize what users see
+
+Not every asset has the same impact. A large image near the top of the page can affect the first impression much more than a small image several sections below.
+
+Work through the highest-impact assets first:
+
+- Check whether each image is displayed much smaller than its source dimensions.
+- Reduce unnecessary file weight while preserving enough detail for its displayed size.
+- Make sure the asset format and dimensions suit how it is used.
+- Avoid loading large media before it is needed, where the page and storefront setup support that.
+
+The goal is not to make every image as small as possible. Product details and brand photography are part of the experience. The goal is to deliver only the image quality the layout needs.
+
+## Treat asset metadata as part of the work
+
+Optimizing a large asset library is also a chance to make it easier to understand. Descriptive filenames help people identify files, and accurate alt text gives useful context when an image cannot be seen or loaded.
+
+These details should describe the actual image, not repeat a list of search terms. For decorative images, avoid adding alternative text that distracts from the content. For meaningful product imagery, describe the information a visitor would otherwise miss.
+
+I worked through more than 200 storefront assets to improve their names and alt text. That was careful catalog work, not a substitute for reducing file size—and it made the asset library more useful beyond the performance pass.
+
+## Recheck the whole page
+
+Asset changes can have side effects. A compressed image may look soft; a replacement may crop differently; a change may help one page while leaving another untouched.
+
+After each batch:
+
+1. Recheck the page weight against the original measurement.
+2. Inspect important images at their actual displayed sizes.
+3. Check the page at narrow and wide viewport widths.
+4. Confirm that meaningful images still have useful alternative text.
+
+This keeps performance work connected to the interface people actually use, rather than treating a smaller number as the only definition of success.
+
+## What I took away
+
+Reducing a reported page payload from about 40 MB to about 9 MB reinforced a simple point for me: frontend performance is not just a bundler setting or a clever component trick. It is also the everyday discipline of finding what the browser downloads and deciding what is worth sending.
+
+Measure first. Prioritize the assets with the biggest impact. Preserve the experience. Then measure again.

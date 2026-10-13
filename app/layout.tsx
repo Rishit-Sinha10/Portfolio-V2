@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     template: "%s | Rishit Sinha",
   },
   description:
-    "A Final Year Student building real-time systems and production web apps.",
+    "A Software Engineer building real-time systems and production web apps.",
   keywords: [
     "full-stack developer",
     "software engineer",
@@ -52,22 +52,22 @@ export const metadata: Metadata = {
     siteName: "Rishit Sinha",
     title: "Rishit Sinha — Portfolio",
     description:
-      "Full-stack Developer building real-time systems and production web apps. Final-year CS student with startup experience.",
+      "Software Engineer building real-time systems and production web apps. Final-year CS student with startup experience.",
     images: [
       {
         url: "/Images/og-image.png",
         width: 1917,
         height: 909,
         type: "image/png",
-        alt: "Rishit Sinha — Full-Stack Developer",
+        alt: "Rishit Sinha — Software Engineer",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Rishit Sinha — Full-Stack Engineer",
+    title: "Rishit Sinha — Software Engineer",
     description:
-      "Full-stack Developer building real-time systems and production web apps.",
+      "Software Engineer building real-time systems and production web apps.",
     images: ["/Images/og-image.png"],
   },
   robots: {
@@ -99,9 +99,9 @@ export default function RootLayout({
     "@type": "Person",
     name: "Rishit Sinha",
     url: SITE_URL,
-    jobTitle: "Full-Stack Developer",
+    jobTitle: "Software Engineer",
     description:
-      "Full-stack engineer building real-time systems and production web apps.",
+      "Software Engineer building real-time systems and production web apps.",
     sameAs: [
       "https://github.com/Rishit-Sinha10",
       "https://www.linkedin.com/in/rishit-sinha-6953ab363",

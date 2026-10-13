@@ -13,8 +13,8 @@ export default function Contact() {
               Get in touch
             </h2>
             <p className="text-sm text-[var(--muted)]">
-              Open to full-time roles starting 2026. Let&apos;s build something
-              great together.
+              Open to full-time roles. Let&apos;s build something great
+              together.
             </p>
           </div>
           <a

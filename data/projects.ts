@@ -19,7 +19,7 @@ export const PROJECTS: ProjectCaseStudy[] = [
     title: "OpenLink",
     status: "In dev",
     summary:
-      "OpenLink follows a provider-agnostic adapter architecture. The core API handles validation, routing, normalization, and error handling, while individual adapters encapsulate provider-specific implementation details.",
+      "An in-development layer for routing requests across AI providers. A shared API validates input, routes requests, normalizes responses, and keeps provider-specific behavior inside adapters.",
     techStack: {
       skill: [
         "Next.js",
@@ -34,7 +34,7 @@ export const PROJECTS: ProjectCaseStudy[] = [
       ],
     },
     liveUrl: "",
-    githubUrl: "https://github.com/Rishit-Sinha10/OpenLink",
+    githubUrl: "",
     accent: "#0000FF",
   },
 
@@ -43,7 +43,7 @@ export const PROJECTS: ProjectCaseStudy[] = [
     title: "ClarityCXR",
     status: "In dev",
     summary:
-      "ClarityCXR is an AI-powered workspace designed around multimodal image analysis, authentication, and a focused interface for working with chest X-ray data.",
+      "An in-development chest X-ray workspace with multimodal image-analysis workflows, authentication, and a focused interface for working with imaging data.",
     techStack: {
       skill: [
         "Next.js",
@@ -64,7 +64,7 @@ export const PROJECTS: ProjectCaseStudy[] = [
     title: "Financcino",
     status: "Live",
     summary:
-      "Financcino is a full-stack personal finance application that lets users track expenses, process receipts with OCR, manage category budgets, visualize spending patterns, and interact with an AI assistant using their financial data.",
+      "A personal-finance app for tracking expenses, scanning receipts with OCR, and managing category budgets. Its React interface uses Recharts to visualize spending and includes an AI assistant that works with financial data.",
     techStack: {
       skill: [
         "React",
