@@ -1,26 +1,30 @@
 import type { MDXComponents } from "mdx/types";
 
-const components: MDXComponents = {
+export const mdxComponents: MDXComponents = {
   h1: ({ children }) => (
-    <h1 className="heading-section mb-6 text-[var(--foreground)]">
+    <h2 className="mt-10 mb-4 text-2xl leading-tight font-bold tracking-[-0.02em] text-[var(--foreground)]">
       {children}
-    </h1>
+    </h2>
   ),
   h2: ({ children }) => (
-    <h2
-      className="mt-12 mb-5 text-2xl font-bold text-[var(--foreground)]"
-      style={{ letterSpacing: "-0.02em" }}
-    >
+    <h2 className="mt-10 mb-4 text-2xl leading-tight font-bold tracking-[-0.02em] text-[var(--foreground)]">
       {children}
     </h2>
   ),
   h3: ({ children }) => (
-    <h3 className="mt-9 mb-4 text-xl font-semibold text-[var(--foreground)]">
+    <h3 className="mt-8 mb-3 text-xl leading-snug font-semibold tracking-[-0.01em] text-[var(--foreground)]">
       {children}
     </h3>
   ),
+  h4: ({ children }) => (
+    <h4 className="mt-6 mb-2 text-lg leading-snug font-semibold text-[var(--foreground)]">
+      {children}
+    </h4>
+  ),
   p: ({ children }) => (
-    <p className="mb-6 text-[18px] leading-7 text-[var(--muted)]">{children}</p>
+    <p className="mb-5 text-[17px] leading-[1.8] text-[var(--muted)] sm:text-[18px]">
+      {children}
+    </p>
   ),
   strong: ({ children }) => (
     <strong className="font-semibold text-[var(--foreground)]">
@@ -36,33 +40,30 @@ const components: MDXComponents = {
     </a>
   ),
   ul: ({ children }) => (
-    <ul className="mb-4 list-disc pl-6 text-[var(--muted)]">{children}</ul>
+    <ul className="mb-5 list-disc space-y-2 pl-6 text-[17px] leading-[1.8] text-[var(--muted)] sm:text-[18px] [&_li>ol]:my-2 [&_li>ul]:my-2">
+      {children}
+    </ul>
   ),
   ol: ({ children }) => (
-    <ol className="mb-4 list-decimal pl-6 text-[var(--muted)]">{children}</ol>
+    <ol className="mb-5 list-decimal space-y-2 pl-6 text-[17px] leading-[1.8] text-[var(--muted)] sm:text-[18px] [&_li>ol]:my-2 [&_li>ul]:my-2">
+      {children}
+    </ol>
   ),
-  li: ({ children }) => (
-    <li className="mb-2 text-[18px] leading-7">{children}</li>
-  ),
+  li: ({ children }) => <li>{children}</li>,
   blockquote: ({ children }) => (
-    <blockquote className="my-8 border-l-2 border-[var(--border)] py-2 pl-5 text-[var(--muted)] italic">
+    <blockquote className="my-6 border-l-2 border-[var(--border)] py-1 pl-5 text-[var(--muted)] italic">
       {children}
     </blockquote>
   ),
-  code: ({ children }) => (
-    <code className="rounded bg-[var(--background-secondary)] px-1.5 py-0.5 text-[14px] font-mono text-[var(--foreground)]">
-      {children}
-    </code>
-  ),
   pre: ({ children }) => (
-    <pre className="mb-6 overflow-x-auto rounded-lg border border-[var(--border)] bg-[var(--background-secondary)] p-4 text-[14px] leading-relaxed">
+    <pre className="my-6 max-w-full overflow-x-auto rounded-lg border border-[var(--border)] bg-[var(--background-secondary)] p-4 font-mono text-sm leading-relaxed text-[var(--foreground)]">
       {children}
     </pre>
   ),
   hr: () => <hr className="my-8 border-[var(--border)]" />,
   table: ({ children }) => (
-    <div className="my-6 overflow-x-auto">
-      <table className="w-full border-collapse text-left text-[15px]">
+    <div className="my-6 max-w-full overflow-x-auto">
+      <table className="w-full border-collapse text-left text-sm">
         {children}
       </table>
     </div>
@@ -70,16 +71,19 @@ const components: MDXComponents = {
   thead: ({ children }) => (
     <thead className="border-b border-[var(--border)]">{children}</thead>
   ),
+  tbody: ({ children }) => (
+    <tbody className="divide-y divide-[var(--border)]">{children}</tbody>
+  ),
   th: ({ children }) => (
-    <th className="px-4 py-2 font-medium text-[var(--foreground)]">
+    <th className="px-4 py-3 font-semibold text-[var(--foreground)]">
       {children}
     </th>
   ),
   td: ({ children }) => (
-    <td className="px-4 py-2 text-[var(--muted)]">{children}</td>
+    <td className="px-4 py-3 text-[var(--muted)]">{children}</td>
   ),
 };
 
 export function useMDXComponents(): MDXComponents {
-  return components;
+  return mdxComponents;
 }

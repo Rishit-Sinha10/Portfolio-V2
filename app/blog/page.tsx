@@ -1,12 +1,10 @@
 import Link from "next/link";
 import { getAllBlogPosts } from "../../lib/blog";
-
 export const metadata = {
   title: "Blog",
   description:
     "Technical articles about building real-time systems, React, and full-stack development.",
 };
-
 export default function BlogPage() {
   const posts = getAllBlogPosts();
   return (
@@ -18,11 +16,10 @@ export default function BlogPage() {
           from shipping production apps.
         </p>
       </div>
-
       {posts.length === 0 ? (
         <p className="text-body">No posts yet. Check back soon.</p>
       ) : (
-        <div className="space-y-0">
+        <div className="space-y-2">
           {posts.map((post) => (
             <Link
               key={post.slug}
