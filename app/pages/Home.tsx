@@ -22,6 +22,7 @@ import { PROJECTS } from "../../data/projects";
 import FileDescriptionIcon from "../components/file";
 import SendIcon from "../components/send-icon";
 import { ProjectOverviewCard } from "../components/project-card";
+import ContributionGraph from "./github";
 
 const SKILLS: { name: string; icon: SimpleIcon }[] = [
   // Frontend
@@ -136,7 +137,7 @@ export default function Portfolio() {
                 className="border-b border-[var(--border)] last:border-b-0"
               >
                 <ProjectOverviewCard project={project} />
-            </div>
+              </div>
             ) : null;
           })}
         </div>
@@ -159,6 +160,13 @@ export default function Portfolio() {
             <SkillBadge key={skill.name} name={skill.name} icon={skill.icon} />
           ))}
         </ul>
+      </section>
+
+      <section className="mt-10">
+        <h2 id="skills-heading" className={`${SECTION_HEADING} mb-3`}>
+          Github Activity
+        </h2>
+        <ContributionGraph />
       </section>
     </div>
   );

@@ -7,7 +7,12 @@ import { Analytics } from "@vercel/analytics/next";
 import TransitionLayout from "./components/transitionpage";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { SmoothScroll } from "../app/components/smoothscroll";
-import { Instrument_Serif, Geist, Geist_Mono } from "next/font/google";
+import {
+  Instrument_Serif,
+  Geist,
+  Geist_Mono,
+  Familjen_Grotesk,
+} from "next/font/google";
 const SITE_URL = "https://www.rishitsinha.online";
 const instrumentSerif = Instrument_Serif({
   weight: "400",
@@ -15,9 +20,9 @@ const instrumentSerif = Instrument_Serif({
   variable: "--font-instrument-serif",
   display: "swap",
 });
-const geist = Geist({
+const FamiljenGrotesk = Familjen_Grotesk({
   subsets: ["latin"],
-  variable: "--font-geist",
+  variable: "--font-Familjen-Grotesk",
   display: "swap",
 });
 const geistMono = Geist_Mono({
@@ -120,7 +125,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${instrumentSerif.variable} ${geist.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${instrumentSerif.variable} ${FamiljenGrotesk.variable} ${geistMono.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       <head>
