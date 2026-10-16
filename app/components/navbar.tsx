@@ -118,56 +118,62 @@ export default function Navbar() {
             })}
           </div>
 
-          <a
-            href="https://github.com/Rishit-Sinha10"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="GitHub"
-          >
-            <GithubIcon />
-          </a>
-          <button
-            type="button"
-            onClick={() => setSoundEnabled((enabled) => !enabled)}
-            className="rounded-full border p-2 transition"
-            aria-label="Interface sounds"
-            aria-pressed={soundEnabled}
-            title={soundEnabled ? "Interface sounds on" : "Interface sounds off"}
-          >
-            {soundEnabled ? <Volume2 size={15} /> : <VolumeX size={15} />}
-          </button>
-          <button
-            onClick={() => {
-              if (soundEnabled) {
-                void playSound(click003Sound.dataUri, { volume: 0.5 });
-              }
-              setTheme(resolvedTheme === "dark" ? "light" : "dark");
-            }}
-            className={cn(
-              "rounded-full border p-2 transition",
-              mounted && resolvedTheme === "dark",
-            )}
-            aria-label={
-              resolvedTheme === "dark"
-                ? "Switch to light mode"
-                : "Switch to dark mode"
-            }
-          >
-            {mounted && resolvedTheme === "dark" ? (
-              <Sun size={15} />
-            ) : (
-              <Moon size={15} />
-            )}
-          </button>
+          <div className="flex items-center gap-1">
+            <a
+              href="https://github.com/Rishit-Sinha10"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center rounded-full p-2 transition hover:bg-[var(--surface)]"
+              aria-label="GitHub"
+            >
+              <GithubIcon size={18} />
+            </a>
 
-          <button
-            onClick={() => setMobileOpen((o) => !o)}
-            className="rounded-md p-2 text-[var(--muted)] transition hover:text-[var(--foreground)] sm:hidden"
-            aria-label={mobileOpen ? "Close menu" : "Open menu"}
-            aria-expanded={mobileOpen}
-          >
-            {mobileOpen ? <X size={18} /> : <Menu size={18} />}
-          </button>
+            <button
+              type="button"
+              onClick={() => setSoundEnabled((enabled) => !enabled)}
+              className="inline-flex items-center justify-center rounded-full p-2 transition hover:bg-[var(--surface)]"
+              aria-label="Interface sounds"
+              aria-pressed={soundEnabled}
+              title={
+                soundEnabled ? "Interface sounds on" : "Interface sounds off"
+              }
+            >
+              {soundEnabled ? <Volume2 size={18} /> : <VolumeX size={18} />}
+            </button>
+
+            <button
+              type="button"
+              onClick={() => {
+                if (soundEnabled) {
+                  void playSound(click003Sound.dataUri, { volume: 0.5 });
+                }
+                setTheme(resolvedTheme === "dark" ? "light" : "dark");
+              }}
+              className="inline-flex items-center justify-center rounded-full p-2 transition hover:bg-[var(--surface)]"
+              aria-label={
+                resolvedTheme === "dark"
+                  ? "Switch to light mode"
+                  : "Switch to dark mode"
+              }
+            >
+              {mounted && resolvedTheme === "dark" ? (
+                <Sun size={18} />
+              ) : (
+                <Moon size={18} />
+              )}
+            </button>
+
+            <button
+              type="button"
+              onClick={() => setMobileOpen((o) => !o)}
+              className="inline-flex items-center justify-center rounded-md p-2 text-[var(--muted)] transition hover:text-[var(--foreground)] sm:hidden"
+              aria-label={mobileOpen ? "Close menu" : "Open menu"}
+              aria-expanded={mobileOpen}
+            >
+              {mobileOpen ? <X size={18} /> : <Menu size={18} />}
+            </button>
+          </div>
         </div>
       </div>
 

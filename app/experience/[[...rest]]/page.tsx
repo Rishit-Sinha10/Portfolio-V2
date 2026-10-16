@@ -2,6 +2,8 @@
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { Reveal } from "../../pages/reavel";
+const SECTION_HEADING =
+  "text-left text-[0.72rem] font-bold uppercase tracking-[0.28em] text-[var(--muted)]";
 const experience = [
   {
     id: "01",
@@ -55,9 +57,9 @@ export default function Experience() {
     >
       <Reveal>
         <div className="mb-8">
-          <p className="mb-3  text-left text-[0.68rem] font-bold uppercase tracking-[0.28em] text-[var(--muted)] sm:text-[0.72rem]">
+          <h2 id="skills-heading" className={`${SECTION_HEADING} mb-3`}>
             Experience
-          </p>
+          </h2>
         </div>
       </Reveal>
 

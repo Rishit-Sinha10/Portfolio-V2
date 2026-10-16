@@ -1,6 +1,4 @@
 "use client";
-import Proof from "../../public/Images/Levi_Ackermann_29_character_image.png";
-import Image from "next/image";
 import {
   siReact,
   siNextdotjs,
@@ -17,13 +15,15 @@ import {
   siSocketdotio,
 } from "simple-icons";
 import type { SimpleIcon } from "simple-icons";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Section } from "lucide-react";
 import { PROJECTS } from "../../data/projects";
 import FileDescriptionIcon from "../components/file";
 import SendIcon from "../components/send-icon";
 import { ProjectOverviewCard } from "../components/project-card";
 import ContributionGraph from "./github";
-
+import { SocialIcon } from "../components/social";
+import Image from "next/image";
+import Proof from "../../public/Images/Levi_Ackermann_29_character_image.png";
 const SKILLS: { name: string; icon: SimpleIcon }[] = [
   // Frontend
   { name: "React", icon: siReact },
@@ -75,54 +75,70 @@ export default function Portfolio() {
   return (
     <div className="mx-auto flex w-full max-w-4xl flex-col px-4 py-6 sm:px-6 md:px-8 lg:px-10">
       {/* Intro */}
-      <header className="flex items-start justify-between gap-4">
-        <div>
-          <h1 className="heading-hero text-5xl font-bold">Rishit Sinha</h1>
-          <p className="font-mono text-sm uppercase">
-            Software Engineer & Shopify SEO
-          </p>
+      <section id="about" aria-labelledby="about-heading" className="mt-10">
+        <h2 id="about-heading" className={`${SECTION_HEADING} mb-10`}>
+          Curious About Me
+        </h2>
+
+        <div className="grid items-start gap-8 md:grid-cols-[1fr_auto] md:gap-14">
+          <div className="order-2 md:order-1">
+            <p className="text-2xl leading-snug font-medium tracking-tight sm:text-3xl sm:leading-tight">
+              I build interfaces that feel{" "}
+              <span className="text-[var(--muted)]">
+                effortless, and the systems underneath that keep them
+                dependable.
+              </span>
+            </p>
+
+            <div className="mt-6 space-y-5 text-sm leading-6 text-[var(--muted)] sm:text-base sm:leading-7">
+              <p>
+                I'm a software engineer who enjoys turning pixel-perfect designs
+                into clean, minimal, performant frontends. By day I work as a
+                Shopify Developer, shipping storefront components and improving
+                technical SEO and speed on production sites.
+              </p>
+              <p>
+                Outside of work I build products with React, Next.js, and
+                TypeScript, and I'm pushing deeper into backend and
+                architecture, aiming to take a product from polished interface
+                to reliable production system.
+              </p>
+            </div>
+
+            <div className="mt-8 flex flex-wrap items-center gap-2.5 sm:gap-3">
+              <a
+                href="https://cal.com/rishit-sinha-eku02v/30min?overlayCalendar=true"
+                className="inline-flex items-center gap-2 rounded-lg border border-[var(--border)] bg-[var(--surface)] px-4 py-2.5 text-sm font-medium text-[var(--foreground)] transition-colors duration-300 hover:bg-[var(--accent-light)]"
+              >
+                Book a call
+                <SendIcon size={10} className="h-4 w-4" />
+              </a>
+              <a
+                href="/resume.pdf"
+                className="inline-flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold text-[var(--muted)] transition-colors duration-300 hover:text-[var(--foreground)]"
+              >
+                Resume
+                <FileDescriptionIcon size={10} className="h-4 w-4" />
+              </a>
+            </div>
+          </div>
+
+          <Image
+            src={Proof}
+            alt="Portrait of Rishit Sinha"
+            width={160}
+            height={160}
+            priority
+            className="order-1 size-28 rounded-md border border-[var(--border)] object-cover grayscale transition-[filter] duration-500 ease-out hover:grayscale-0 md:order-2 md:size-40"
+          />
         </div>
-        <Image
-          src={Proof}
-          alt="Portrait of Rishit Sinha"
-          width={70}
-          height={70}
-          className="rounded-md object-cover"
-        />
-      </header>
-
-      <hr className="mt-6 border-[var(--border)]" />
-
-      <p className="mt-6 max-w-[65ch] text-left text-sm leading-6 text-[var(--muted)] sm:text-base sm:leading-7">
-        I'm a software engineer with a focus on frontend development. I enjoy
-        transforming pixel-perfect designs into clean, minimal, and performant
-        interfaces. I am currently working as a Shopify Developer and I spend a
-        lot of my time working on frontend development, technical SEO,
-        performance and production websites. My current stack is about React,
-        Next.js, TypeScript and modern web technologies. My favorite place to
-        work is frontend but I’m exploring backend engineering, APIs, system
-        design and software architecture. I am working toward becoming a
-        well-rounded Software Engineer, taking a product from a polished
-        interface to a reliable production system.
-      </p>
-
-      <div className="mt-6 flex flex-wrap items-center gap-2.5 sm:gap-3">
-        <a
-          href="https://cal.com/rishit-sinha-eku02v/30min?overlayCalendar=true"
-          className="inline-flex items-center gap-2 rounded-lg border border-[var(--border)] bg-[var(--surface)] px-4 py-2.5 text-sm font-medium text-[var(--foreground)]"
-        >
-          Book a call
-          <SendIcon size={10} className="h-4 w-4" />
-        </a>
-        <a
-          href="/resume.pdf"
-          className="inline-flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold"
-        >
-          Resume
-          <FileDescriptionIcon size={10} className="h-4 w-4" />
-        </a>
-      </div>
-
+      </section>
+      <section id="work" aria-labelledby="work-heading" className="mt-10">
+        <h2 id="work-heading" className={`${SECTION_HEADING} mb-3`}>
+          My Socials
+        </h2>
+        <SocialIcon />
+      </section>
       {/* Work: the main event, so it comes first after the intro */}
       <section id="work" aria-labelledby="work-heading" className="mt-10">
         <h2 id="work-heading" className={`${SECTION_HEADING} mb-3`}>
