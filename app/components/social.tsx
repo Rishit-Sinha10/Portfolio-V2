@@ -2,6 +2,7 @@ import DiscordIcon from "./discord";
 import GithubIcon from "./github";
 import GmailIcon from "./gmail-icon";
 import LinkedinIcon from "./linkedin";
+import TwitterXIcon from "./x-icon";
 const links = [
   {
     label: "GitHub",
@@ -10,18 +11,23 @@ const links = [
   },
   {
     label: "LinkedIn",
-    href: "https://www.linkedin.com/in/your-handle",
+    href: "https://www.linkedin.com/in/rishit-sinha-6953ab363/",
     Icon: LinkedinIcon,
   },
   {
     label: "Gmail",
-    href: "mailto:you@example.com",
+    href: "mailto:Sinharishit04@gmail.com",
     Icon: GmailIcon,
   },
   {
     label: "Discord",
-    href: "https://discord.com/users/your-id",
+    href: "https://discord.com/users/890116546276507688",
     Icon: DiscordIcon,
+  },
+  {
+    label: "X",
+    href: "https://x.com/RishitSinh41144",
+    Icon: TwitterXIcon,
   },
 ];
 export const SocialIcon = () => {
