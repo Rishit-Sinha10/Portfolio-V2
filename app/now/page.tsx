@@ -30,7 +30,11 @@ const PROJECTS = [
     status: "Live",
     note: "Personal finance, in production.",
   },
-  { name: "Flux", status: "Live", note: "Real-time Live streaming platform." },
+  {
+    name: "Tunnel",
+    status: "Live",
+    note: "Real-time Live streaming platform.",
+  },
   { name: "OpenLink", status: "In dev", note: "Unified AI provider layer." },
   {
     name: "ClarityCXR",

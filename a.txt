@@ -256,7 +256,7 @@ Present OpenLink as the flagship project because it demonstrates both interface 
 
 Do not claim production scale, active users, revenue, or reliability guarantees without evidence.
 
-#### Project 02 — Flux
+#### Project 02 — Tunnel
 
 Description:
 
@@ -300,7 +300,7 @@ Existing URL:
 #### Project selection rules
 
 - OpenLink should receive the strongest visual emphasis.
-- Flux and Financcino should support the story without competing equally with the flagship.
+- Tunnel and Financcino should support the story without competing equally with the flagship.
 - Add ClarityCXR or another project only if it materially improves the portfolio.
 - Avoid showing every repository simply to increase the project count.
 - Never invent screenshots, testimonials, metrics, case studies, or technical accomplishments.

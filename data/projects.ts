@@ -86,11 +86,11 @@ export const PROJECTS: ProjectCaseStudy[] = [
   },
 
   {
-    id: "flux",
-    title: "Flux",
+    id: "tunnel",
+    title: "Tunnel",
     status: "Live",
     summary:
-      "Flux is a full-stack live streaming platform that combines RTMP ingestion, HLS playback, real-time chat, creator controls, authentication, and analytics into a single application.",
+      "Tunnel is a full-stack live streaming platform that combines RTMP ingestion, HLS playback, real-time chat, creator controls, authentication, and analytics into a single application.",
     techStack: {
       skill: [
         "React",

@@ -76,62 +76,48 @@ export default function Portfolio() {
     <div className="mx-auto flex w-full max-w-4xl flex-col px-4 py-6 sm:px-6 md:px-8 lg:px-10">
       {/* Intro */}
       <section id="about" aria-labelledby="about-heading" className="mt-10">
-        <h2 id="about-heading" className={`${SECTION_HEADING} mb-10`}>
+        <div className="order-2 md:order-1">
+          <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">
+            Rishit Sinha
+          </h1>
+          <p className="mt-1 text-sm text-[var(--muted)]">
+            Software Engineer · Jaipur, Rajasthan
+          </p>
+
+          <p className="mt-4 max-w-base text-base leading-relaxed text-[var(--foreground)] text-balance">
+            I build minimalist, performance-driven frontend interfaces focused
+            on SEO, accessibility, and usability.
+          </p>
+
+          <div className="mt-8 flex flex-wrap items-center gap-3">
+            <a
+              href="https://cal.com/rishit-sinha-eku02v/30min?overlayCalendar=true"
+              className="inline-flex items-center gap-2 rounded-lg border border-[var(--border)] bg-[var(--surface)] px-4 py-2.5 text-sm font-medium transition-colors hover:bg-[var(--accent-light)]"
+            >
+              Book a call
+              <SendIcon size={10} className="h-4 w-4" />
+            </a>
+            <a
+              href="/resume.pdf"
+              className="inline-flex items-center gap-2 px-2 py-2.5 text-sm font-medium text-[var(--muted)] transition-colors hover:text-[var(--foreground)]"
+            >
+              Resume
+              <FileDescriptionIcon size={10} className="h-4 w-4" />
+            </a>
+          </div>
+        </div>
+      </section>
+      <section id="about" aria-labelledby="work-heading" className="mt-10">
+        <h2 id="work-heading" className={`${SECTION_HEADING} mb-3`}>
           Curious About Me
         </h2>
-
-        <div className="grid items-start gap-8 md:grid-cols-[1fr_auto] md:gap-14">
-          <div className="order-2 md:order-1">
-            <p className="text-2xl leading-snug font-medium tracking-tight sm:text-3xl sm:leading-tight">
-              I build interfaces that feel{" "}
-              <span className="text-[var(--muted)]">
-                effortless, and the systems underneath that keep them
-                dependable.
-              </span>
-            </p>
-
-            <div className="mt-6 space-y-5 text-sm leading-6 text-[var(--muted)] sm:text-base sm:leading-7">
-              <p>
-                I'm a software engineer who enjoys turning pixel-perfect designs
-                into clean, minimal, performant frontends. By day I work as a
-                Shopify Developer, shipping storefront components and improving
-                technical SEO and speed on production sites.
-              </p>
-              <p>
-                Outside of work I build products with React, Next.js, and
-                TypeScript, and I'm pushing deeper into backend and
-                architecture, aiming to take a product from polished interface
-                to reliable production system.
-              </p>
-            </div>
-
-            <div className="mt-8 flex flex-wrap items-center gap-2.5 sm:gap-3">
-              <a
-                href="https://cal.com/rishit-sinha-eku02v/30min?overlayCalendar=true"
-                className="inline-flex items-center gap-2 rounded-lg border border-[var(--border)] bg-[var(--surface)] px-4 py-2.5 text-sm font-medium text-[var(--foreground)] transition-colors duration-300 hover:bg-[var(--accent-light)]"
-              >
-                Book a call
-                <SendIcon size={10} className="h-4 w-4" />
-              </a>
-              <a
-                href="/resume.pdf"
-                className="inline-flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold text-[var(--muted)] transition-colors duration-300 hover:text-[var(--foreground)]"
-              >
-                Resume
-                <FileDescriptionIcon size={10} className="h-4 w-4" />
-              </a>
-            </div>
-          </div>
-
-          <Image
-            src={Proof}
-            alt="Portrait of Rishit Sinha"
-            width={160}
-            height={160}
-            priority
-            className="order-1 size-28 rounded-md border border-[var(--border)] object-cover grayscale transition-[filter] duration-500 ease-out hover:grayscale-0 md:order-2 md:size-40"
-          />
-        </div>
+        <p className="mt-4 text-sm leading-relaxed text-[var(--foreground)] text-balance">
+          I'm a 21-year-old Computer Science student based in Jaipur, India,
+          focused on building fast, reliable web interfaces and understanding
+          the systems behind them. I care about performance, clarity, and
+          maintainable code, and I'm gradually exploring lower-level concepts
+          such as memory management, network sockets, and container runtimes.
+        </p>
       </section>
       <section id="work" aria-labelledby="work-heading" className="mt-10">
         <h2 id="work-heading" className={`${SECTION_HEADING} mb-3`}>
@@ -164,6 +150,27 @@ export default function Portfolio() {
           View all projects
           <ArrowUpRight size={14} />
         </a>
+      </section>
+      <section id="blog" aria-labelledby="blog-heading" className="mt-10">
+        <h2 id="blog-heading" className={`${SECTION_HEADING} mb-3`}>
+          Blog
+        </h2>
+        <div className="rounded-lg border border-[var(--border)] bg-[var(--surface)] p-5 sm:p-6">
+          <p className="text-base font-medium">
+            Notes on frontend engineering and what I’m learning.
+          </p>
+          <p className="mt-2 text-sm leading-relaxed text-[var(--muted)]">
+            I write about building fast, accessible web experiences and the
+            systems behind them.
+          </p>
+          <a
+            href="/blog"
+            className="mt-4 inline-flex items-center gap-2 rounded-lg border border-[var(--border)] px-4 py-2 text-sm font-medium transition-colors hover:bg-[var(--accent-light)]"
+          >
+            Read the blog
+            <ArrowUpRight size={14} />
+          </a>
+        </div>
       </section>
 
       {/* Skills: supporting info, so it sits below work */}
