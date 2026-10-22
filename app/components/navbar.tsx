@@ -17,7 +17,6 @@ const NAV_LINKS = [
   { label: "Experience", href: "/experience", section: "experience" },
   { label: "Blog", href: "/blog", section: null },
   { label: "Now", href: "/now", section: null },
-  { label: "Contact", href: "/contact", section: null },
 ];
 
 export default function Navbar() {

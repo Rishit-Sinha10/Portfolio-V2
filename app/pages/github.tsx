@@ -217,7 +217,9 @@ export default function ContributionGraph({ values = sampleData }) {
           `${GITHUB_CONTRIBUTIONS_ENDPOINT}/${GITHUB_HANDLE}`,
         );
         if (!response.ok) {
-          throw new Error(`GitHub contributions request failed: ${response.status}`);
+          throw new Error(
+            `GitHub contributions request failed: ${response.status}`,
+          );
         }
         const data = (await response.json()) as LiveContributionResponse;
         const contributions = Array.isArray(data.contributions)
@@ -331,9 +333,9 @@ export default function ContributionGraph({ values = sampleData }) {
           </button>
         </div>
 
-        <div className="mt-2 flex items-center justify-between border-t border-[var(--border)] pt-2 text-[10px] text-[var(--muted)] sm:text-xs">
+        <div className="flex items-center justify-between text-[1px] text-[var(--muted)] sm:text-xs">
           <span>
-            <span className="font-semibold text-[var(--foreground)]">
+            <span className="text-[var(--foreground)]">
               {totalContributions}
             </span>{" "}
             contributions in {year}
@@ -355,7 +357,10 @@ export default function ContributionGraph({ values = sampleData }) {
             <span className="hidden sm:inline">More</span>
           </div>
         </div>
-        <Tooltip anchorSelect="[data-tooltip-content]" />
+        <Tooltip
+          anchorSelect="[data-tooltip-content]"
+          className="!rounded-lg !px-0.050 !py-0.075 !text-xs"
+        />
       </div>
     </section>
   );

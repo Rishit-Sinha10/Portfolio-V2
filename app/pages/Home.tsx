@@ -22,8 +22,7 @@ import SendIcon from "../components/send-icon";
 import { ProjectOverviewCard } from "../components/project-card";
 import ContributionGraph from "./github";
 import { SocialIcon } from "../components/social";
-import Image from "next/image";
-import Proof from "../../public/Images/Levi_Ackermann_29_character_image.png";
+import { LinkPreview } from "../components/link_preview";
 const SKILLS: { name: string; icon: SimpleIcon }[] = [
   // Frontend
   { name: "React", icon: siReact },
@@ -68,8 +67,7 @@ function SkillBadge({ name, icon }: { name: string; icon: SimpleIcon }) {
 // One shared style for section headings: real <h2>, quiet visual weight.
 const SECTION_HEADING =
   "text-left text-[0.72rem] font-bold uppercase tracking-[0.28em] text-[var(--muted)]";
-
-const FEATURED_PROJECT_IDS = ["financcino", "flux", "claritycxr"];
+const FEATURED_PROJECT_IDS = ["claritycxr", "tunnel", "openlink"];
 
 export default function Portfolio() {
   return (
@@ -111,13 +109,47 @@ export default function Portfolio() {
         <h2 id="work-heading" className={`${SECTION_HEADING} mb-3`}>
           Curious About Me
         </h2>
-        <p className="mt-4 text-sm leading-relaxed text-[var(--foreground)] text-balance">
-          I'm a 21-year-old Computer Science student based in Jaipur, India,
-          focused on building fast, reliable web interfaces and understanding
-          the systems behind them. I care about performance, clarity, and
-          maintainable code, and I'm gradually exploring lower-level concepts
-          such as memory management, network sockets, and container runtimes.
-        </p>
+        <div className="mt-4 space-y-3 text-sm leading-relaxed text-[var(--foreground)] text-pretty">
+          <p>
+            I enjoy building thoughtful, user-friendly web experiences that
+            balance clean design, performance, accessibility, and maintainable
+            code. My primary stack includes React, Next.js, TypeScript,
+            JavaScript, and Tailwind CSS. I currently work as a Shopify
+            Developer at The Tasty Millets, where I build custom theme
+            components, improve website performance, and work on technical SEO
+            for production websites.
+          </p>
+
+          <p>
+            Beyond frontend development, I&apos;m expanding my understanding of
+            backend engineering, API design, databases, testing, deployment, and
+            software architecture to become a more well-rounded software
+            engineer. I also enjoy contributing to open-source projects and
+            building practical applications that challenge me to think beyond
+            the UI.
+          </p>
+
+          <p>
+            Recently, I built{" "}
+            <LinkPreview url="https://code.rishitsinha.online/">
+              Klyro
+            </LinkPreview>
+            . I&apos;m now building{" "}
+            <LinkPreview url="https://tunnel-sable.vercel.app/">
+              Tunnel
+            </LinkPreview>{" "}
+            and{" "}
+            <LinkPreview url="https://github.com/Rishit-Sinha10/OpenLink">
+              OpenLink
+            </LinkPreview>{" "}
+            for different OSS programs. I&apos;m also working on my first
+            production website for a business,{" "}
+            <LinkPreview url="https://www.harnavventures.com/">
+              Harnav Ventures
+            </LinkPreview>
+            .
+          </p>
+        </div>
       </section>
       <section id="work" aria-labelledby="work-heading" className="mt-10">
         <h2 id="work-heading" className={`${SECTION_HEADING} mb-3`}>
@@ -153,7 +185,7 @@ export default function Portfolio() {
       </section>
       <section id="blog" aria-labelledby="blog-heading" className="mt-10">
         <h2 id="blog-heading" className={`${SECTION_HEADING} mb-3`}>
-          Blog
+          Technical Writing
         </h2>
         <div className="rounded-lg border border-[var(--border)] bg-[var(--surface)] p-5 sm:p-6">
           <p className="text-base font-medium">
@@ -167,7 +199,7 @@ export default function Portfolio() {
             href="/blog"
             className="mt-4 inline-flex items-center gap-2 rounded-lg border border-[var(--border)] px-4 py-2 text-sm font-medium transition-colors hover:bg-[var(--accent-light)]"
           >
-            Read the blog
+            Read the Writing
             <ArrowUpRight size={14} />
           </a>
         </div>

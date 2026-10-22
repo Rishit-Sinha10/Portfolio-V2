@@ -35,7 +35,7 @@ export function ProjectOverviewCard({
         <h3 className="text-base font-semibold text-[var(--foreground)]">
           <Link
             href={`/work/${project.id}`}
-            className="no-underline transition hover:text-[var(--muted)]"
+            className="hover:underline transition hover:text-[var(--muted)]"
           >
             {project.title}
           </Link>
@@ -44,7 +44,7 @@ export function ProjectOverviewCard({
         <StatusDot status={project.status} accent={project.accent} />
       </div>
 
-      <p className="mb-3 text-[15px] leading-relaxed text-[var(--muted)]">
+      <p className="mb-3 text-[15px] leading-relaxed text-[var(--muted)] text-pretty">
         {project.summary}
       </p>
       <p className="text-[12px] leading-relaxed text-[var(--muted)]">

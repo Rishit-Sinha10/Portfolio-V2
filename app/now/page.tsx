@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { title } from "process";
 export const metadata: Metadata = {
   title: "Now",
   description:
@@ -7,15 +8,23 @@ export const metadata: Metadata = {
 const FOCUS = [
   {
     title: "Final year of Computer Science",
-    note: "Open to full-time roles starting 2026.",
+    note: " Open to full-time software engineering roles starting in 2026.",
   },
   {
     title: "Production storefronts",
-    note: "Shipping a Shopify storefront as a developer — frontend, integrations, and what keeps it running.",
+    note: " Building and maintaining Shopify storefronts, with hands-on work across frontend development, integrations, SEO, and performance.",
   },
   {
     title: "Going deeper",
     note: "TypeScript, Node.js, backend architecture, and AI systems.",
+  },
+  {
+    title: "Currently Building",
+    note: "Developing OpenLink, an AI API platform, and Tunnel, alongside my work on production websites.",
+  },
+  {
+    title: "Learning Goal",
+    note: "Learning Go & Rust Going Deeper in Low Level System",
   },
 ];
 
