@@ -30,8 +30,8 @@ export function ProjectOverviewCard({
   project: ProjectCaseStudy;
 }) {
   return (
-    <div className="mx-auto flex w-full max-w-4xl flex-col px-4 py-6 transition duration-150 ease-out hover:bg-[var(--accent-light)] sm:px-6 md:px-8 lg:px-10">
-      <div className="mb-2.5 flex flex-col gap-1.5 sm:flex-row sm:items-center sm:justify-between sm:gap-3">
+    <div className="mx-auto flex w-full max-w-4xl flex-col px-4 py-6 transition duration-150 ease-out hover:bg-[var(--accent-light)] sm:px-6 md:px-8 lg:px-10 border-none">
+      <div className="mb-2.5 flex flex-col gap-1.5 sm:flex-row sm:items-center sm:justify-between sm:gap-3 border-none">
         <h3 className="text-base font-semibold text-[var(--foreground)]">
           <Link
             href={`/work/${project.id}`}
@@ -41,42 +41,37 @@ export function ProjectOverviewCard({
           </Link>
         </h3>
 
-        <StatusDot status={project.status} accent={project.accent} />
+        <div className="flex items-center gap-3 text-xs font-semibold text-[var(--muted)]">
+          {project.githubUrl && (
+            <a
+              href={project.githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 transition hover:text-[var(--foreground)]"
+            >
+              GitHub
+              <ArrowUpRight size={12} />
+            </a>
+          )}
+
+          {project.liveUrl && (
+            <a
+              href={project.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`Visit ${project.title}`}
+              className="inline-flex items-center gap-1.5 transition hover:text-[var(--foreground)]"
+            >
+              Live
+              <ArrowUpRight size={12} />
+            </a>
+          )}
+        </div>
       </div>
 
       <p className="mb-3 text-[15px] leading-relaxed text-[var(--muted)] text-pretty">
         {project.summary}
       </p>
-      <p className="text-[12px] leading-relaxed text-[var(--muted)]">
-        <span className="mr-3">Tech Stack</span>
-        {project.techStack.skill.join(" · ")}
-      </p>
-      <div className="flex items-center gap-3 text-xs font-semibold text-[var(--muted)]">
-        {project.githubUrl && (
-          <a
-            href={project.githubUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 transition hover:text-[var(--foreground)]"
-          >
-            GitHub
-            <ArrowUpRight size={12} />
-          </a>
-        )}
-
-        {project.liveUrl && (
-          <a
-            href={project.liveUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={`Visit ${project.title}`}
-            className="inline-flex items-center gap-1.5 transition hover:text-[var(--foreground)]"
-          >
-            Live
-            <ArrowUpRight size={12} />
-          </a>
-        )}
-      </div>
     </div>
   );
 }

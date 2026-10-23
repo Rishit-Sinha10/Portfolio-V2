@@ -19,7 +19,7 @@ export const PROJECTS: ProjectCaseStudy[] = [
     title: "OpenLink",
     status: "In dev",
     summary:
-      "An in-development layer for routing requests across AI providers. A shared API validates input, routes requests, normalizes responses, and keeps provider-specific behavior inside adapters.",
+      "A unified API for routing requests across multiple AI providers. It validates incoming input, sends each call to the right provider, and normalizes every response into one consistent format. Provider-specific quirks live in adapters, so adding a new provider never touches the core.",
     techStack: {
       skill: ["Next.js", "TypeScript", "Tailwind CSS", "Node.js", "Express"],
     },
@@ -33,7 +33,7 @@ export const PROJECTS: ProjectCaseStudy[] = [
     title: "ClarityCXR",
     status: "In dev",
     summary:
-      "An in-development chest X-ray workspace with multimodal image-analysis workflows, authentication, and a focused interface for working with imaging data.",
+      "A chest X-ray workspace for running multimodal AI analysis on imaging data. Authentication gates access to uploaded scans, and the interface is built around one job: reviewing and interpreting an image without clutter.",
     techStack: {
       skill: ["Next.js", "TypeScript", "Tailwind CSS", "Vercel"],
     },
@@ -47,7 +47,7 @@ export const PROJECTS: ProjectCaseStudy[] = [
     title: "Financcino",
     status: "Live",
     summary:
-      "A personal-finance app for tracking expenses, scanning receipts with OCR, and managing category budgets. Its React interface uses Recharts to visualize spending and includes an AI assistant that works with financial data.",
+      "A personal-finance app that turns receipts into data. Scan a receipt and Tesseract OCR extracts the details for expense tracking and per-category budgets. Recharts dashboards show where your money goes, and a built-in AI assistant answers questions about your own spending.",
     techStack: {
       skill: ["React", "Tailwind CSS", "Recharts", "Tesseract OCR", "Render"],
     },
@@ -61,10 +61,10 @@ export const PROJECTS: ProjectCaseStudy[] = [
     title: "Tunnel",
     status: "Live",
     summary:
-      "Tunnel is a full-stack live streaming platform that combines RTMP ingestion, HLS playback, real-time chat, creator controls, authentication, and analytics into a single application.",
+      "A full-stack live streaming platform that covers the whole pipeline. Creators broadcast over RTMP, streams are delivered to browsers as HLS, and viewers chat in real time through Socket.IO. Creator controls, authentication, and analytics are built into the same app.",
     techStack: {
       skill: [
-        "NextJs",
+        "Next.js",
         "Socket.IO",
         "Node.js",
         "Express",
@@ -82,7 +82,7 @@ export const PROJECTS: ProjectCaseStudy[] = [
     title: "klyro",
     status: "Live",
     summary:
-      "klyro is an AI-powered development platform that combines AI assistance, code generation, authentication, and developer-focused workflows in a unified web application.",
+      "An AI-powered development workspace that brings code generation and AI assistance into a single web app. Authentication keeps sessions personal, and Docker keeps the setup consistent across environments.",
     techStack: {
       skill: ["React", "Tailwind CSS", "Node.js", "Docker", "Vercel"],
     },
