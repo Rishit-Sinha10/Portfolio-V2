@@ -1,4 +1,6 @@
 "use client";
+import Image from "next/image";
+import type { ReactNode } from "react";
 import {
   siReact,
   siNextdotjs,
@@ -15,14 +17,20 @@ import {
   siSocketdotio,
 } from "simple-icons";
 import type { SimpleIcon } from "simple-icons";
-import { ArrowUpRight, Section } from "lucide-react";
-import { PROJECTS } from "../../data/projects";
+import { ArrowUpRight } from "lucide-react";
+import DiscordIcon from "../components/discord";
+import GithubIcon from "../components/github";
+import GmailIcon from "../components/gmail-icon";
+import LinkedinIcon from "../components/linkedin";
+import TwitterXIcon from "../components/x-icon";
 import FileDescriptionIcon from "../components/file";
 import SendIcon from "../components/send-icon";
-import { ProjectOverviewCard } from "../components/project-card";
-import ContributionGraph from "./github";
-import { SocialIcon } from "../components/social";
+import ProjectOverviewCard from "../components/project-card";
 import { LinkPreview } from "../components/link_preview";
+import { PROJECTS } from "../../data/projects";
+import ContributionGraph from "./github";
+import Experience from "../experience/[[...rest]]/page";
+
 const SKILLS: { name: string; icon: SimpleIcon }[] = [
   // Frontend
   { name: "React", icon: siReact },
@@ -42,94 +50,206 @@ const SKILLS: { name: string; icon: SimpleIcon }[] = [
   { name: "Clerk", icon: siClerk },
 ];
 
-function SkillIcon({ icon }: { icon: SimpleIcon }) {
+const LINKS = [
+  {
+    label: "GitHub",
+    href: "https://github.com/Rishit-Sinha10",
+    Icon: GithubIcon,
+  },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/rishit-sinha-6953ab363/",
+    Icon: LinkedinIcon,
+  },
+  {
+    label: "Gmail",
+    href: "mailto:Sinharishit04@gmail.com",
+    Icon: GmailIcon,
+  },
+  {
+    label: "Discord",
+    href: "https://discord.com/users/890116546276507688",
+    Icon: DiscordIcon,
+  },
+  {
+    label: "X",
+    href: "https://x.com/RishitSinh41144",
+    Icon: TwitterXIcon,
+  },
+];
+
+const FEATURED_PROJECT_IDS = ["claritycxr", "tunnel", "openlink"];
+const lightBannerPlaceholder =
+  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 11'%3E%3Crect width='32' height='11' fill='%23d9e5e7'/%3E%3C/svg%3E";
+const darkBannerPlaceholder =
+  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 11'%3E%3Crect width='32' height='11' fill='%23071329'/%3E%3C/svg%3E";
+/** Editorial two-column section: quiet label on the left, content on the right. */
+function Section({
+  id,
+  title,
+  children,
+}: {
+  id: string;
+  title: string;
+  children: ReactNode;
+}) {
   return (
-    <svg
-      viewBox="0 0 24 24"
-      className="h-3.5 w-3.5 shrink-0"
-      fill={`#${icon.hex}`}
-      aria-hidden="true"
+    <section
+      id={id}
+      aria-labelledby={`${id}-heading`}
+      className="mt-14 grid gap-3 md:grid-cols-[7.5rem_minmax(0,1fr)] md:gap-8"
     >
-      <path d={icon.path} />
-    </svg>
+      <h2
+        id={`${id}-heading`}
+        className="text-sm text-[var(--muted)] md:pt-0.5"
+      >
+        {title}
+      </h2>
+      <div className="min-w-0">{children}</div>
+    </section>
   );
 }
 
-function SkillBadge({ name, icon }: { name: string; icon: SimpleIcon }) {
+function TextLink({ href, children }: { href: string; children: ReactNode }) {
   return (
-    <li className="inline-flex items-center gap-2 rounded-md border border-[var(--border)] px-3 py-2 text-sm transition-colors hover:bg-muted">
-      <SkillIcon icon={icon} />
+    <a
+      href={href}
+      className="group/link inline-flex items-center gap-1 text-sm text-[var(--foreground)] underline decoration-[var(--border)] underline-offset-4 transition-colors hover:decoration-[var(--foreground)]"
+    >
+      {children}
+      <ArrowUpRight
+        size={13}
+        strokeWidth={1.75}
+        aria-hidden="true"
+        className="transition-transform duration-200 group-hover/link:-translate-y-px group-hover/link:translate-x-px"
+      />
+    </a>
+  );
+}
+
+function Skill({ name, icon }: { name: string; icon: SimpleIcon }) {
+  return (
+    <li className="inline-flex items-center gap-1.5 text-sm text-[var(--muted)] transition-colors hover:text-[var(--foreground)]">
+      {/* currentColor keeps black brand icons (Next.js, Express) visible in dark mode */}
+      <svg
+        viewBox="0 0 24 24"
+        className="h-3.5 w-3.5 shrink-0"
+        fill="currentColor"
+        aria-hidden="true"
+      >
+        <path d={icon.path} />
+      </svg>
       <span className="whitespace-nowrap">{name}</span>
     </li>
   );
 }
 
-// One shared style for section headings: real <h2>, quiet visual weight.
-const SECTION_HEADING =
-  "text-left text-[0.72rem] font-bold uppercase tracking-[0.28em] text-[var(--muted)]";
-const FEATURED_PROJECT_IDS = ["claritycxr", "tunnel", "openlink"];
-
 export default function Portfolio() {
   return (
-    <div className="mx-auto flex w-full max-w-4xl flex-col px-4 py-6 sm:px-6 md:px-8 lg:px-10">
-      {/* Intro */}
-      <section id="about" aria-labelledby="about-heading" className="mt-10">
-        <div className="order-2 md:order-1">
-          <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">
-            Rishit Sinha
-          </h1>
-          <p className="mt-1 text-sm text-[var(--muted)]">
-            Software Engineer · Jaipur, Rajasthan
-          </p>
+    <div className="mx-auto w-full max-w-3xl px-5 py-12 sm:px-8 md:py-20">
+      {/* Header: name and socials share one horizontal line */}
+      <div className="absolute left-0 right-0 md:left-[30%] md:right-[30%] top-0 h-[22vh] -z-0 pointer-events-auto overflow-hidden bg-white dark:bg-black shadow-[0_4px_12px_rgba(2,6,23,0.04)] dark:shadow-[0_4px_12px_rgba(2,6,23,0.10)]">
+        <Image
+          src="/Banner.webp"
+          alt=""
+          fill
+          fetchPriority="high"
+          sizes="(min-width: 768px) 40vw, 100vw"
+          quality={70}
+          placeholder="blur"
+          blurDataURL={lightBannerPlaceholder}
+          className="object-cover object-center dark:hidden"
+        />
+        <Image
+          src="/Banner.webp"
+          alt=""
+          fill
+          fetchPriority="high"
+          sizes="(min-width: 768px) 40vw, 100vw"
+          quality={70}
+          placeholder="blur"
+          blurDataURL={darkBannerPlaceholder}
+          className="hidden object-cover object-center dark:block"
+        />
+        <div className="absolute inset-x-0 bottom-0 h-10 pointer-events-none z-[5] bg-gradient-to-t from-white/90 to-transparent dark:from-black/50 dark:to-transparent" />
+        <div className="absolute left-0 top-0 bottom-0 w-8 pointer-events-none z-20 bg-gradient-to-r from-white/90 to-transparent dark:from-black/40 dark:to-transparent" />
+        <div className="absolute right-0 top-0 bottom-0 w-8 pointer-events-none z-20 bg-gradient-to-l from-white/90 to-transparent dark:from-black/40 dark:to-transparent" />
+      </div>
+      {/* ← this closing tag was missing */}
 
-          <p className="mt-4 max-w-base text-base leading-relaxed text-[var(--foreground)] text-balance">
-            I build minimalist, performance-driven frontend interfaces focused
-            on SEO, accessibility, and usability.
-          </p>
+      <Section id="Hero" title="Hero">
+        <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-3">
+          {/* Name + location */}
+          <div>
+            <h1 className="text-3xl font-semibold tracking-[-0.03em] text-[var(--foreground)] sm:text-4xl">
+              Rishit Sinha
+            </h1>
 
-          <div className="mt-8 flex flex-wrap items-center gap-3">
+            <p className="mt-1.5 text-sm text-[var(--muted)]">
+              Software engineer in Jaipur, Rajasthan
+            </p>
+          </div>
+
+          {/* Social links — same horizontal line as name */}
+          <ul className="flex items-center gap-1 -mx-2 sm:mx-0 sm:-mr-2">
+            {LINKS.map(({ label, href, Icon }) => {
+              const isExternal = !href.startsWith("mailto:");
+
+              return (
+                <li key={label}>
+                  <a
+                    href={href}
+                    target={isExternal ? "_blank" : undefined}
+                    rel={isExternal ? "noopener noreferrer" : undefined}
+                    aria-label={label}
+                    title={label}
+                    className="inline-flex h-8 w-8 items-center justify-center rounded-md text-[var(--muted)] transition-colors hover:bg-[color-mix(in_srgb,var(--foreground)_6%,transparent)] hover:text-[var(--foreground)] focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-[var(--foreground)] [&_svg]:h-4 [&_svg]:w-4"
+                  >
+                    <Icon aria-hidden="true" />
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+          <div className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-3">
             <a
               href="https://cal.com/rishit-sinha-eku02v/30min?overlayCalendar=true"
-              className="inline-flex items-center gap-2 rounded-lg border border-[var(--border)] bg-[var(--surface)] px-4 py-2.5 text-sm font-medium transition-colors hover:bg-[var(--accent-light)]"
+              className="inline-flex items-center gap-2 rounded-md bg-[var(--foreground)] px-3.5 py-2 text-sm font-medium text-[var(--background)] transition-opacity hover:opacity-85 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--foreground)]"
             >
               Book a call
-              <SendIcon size={10} className="h-4 w-4" />
+              <SendIcon size={10} className="h-3.5 w-3.5" />
             </a>
             <a
               href="/resume.pdf"
-              className="inline-flex items-center gap-2 px-2 py-2.5 text-sm font-medium text-[var(--muted)] transition-colors hover:text-[var(--foreground)]"
+              className="inline-flex items-center gap-1.5 rounded-sm text-sm text-[var(--muted)] transition-colors hover:text-[var(--foreground)] focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-4 focus-visible:outline-[var(--foreground)]"
             >
               Resume
-              <FileDescriptionIcon size={10} className="h-4 w-4" />
+              <FileDescriptionIcon size={10} className="h-3.5 w-3.5" />
             </a>
           </div>
         </div>
-      </section>
-      <section id="about" aria-labelledby="work-heading" className="mt-10">
-        <h2 id="work-heading" className={`${SECTION_HEADING} mb-3`}>
-          Curious About Me
-        </h2>
-        <div className="mt-4 space-y-3 text-sm leading-relaxed text-[var(--foreground)] text-pretty">
-          <p>
-            I enjoy building thoughtful, user-friendly web experiences that
-            balance clean design, performance, accessibility, and maintainable
-            code. My primary stack includes React, Next.js, TypeScript,
-            JavaScript, and Tailwind CSS. I currently work as a Shopify
-            Developer at The Tasty Millets, where I build custom theme
-            components, improve website performance, and work on technical SEO
-            for production websites.
+      </Section>
+
+      {/* About */}
+      <Section id="about" title="About">
+        <div className="max-w-[62ch] space-y-4 text-[15px] leading-[1.7] text-pretty">
+          <p className="text-[var(--foreground)]">
+            I build thoughtful, user-friendly web experiences that balance clean
+            design, performance, accessibility, and maintainable code. My main
+            stack is React, Next.js, TypeScript, and Tailwind CSS. I currently
+            work as a Shopify Developer at The Tasty Millets, building custom
+            theme components, improving performance, and handling technical SEO
+            for production sites.
           </p>
 
-          <p>
-            Beyond frontend development, I&apos;m expanding my understanding of
-            backend engineering, API design, databases, testing, deployment, and
-            software architecture to become a more well-rounded software
-            engineer. I also enjoy contributing to open-source projects and
-            building practical applications that challenge me to think beyond
-            the UI.
+          <p className="text-[var(--muted)]">
+            Beyond the frontend, I&apos;m growing into backend engineering, API
+            design, databases, testing, deployment, and architecture. I also
+            enjoy contributing to open source and building practical apps that
+            push me past the UI.
           </p>
 
-          <p>
+          <p className="text-[var(--muted)]">
             Recently, I built{" "}
             <LinkPreview url="https://code.rishitsinha.online/">
               Klyro
@@ -142,7 +262,7 @@ export default function Portfolio() {
             <LinkPreview url="https://github.com/Rishit-Sinha10/OpenLink">
               OpenLink
             </LinkPreview>{" "}
-            for different OSS programs. I&apos;m also working on my first
+            for different open-source programs, and working on my first
             production website for a business,{" "}
             <LinkPreview url="https://www.harnavventures.com/">
               Harnav Ventures
@@ -150,79 +270,57 @@ export default function Portfolio() {
             .
           </p>
         </div>
-      </section>
-      <section id="work" aria-labelledby="work-heading" className="mt-10">
-        <h2 id="work-heading" className={`${SECTION_HEADING} mb-3`}>
-          My Socials
-        </h2>
-        <SocialIcon />
-      </section>
-      {/* Work: the main event, so it comes first after the intro */}
-      <section id="work" aria-labelledby="work-heading" className="mt-10">
-        <h2 id="work-heading" className={`${SECTION_HEADING} mb-3`}>
-          Selected work
-        </h2>
-        <div className="flex flex-col overflow-hidden rounded-lg border border-[var(--border)]">
+      </Section>
+
+      {/* Work */}
+      <Section id="work" title="Selected work">
+        {/* group/list lets each card dim its siblings on hover */}
+        <div className="group/list border-t border-[var(--border)]">
           {FEATURED_PROJECT_IDS.map((id) => {
             const project = PROJECTS.find((item) => item.id === id);
             return project ? (
-              <div
-                key={id}
-                className="border-b border-[var(--border)] last:border-b-0"
-              >
-                <ProjectOverviewCard project={project} />
-              </div>
+              <ProjectOverviewCard key={id} project={project} />
             ) : null;
           })}
         </div>
-        <a
-          href="/projects"
-          className="mt-4 inline-flex items-center gap-2 rounded-lg border border-[var(--border)] bg-[var(--surface)] px-5 py-2.5 text-sm font-medium text-[var(--foreground)] transition hover:bg-[var(--accent-light)]"
-        >
-          View all projects
-          <ArrowUpRight size={14} />
-        </a>
-      </section>
-      <section id="blog" aria-labelledby="blog-heading" className="mt-10">
-        <h2 id="blog-heading" className={`${SECTION_HEADING} mb-3`}>
-          Technical Writing
-        </h2>
-        <div className="rounded-lg border border-[var(--border)] bg-[var(--surface)] p-5 sm:p-6">
-          <p className="text-base font-medium">
-            Notes on frontend engineering and what I’m learning.
-          </p>
-          <p className="mt-2 text-sm leading-relaxed text-[var(--muted)]">
-            I write about building fast, accessible web experiences and the
-            systems behind them.
-          </p>
-          <a
-            href="/blog"
-            className="mt-4 inline-flex items-center gap-2 rounded-lg border border-[var(--border)] px-4 py-2 text-sm font-medium transition-colors hover:bg-[var(--accent-light)]"
-          >
-            Read the Writing
-            <ArrowUpRight size={14} />
-          </a>
+        <div className="mt-5">
+          <TextLink href="/projects">View all projects</TextLink>
         </div>
-      </section>
+      </Section>
 
-      {/* Skills: supporting info, so it sits below work */}
-      <section aria-labelledby="skills-heading" className="mt-10">
-        <h2 id="skills-heading" className={`${SECTION_HEADING} mb-3`}>
-          Skills
-        </h2>
-        <ul className="flex flex-wrap gap-1.5 sm:gap-2">
+      {/* Writing */}
+      <Section id="writing" title="Writing">
+        <p className="max-w-[56ch] text-[15px] leading-[1.7] text-[var(--foreground)]">
+          Notes on frontend engineering and what I&apos;m learning.
+        </p>
+        <p className="mt-1 max-w-[56ch] text-[15px] leading-[1.7] text-[var(--muted)]">
+          Building fast, accessible web experiences and the systems behind them.
+        </p>
+        <div className="mt-4">
+          <TextLink href="/blog">Read the writing</TextLink>
+        </div>
+      </Section>
+
+      {/* Skills */}
+      <Section id="skills" title="Skills">
+        <ul className="flex flex-wrap gap-x-5 gap-y-2.5">
           {SKILLS.map((skill) => (
-            <SkillBadge key={skill.name} name={skill.name} icon={skill.icon} />
+            <Skill key={skill.name} name={skill.name} icon={skill.icon} />
           ))}
         </ul>
-      </section>
+      </Section>
 
-      <section className="mt-10">
-        <h2 id="skills-heading" className={`${SECTION_HEADING} mb-3`}>
-          Github Activity
-        </h2>
-        <ContributionGraph />
-      </section>
+      {/* GitHub */}
+      <Section id="github" title="GitHub activity">
+        <div className="overflow-x-auto">
+          <ContributionGraph />
+        </div>
+      </Section>
+      <Section id="experience" title="experience">
+        <div className="group/list border-t border-[var(--border)]">
+          <Experience />
+        </div>
+      </Section>
     </div>
   );
 }
