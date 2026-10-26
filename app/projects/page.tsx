@@ -1,7 +1,7 @@
 "use client";
 import { Reveal } from "../pages/reavel";
 import { PROJECTS } from "../../data/projects";
-import { ProjectOverviewCard } from "../components/project-card";
+import ProjectOverviewCard from "../components/project-card";
 export function Work() {
   return (
     <section
