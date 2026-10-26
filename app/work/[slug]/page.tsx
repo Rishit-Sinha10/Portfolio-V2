@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowUpRight, Github } from "lucide-react";
+import { ArrowUpRight, Code2, ChevronDown } from "lucide-react";
 import { PROJECTS } from "../../../data/projects";
 function StatusDot({ status, accent }: { status: string; accent: string }) {
   return (
@@ -50,15 +50,33 @@ function ProjectCaseStudyView({ project }: { project: (typeof PROJECTS)[0] }) {
                 rel="noreferrer"
                 className="inline-flex items-center gap-1 text-xs font-semibold text-[var(--muted)] no-underline transition hover:text-[var(--foreground)]"
               >
-                <Github size={12} />
+                <Code2 size={12} />
                 Code
               </a>
             )}
           </div>
         </div>
-        <p className="mt-3 text-[15px] leading-relaxed text-[var(--muted)]">
-          {project.summary}
-        </p>
+        <details className="mt-4 group">
+          <summary className="inline-flex cursor-pointer list-none items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.12em] text-[var(--muted)] transition-colors hover:text-[var(--foreground)]">
+            Key responsibilities
+            <ChevronDown
+              size={14}
+              aria-hidden="true"
+              className="transition-transform duration-200 group-open:rotate-180"
+            />
+          </summary>
+          <div
+            id={`responsibilities-content-${project.id}`}
+            className="mt-4 border-t border-[var(--border)] pt-4 text-sm leading-relaxed text-[var(--muted)]"
+          >
+            <ul className="space-y-3">
+              <li className="flex gap-3">
+                <span className="mt-[0.65em] h-1 w-1 shrink-0 rounded-full bg-[var(--foreground)]" />
+                <span>{project.summary}</span>
+              </li>
+            </ul>
+          </div>
+        </details>
       </div>
     </div>
   );
