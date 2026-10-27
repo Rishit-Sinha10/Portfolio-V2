@@ -1,220 +1,147 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+
+import { useEffect, useMemo, useRef, useState } from "react";
 import CalendarHeatmap from "react-calendar-heatmap";
 import { Tooltip } from "react-tooltip";
 import "react-calendar-heatmap/dist/styles.css";
 import "react-tooltip/dist/react-tooltip.css";
+
 const GITHUB_HANDLE = "Rishit-Sinha10";
+// `?y=last` returns only the trailing 12 months instead of every year.
 const GITHUB_CONTRIBUTIONS_ENDPOINT =
   "https://github-contributions-api.jogruber.de/v4";
-type HeatmapValue = { date: string; count: number };
+
+type HeatmapValue = { date: string; count: number; level?: number };
+
 type LiveContributionResponse = {
   contributions?: Array<{ date?: string; count?: number; level?: number }>;
 };
-export const sampleData = [
-  { date: "2026-01-01", count: 1 },
-  { date: "2026-01-02", count: 2 },
-  { date: "2026-01-03", count: 0 },
-  { date: "2026-01-04", count: 0 },
-  { date: "2026-01-05", count: 2 },
-  { date: "2026-01-06", count: 0 },
-  { date: "2026-01-07", count: 0 },
-  { date: "2026-01-08", count: 0 },
-  { date: "2026-01-09", count: 8 },
-  { date: "2026-01-10", count: 15 },
-  { date: "2026-01-11", count: 0 },
-  { date: "2026-01-12", count: 0 },
-  { date: "2026-01-13", count: 2 },
-  { date: "2026-01-14", count: 0 },
-  { date: "2026-01-15", count: 0 },
-  { date: "2026-01-16", count: 0 },
-  { date: "2026-01-17", count: 0 },
-  { date: "2026-01-18", count: 0 },
-  { date: "2026-01-19", count: 3 },
-  { date: "2026-01-20", count: 0 },
-  { date: "2026-01-21", count: 0 },
-  { date: "2026-01-22", count: 0 },
-  { date: "2026-01-23", count: 0 },
-  { date: "2026-01-24", count: 0 },
-  { date: "2026-01-25", count: 0 },
-  { date: "2026-01-26", count: 0 },
-  { date: "2026-01-27", count: 0 },
-  { date: "2026-01-28", count: 0 },
-  { date: "2026-01-29", count: 8 },
-  { date: "2026-01-30", count: 0 },
-  { date: "2026-01-31", count: 0 },
-  { date: "2026-02-01", count: 0 },
-  { date: "2026-02-02", count: 0 },
-  { date: "2026-02-03", count: 4 },
-  { date: "2026-02-04", count: 0 },
-  { date: "2026-02-05", count: 0 },
-  { date: "2026-02-06", count: 0 },
-  { date: "2026-02-07", count: 0 },
-  { date: "2026-02-08", count: 0 },
-  { date: "2026-02-09", count: 0 },
-  { date: "2026-02-10", count: 0 },
-  { date: "2026-02-11", count: 1 },
-  { date: "2026-02-12", count: 22 },
-  { date: "2026-02-13", count: 1 },
-  { date: "2026-02-14", count: 15 },
-  { date: "2026-02-15", count: 1 },
-  { date: "2026-02-16", count: 0 },
-  { date: "2026-02-17", count: 0 },
-  { date: "2026-02-18", count: 0 },
-  { date: "2026-02-19", count: 2 },
-  { date: "2026-02-20", count: 0 },
-  { date: "2026-02-21", count: 0 },
-  { date: "2026-02-22", count: 0 },
-  { date: "2026-02-23", count: 1 },
-  { date: "2026-02-24", count: 2 },
-  { date: "2026-02-25", count: 0 },
-  { date: "2026-02-26", count: 0 },
-  { date: "2026-02-27", count: 0 },
-  { date: "2026-02-28", count: 0 },
-  { date: "2026-03-01", count: 0 },
-  { date: "2026-03-02", count: 0 },
-  { date: "2026-03-03", count: 1 },
-  { date: "2026-03-04", count: 0 },
-  { date: "2026-03-05", count: 0 },
-  { date: "2026-03-06", count: 5 },
-  { date: "2026-03-07", count: 1 },
-  { date: "2026-03-08", count: 22 },
-  { date: "2026-03-09", count: 2 },
-  { date: "2026-03-10", count: 3 },
-  { date: "2026-03-11", count: 3 },
-  { date: "2026-03-12", count: 3 },
-  { date: "2026-03-13", count: 1 },
-  { date: "2026-03-14", count: 0 },
-  { date: "2026-03-15", count: 2 },
-  { date: "2026-03-16", count: 1 },
-  { date: "2026-03-17", count: 3 },
-  { date: "2026-03-18", count: 4 },
-  { date: "2026-03-19", count: 3 },
-  { date: "2026-03-20", count: 0 },
-  { date: "2026-03-21", count: 0 },
-  { date: "2026-03-22", count: 3 },
-  { date: "2026-03-23", count: 8 },
-  { date: "2026-03-24", count: 0 },
-  { date: "2026-03-25", count: 0 },
-  { date: "2026-03-26", count: 3 },
-  { date: "2026-03-27", count: 0 },
-  { date: "2026-03-28", count: 1 },
-  { date: "2026-03-29", count: 2 },
-  { date: "2026-03-30", count: 0 },
-  { date: "2026-03-31", count: 0 },
-  { date: "2026-04-01", count: 0 },
-  { date: "2026-04-02", count: 6 },
-  { date: "2026-04-03", count: 6 },
-  { date: "2026-04-04", count: 5 },
-  { date: "2026-04-05", count: 0 },
-  { date: "2026-04-06", count: 6 },
-  { date: "2026-04-07", count: 6 },
-  { date: "2026-04-08", count: 4 },
-  { date: "2026-04-09", count: 2 },
-  { date: "2026-04-10", count: 4 },
-  { date: "2026-04-11", count: 0 },
-  { date: "2026-04-12", count: 6 },
-  { date: "2026-04-13", count: 0 },
-  { date: "2026-04-14", count: 0 },
-  { date: "2026-04-15", count: 0 },
-  { date: "2026-04-16", count: 0 },
-  { date: "2026-04-17", count: 0 },
-  { date: "2026-04-18", count: 1 },
-  { date: "2026-04-19", count: 2 },
-  { date: "2026-04-20", count: 0 },
-  { date: "2026-04-21", count: 0 },
-  { date: "2026-04-22", count: 0 },
-  { date: "2026-04-23", count: 0 },
-  { date: "2026-04-24", count: 1 },
-  { date: "2026-04-25", count: 0 },
-  { date: "2026-04-26", count: 0 },
-  { date: "2026-04-27", count: 0 },
-  { date: "2026-04-28", count: 0 },
-  { date: "2026-04-29", count: 0 },
-  { date: "2026-04-30", count: 0 },
-  { date: "2026-05-01", count: 0 },
-  { date: "2026-05-02", count: 0 },
-  { date: "2026-05-03", count: 0 },
-  { date: "2026-05-04", count: 0 },
-  { date: "2026-05-05", count: 0 },
-  { date: "2026-05-06", count: 0 },
-  { date: "2026-05-07", count: 0 },
-  { date: "2026-05-08", count: 3 },
-  { date: "2026-05-09", count: 0 },
-  { date: "2026-05-10", count: 1 },
-  { date: "2026-05-11", count: 3 },
-  { date: "2026-05-12", count: 1 },
-  { date: "2026-05-13", count: 0 },
-  { date: "2026-05-14", count: 0 },
-  { date: "2026-05-15", count: 0 },
-  { date: "2026-05-16", count: 2 },
-  { date: "2026-05-17", count: 0 },
-  { date: "2026-05-18", count: 2 },
-  { date: "2026-05-19", count: 2 },
-  { date: "2026-05-20", count: 0 },
-  { date: "2026-05-21", count: 0 },
-  { date: "2026-05-22", count: 0 },
-  { date: "2026-05-23", count: 0 },
-  { date: "2026-05-24", count: 0 },
-  { date: "2026-05-25", count: 0 },
-  { date: "2026-05-26", count: 0 },
-  { date: "2026-05-27", count: 0 },
-  { date: "2026-05-28", count: 0 },
-  { date: "2026-05-29", count: 0 },
-  { date: "2026-05-30", count: 0 },
-  { date: "2026-05-31", count: 0 },
-  { date: "2026-06-01", count: 2 },
-  { date: "2026-06-02", count: 1 },
-  { date: "2026-06-03", count: 4 },
-  { date: "2026-06-04", count: 4 },
-  { date: "2026-06-05", count: 0 },
-  { date: "2026-06-06", count: 0 },
-  { date: "2026-06-07", count: 0 },
-  { date: "2026-06-08", count: 0 },
-  { date: "2026-06-09", count: 0 },
-  { date: "2026-06-10", count: 1 },
-  { date: "2026-06-11", count: 0 },
-  { date: "2026-06-12", count: 15 },
-  { date: "2026-06-13", count: 3 },
-  { date: "2026-06-14", count: 1 },
-  { date: "2026-06-15", count: 3 },
-  { date: "2026-06-16", count: 0 },
-  { date: "2026-06-17", count: 4 },
-  { date: "2026-06-18", count: 2 },
-  { date: "2026-06-19", count: 2 },
-  { date: "2026-06-20", count: 20 },
-  { date: "2026-06-21", count: 0 },
-  { date: "2026-06-22", count: 7 },
-  { date: "2026-06-23", count: 0 },
-  { date: "2026-06-24", count: 0 },
-  { date: "2026-06-25", count: 0 },
-  { date: "2026-06-26", count: 6 },
-  { date: "2026-06-27", count: 0 },
-  { date: "2026-06-28", count: 2 },
-  { date: "2026-06-29", count: 3 },
-  { date: "2026-06-30", count: 3 },
-  { date: "2026-07-01", count: 0 },
-  { date: "2026-07-02", count: 1 },
-  { date: "2026-07-03", count: 5 },
-  { date: "2026-07-04", count: 0 },
-  { date: "2026-07-05", count: 0 },
-  { date: "2026-07-06", count: 0 },
-  { date: "2026-07-07", count: 0 },
-  { date: "2026-07-08", count: 0 },
-  { date: "2026-07-09", count: 0 },
-  { date: "2026-07-10", count: 4 },
+
+// Compact fallback data: [date, count]. Days that are not listed are treated as 0.
+const SAMPLE_ROWS: Array<[string, number]> = [
+  ["2026-01-01", 1],
+  ["2026-01-02", 2],
+  ["2026-01-05", 2],
+  ["2026-01-09", 8],
+  ["2026-01-10", 15],
+  ["2026-01-13", 2],
+  ["2026-01-19", 3],
+  ["2026-01-29", 8],
+  ["2026-02-03", 4],
+  ["2026-02-11", 1],
+  ["2026-02-12", 22],
+  ["2026-02-13", 1],
+  ["2026-02-14", 15],
+  ["2026-02-15", 1],
+  ["2026-02-19", 2],
+  ["2026-02-23", 1],
+  ["2026-02-24", 2],
+  ["2026-03-03", 1],
+  ["2026-03-06", 5],
+  ["2026-03-07", 1],
+  ["2026-03-08", 22],
+  ["2026-03-09", 2],
+  ["2026-03-10", 3],
+  ["2026-03-11", 3],
+  ["2026-03-12", 3],
+  ["2026-03-13", 1],
+  ["2026-03-15", 2],
+  ["2026-03-16", 1],
+  ["2026-03-17", 3],
+  ["2026-03-18", 4],
+  ["2026-03-19", 3],
+  ["2026-03-22", 3],
+  ["2026-03-23", 8],
+  ["2026-03-26", 3],
+  ["2026-03-28", 1],
+  ["2026-03-29", 2],
+  ["2026-04-02", 6],
+  ["2026-04-03", 6],
+  ["2026-04-04", 5],
+  ["2026-04-06", 6],
+  ["2026-04-07", 6],
+  ["2026-04-08", 4],
+  ["2026-04-09", 2],
+  ["2026-04-10", 4],
+  ["2026-04-12", 6],
+  ["2026-04-18", 1],
+  ["2026-04-19", 2],
+  ["2026-04-24", 1],
+  ["2026-05-08", 3],
+  ["2026-05-10", 1],
+  ["2026-05-11", 3],
+  ["2026-05-12", 1],
+  ["2026-05-16", 2],
+  ["2026-05-18", 2],
+  ["2026-05-19", 2],
+  ["2026-06-01", 2],
+  ["2026-06-02", 1],
+  ["2026-06-03", 4],
+  ["2026-06-04", 4],
+  ["2026-06-10", 1],
+  ["2026-06-12", 15],
+  ["2026-06-13", 3],
+  ["2026-06-14", 1],
+  ["2026-06-15", 3],
+  ["2026-06-17", 4],
+  ["2026-06-18", 2],
+  ["2026-06-19", 2],
+  ["2026-06-20", 20],
+  ["2026-06-22", 7],
+  ["2026-06-26", 6],
+  ["2026-06-28", 2],
+  ["2026-06-29", 3],
+  ["2026-06-30", 3],
+  ["2026-07-02", 1],
+  ["2026-07-03", 5],
+  ["2026-07-10", 4],
 ];
-export default function ContributionGraph({ values = sampleData }) {
+
+export const sampleData: HeatmapValue[] = SAMPLE_ROWS.map(([date, count]) => ({
+  date,
+  count,
+}));
+
+const levelFromCount = (count: number) => {
+  if (count <= 0) return 0;
+  if (count >= 10) return 4;
+  if (count >= 5) return 3;
+  if (count >= 2) return 2;
+  return 1;
+};
+
+const formatDate = (iso: string) =>
+  new Date(iso).toLocaleDateString("en-IN", {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+    timeZone: "UTC",
+  });
+
+export default function ContributionGraph({
+  values = sampleData,
+}: {
+  values?: HeatmapValue[];
+}) {
   const scrollRef = useRef<HTMLDivElement>(null);
-  const [activityValues, setActivityValues] = useState<HeatmapValue[]>(() =>
+  // Keep the latest fallback without re-triggering the fetch on every render.
+  const fallbackRef = useRef<HeatmapValue[]>(
     Array.isArray(values) && values.length > 0 ? values : sampleData,
   );
+  fallbackRef.current =
+    Array.isArray(values) && values.length > 0 ? values : sampleData;
+
+  const [activityValues, setActivityValues] = useState<HeatmapValue[]>(
+    fallbackRef.current,
+  );
+
   useEffect(() => {
     let isMounted = true;
+
     const loadLiveContributions = async () => {
       try {
         const response = await fetch(
-          `${GITHUB_CONTRIBUTIONS_ENDPOINT}/${GITHUB_HANDLE}`,
+          `${GITHUB_CONTRIBUTIONS_ENDPOINT}/${GITHUB_HANDLE}?y=last`,
         );
         if (!response.ok) {
           throw new Error(
@@ -222,41 +149,53 @@ export default function ContributionGraph({ values = sampleData }) {
           );
         }
         const data = (await response.json()) as LiveContributionResponse;
-        const contributions = Array.isArray(data.contributions)
+        const contributions: HeatmapValue[] = Array.isArray(data.contributions)
           ? data.contributions
               .filter((item) => Boolean(item?.date))
               .map((item) => ({
                 date: item.date as string,
                 count: Number(item.count ?? 0),
+                level: item.level,
               }))
           : [];
+
         if (isMounted && contributions.length > 0) {
           setActivityValues(contributions);
         }
       } catch {
-        if (isMounted) {
-          setActivityValues(
-            Array.isArray(values) && values.length > 0 ? values : sampleData,
-          );
-        }
+        if (isMounted) setActivityValues(fallbackRef.current);
       }
     };
+
     loadLiveContributions();
     return () => {
       isMounted = false;
     };
-  }, [values]);
+  }, []);
 
-  const today = new Date();
-  const startDate = new Date(today);
-  startDate.setFullYear(today.getFullYear() - 1);
+  // Rolling 12-month window, computed once.
+  const { today, startDate } = useMemo(() => {
+    const t = new Date();
+    const s = new Date(t);
+    s.setFullYear(t.getFullYear() - 1);
+    return { today: t, startDate: s };
+  }, []);
 
-  const totalContributions = activityValues.reduce(
-    (sum: number, item: { count?: number }) => sum + (item.count ?? 0),
-    0,
+  // Only count what is actually visible in the graph.
+  const totalContributions = useMemo(
+    () =>
+      activityValues.reduce((sum, item) => {
+        const d = new Date(item.date);
+        return d >= startDate && d <= today ? sum + (item.count ?? 0) : sum;
+      }, 0),
+    [activityValues, startDate, today],
   );
 
-  const year = today.getFullYear();
+  // Show the most recent weeks first (matters on mobile).
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (el) el.scrollLeft = el.scrollWidth;
+  }, [activityValues]);
 
   const scrollBy = (dir: 1 | -1) => {
     scrollRef.current?.scrollBy({ left: dir * 240, behavior: "smooth" });
@@ -287,27 +226,29 @@ export default function ContributionGraph({ values = sampleData }) {
             ref={scrollRef}
             className="overflow-x-auto scroll-smooth [scrollbar-width:thin]"
           >
-            <div className="min-w-[720px] px-1 pb-1 sm:min-w-[780px] [&_.react-calendar-heatmap_.color-github-0]:fill-[#ebedf0] [&_.react-calendar-heatmap_.color-github-1]:fill-[#9be9a8] [&_.react-calendar-heatmap_.color-github-2]:fill-[#40c463] [&_.react-calendar-heatmap_.color-github-3]:fill-[#30a14e] [&_.react-calendar-heatmap_.color-github-4]:fill-[#216e39] [&_.react-calendar-heatmap_rect]:rx-[2px] [&_.react-calendar-heatmap_text]:fill-[var(--muted)] [&_.react-calendar-heatmap_text]:text-[9px] dark:[&_.react-calendar-heatmap_.color-github-0]:fill-[#161b22]">
+            <div className="min-w-[720px] px-1 pb-1 sm:min-w-[780px] [&_.react-calendar-heatmap_.color-github-0]:fill-[#ebedf0] [&_.react-calendar-heatmap_.color-github-1]:fill-[#9be9a8] [&_.react-calendar-heatmap_.color-github-2]:fill-[#40c463] [&_.react-calendar-heatmap_.color-github-3]:fill-[#30a14e] [&_.react-calendar-heatmap_.color-github-4]:fill-[#216e39] [&_.react-calendar-heatmap_rect]:[rx:2px] [&_.react-calendar-heatmap_text]:fill-[color:var(--muted)] [&_.react-calendar-heatmap_text]:text-[9px] dark:[&_.react-calendar-heatmap_.color-github-0]:fill-[#161b22]">
               <CalendarHeatmap
                 startDate={startDate}
                 endDate={today}
                 values={activityValues}
-                classForValue={(value: { count?: number } | undefined) => {
-                  const count = value?.count ?? 0;
-                  if (count === 0) return "color-github-0";
-                  if (count >= 10) return "color-github-4";
-                  if (count >= 5) return "color-github-3";
-                  if (count >= 2) return "color-github-2";
-                  return "color-github-1";
+                classForValue={(value: HeatmapValue | undefined) => {
+                  if (!value) return "color-github-0";
+                  // Prefer GitHub's own level from the API; fall back to thresholds.
+                  const level =
+                    typeof value.level === "number"
+                      ? value.level
+                      : levelFromCount(value.count ?? 0);
+                  return `color-github-${Math.min(Math.max(level, 0), 4)}`;
                 }}
-                tooltipDataAttrs={(
-                  value: { date?: string; count?: number } | undefined,
-                ) => {
+                tooltipDataAttrs={(value: HeatmapValue | undefined) => {
                   if (!value || !value.date) {
                     return { "data-tooltip-content": "No contributions" };
                   }
+                  const count = value.count ?? 0;
                   return {
-                    "data-tooltip-content": `${value.count ?? 0} contribution${value.count === 1 ? "" : "s"}`,
+                    "data-tooltip-content": `${count} contribution${
+                      count === 1 ? "" : "s"
+                    } on ${formatDate(value.date)}`,
                   };
                 }}
                 gutterSize={2.5}
@@ -333,14 +274,13 @@ export default function ContributionGraph({ values = sampleData }) {
           </button>
         </div>
 
-        <div className="flex items-center justify-between text-[1px] text-[var(--muted)] sm:text-xs">
+        <div className="mt-2 flex items-center justify-between text-[10px] text-[var(--muted)] sm:text-xs">
           <span>
             <span className="text-[var(--foreground)]">
               {totalContributions}
             </span>{" "}
-            contributions in {year}
+            contributions in the last year
           </span>
-
           <div className="flex items-center gap-1">
             <span className="hidden sm:inline">Less</span>
             <div className="flex items-center gap-[2px] sm:gap-[3px]">
@@ -357,9 +297,10 @@ export default function ContributionGraph({ values = sampleData }) {
             <span className="hidden sm:inline">More</span>
           </div>
         </div>
+
         <Tooltip
           anchorSelect="[data-tooltip-content]"
-          className="!rounded-lg !px-0.050 !py-0.075 !text-xs"
+          className="!rounded-lg !px-2 !py-1 !text-xs"
         />
       </div>
     </section>

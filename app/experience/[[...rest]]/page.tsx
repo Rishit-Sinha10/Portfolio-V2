@@ -52,7 +52,7 @@ export default function Experience() {
 
   return (
     <section
-      id="experience"
+      id="Experience"
       className="mx-auto flex w-full max-w-4xl flex-col px-4 py-6 sm:px-6 md:px-8 lg:px-10"
     >
       <div className="divide-y divide-[var(--border)]">

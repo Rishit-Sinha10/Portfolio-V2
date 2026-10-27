@@ -13,8 +13,6 @@ import { playSound } from "../../lib/sound-engine";
 import { click003Sound } from "../../lib/click-003";
 const NAV_LINKS = [
   { label: "Home", href: "/", section: null },
-  { label: "Work", href: "/projects", section: "work" },
-  { label: "Experience", href: "/experience", section: "experience" },
   { label: "Blog", href: "/blog", section: null },
   { label: "Now", href: "/now", section: null },
 ];
