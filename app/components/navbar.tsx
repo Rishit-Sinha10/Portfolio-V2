@@ -1,209 +1,98 @@
 "use client";
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState, useEffect, useMemo } from "react";
-import { Moon, Sun, Menu, X, Volume2, VolumeX } from "lucide-react";
+import { useEffect, useState } from "react";
+import { Moon, Sun, Volume2, VolumeX } from "lucide-react";
 import { useTheme } from "next-themes";
 import { cn } from "../../lib/utils";
-import Proof from "../../public/Images/Levi_Ackermann_29_character_image.png";
-import { useActiveSection } from "../hooks/useActiveSection";
-import GithubIcon from "./github";
 import { playSound } from "../../lib/sound-engine";
 import { click003Sound } from "../../lib/click-003";
+
 const NAV_LINKS = [
-  { label: "Home", href: "/", section: null },
-  { label: "Blog", href: "/blog", section: null },
-  { label: "Now", href: "/now", section: null },
+  { label: "Home", href: "/" },
+  { label: "Blog", href: "/blog" },
+  { label: "Now", href: "/now" },
 ];
 
 export default function Navbar() {
   const { setTheme, resolvedTheme } = useTheme();
   const pathname = usePathname();
-  const [mobileOpen, setMobileOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [soundEnabled, setSoundEnabled] = useState(true);
-
-  const isHome = pathname === "/";
-  const sectionIds = useMemo(
-    () => NAV_LINKS.filter((l) => l.section).map((l) => l.section!),
-    [],
-  );
-  const activeSection = useActiveSection(isHome ? sectionIds : []);
-  const isLinkActive = (link: (typeof NAV_LINKS)[number]) => {
-    if (link.section && isHome && activeSection === link.section) {
-      return true;
-    }
-
-    if (link.href === "/") {
-      return isHome && !activeSection;
-    }
-
-    return (
-      pathname === link.href ||
-      (link.href === "/projects" && pathname.startsWith("/work/"))
-    );
-  };
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  useEffect(() => {
-    setMobileOpen(false);
-  }, [pathname]);
+  const isActive = (href: string) => pathname === href;
 
-  useEffect(() => {
-    if (mobileOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [mobileOpen]);
+  // Same shape at every width; just a little smaller below `sm`.
+  const linkClass = (active: boolean) =>
+    cn(
+      "rounded-md px-2 py-1 text-[12px] font-medium no-underline transition sm:px-2.5 sm:py-1.5 sm:text-[13px]",
+      active
+        ? "bg-[var(--accent-light)] text-[var(--foreground)]"
+        : "text-[var(--muted)] hover:bg-[var(--accent-light)] hover:text-[var(--foreground)]",
+    );
+
+  const iconButton =
+    "inline-flex items-center justify-center rounded-full p-1.5 text-[var(--muted)] transition hover:bg-[var(--surface)] hover:text-[var(--foreground)] sm:p-2";
+
+  const iconSize = "h-[15px] w-[15px] sm:h-[17px] sm:w-[17px]";
 
   return (
-    <nav
-      className="sticky top-0 z-50 border-b border-[var(--border)] bg-[var(--background)]/80"
-      aria-label="Main navigation"
-    >
-      <div className="mx-auto flex max-w-[768px] items-center justify-between px-5 py-3">
-        <Link
-          href="/"
-          className="flex items-center gap-2.5 no-underline"
-          aria-label="Rishit Sinha home"
+    <div className="flex items-center justify-between">
+      <nav aria-label="Main" className="flex items-center gap-0.5 sm:gap-1">
+        {NAV_LINKS.map((link) => (
+          <Link
+            key={link.href}
+            href={link.href}
+            className={linkClass(isActive(link.href))}
+            aria-current={isActive(link.href) ? "page" : undefined}
+          >
+            {link.label}
+          </Link>
+        ))}
+      </nav>
+
+      <div className="flex items-center gap-0.5 sm:gap-1">
+        <button
+          type="button"
+          onClick={() => setSoundEnabled((enabled) => !enabled)}
+          className={iconButton}
+          aria-label="Interface sounds"
+          aria-pressed={soundEnabled}
+          title={soundEnabled ? "Interface sounds on" : "Interface sounds off"}
         >
-          <Image
-            src={Proof}
-            alt=""
-            width={20}
-            height={20}
-            className="rounded-full object-cover"
-          />
-          <span className="text-sm font-semibold tracking-tight text-[var(--foreground)]">
-            Rishit Sinha
-          </span>
-        </Link>
+          {soundEnabled ? (
+            <Volume2 className={iconSize} />
+          ) : (
+            <VolumeX className={iconSize} />
+          )}
+        </button>
 
-        <div className="flex items-center gap-1">
-          <div className="hidden items-center gap-1 sm:flex">
-            {NAV_LINKS.map((link) => {
-              const isActive = isLinkActive(link);
-              return (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className={cn(
-                    "rounded-md px-2.5 py-1.5 text-[13px] font-medium transition no-underline",
-                    isActive
-                      ? "bg-[var(--accent-light)] text-[var(--foreground)]"
-                      : "text-[var(--muted)] hover:bg-[var(--accent-light)] hover:text-[var(--foreground)]",
-                  )}
-                  aria-current={
-                    isActive
-                      ? link.section && isHome
-                        ? "location"
-                        : "page"
-                      : undefined
-                  }
-                >
-                  {link.label}
-                </Link>
-              );
-            })}
-          </div>
-
-          <div className="flex items-center gap-1">
-            <a
-              href="https://github.com/Rishit-Sinha10"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center rounded-full p-2 transition hover:bg-[var(--surface)]"
-              aria-label="GitHub"
-            >
-              <GithubIcon size={18} />
-            </a>
-
-            <button
-              type="button"
-              onClick={() => setSoundEnabled((enabled) => !enabled)}
-              className="inline-flex items-center justify-center rounded-full p-2 transition hover:bg-[var(--surface)]"
-              aria-label="Interface sounds"
-              aria-pressed={soundEnabled}
-              title={
-                soundEnabled ? "Interface sounds on" : "Interface sounds off"
-              }
-            >
-              {soundEnabled ? <Volume2 size={18} /> : <VolumeX size={18} />}
-            </button>
-
-            <button
-              type="button"
-              onClick={() => {
-                if (soundEnabled) {
-                  void playSound(click003Sound.dataUri, { volume: 0.5 });
-                }
-                setTheme(resolvedTheme === "dark" ? "light" : "dark");
-              }}
-              className="inline-flex items-center justify-center rounded-full p-2 transition hover:bg-[var(--surface)]"
-              aria-label={
-                resolvedTheme === "dark"
-                  ? "Switch to light mode"
-                  : "Switch to dark mode"
-              }
-            >
-              {mounted && resolvedTheme === "dark" ? (
-                <Sun size={18} />
-              ) : (
-                <Moon size={18} />
-              )}
-            </button>
-
-            <button
-              type="button"
-              onClick={() => setMobileOpen((o) => !o)}
-              className="inline-flex items-center justify-center rounded-md p-2 text-[var(--muted)] transition hover:text-[var(--foreground)] sm:hidden"
-              aria-label={mobileOpen ? "Close menu" : "Open menu"}
-              aria-expanded={mobileOpen}
-            >
-              {mobileOpen ? <X size={18} /> : <Menu size={18} />}
-            </button>
-          </div>
-        </div>
+        <button
+          type="button"
+          onClick={() => {
+            if (soundEnabled) {
+              void playSound(click003Sound.dataUri, { volume: 0.5 });
+            }
+            setTheme(resolvedTheme === "dark" ? "light" : "dark");
+          }}
+          className={iconButton}
+          aria-label={
+            resolvedTheme === "dark"
+              ? "Switch to light mode"
+              : "Switch to dark mode"
+          }
+        >
+          {mounted && resolvedTheme === "dark" ? (
+            <Sun className={iconSize} />
+          ) : (
+            <Moon className={iconSize} />
+          )}
+        </button>
       </div>
-
-      {mobileOpen && (
-        <div className="border-t border-[var(--border)] bg-[var(--background)] px-5 py-3 sm:hidden">
-          <div className="flex flex-col gap-1">
-            {NAV_LINKS.map((link) => {
-              const isActive = isLinkActive(link);
-              return (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className={cn(
-                    "rounded-md px-3 py-2.5 text-sm font-medium transition no-underline",
-                    isActive
-                      ? "bg-[var(--accent-light)] text-[var(--accent)]"
-                      : "text-[var(--muted)] hover:bg-[var(--accent-light)] hover:text-[var(--foreground)]",
-                  )}
-                  aria-current={
-                    isActive
-                      ? link.section && isHome
-                        ? "location"
-                        : "page"
-                      : undefined
-                  }
-                >
-                  {link.label}
-                </Link>
-              );
-            })}
-          </div>
-        </div>
-      )}
-    </nav>
+    </div>
   );
 }

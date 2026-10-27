@@ -1,5 +1,5 @@
 "use client";
-import Image from "next/image";
+import Image, { type StaticImageData } from "next/image";
 import { useState, type ReactNode } from "react";
 import {
   siReact,
@@ -28,7 +28,6 @@ import {
   List,
   PenLine,
   Sparkles,
-  Star,
 } from "lucide-react";
 import DiscordIcon from "../components/discord";
 import GithubIcon from "../components/github";
@@ -38,6 +37,7 @@ import TwitterXIcon from "../components/x-icon";
 import FileDescriptionIcon from "../components/file";
 import SendIcon from "../components/send-icon";
 import AccordionCard from "../components/accordion-card";
+import Navbar from "../components/navbar";
 import { LinkPreview } from "../components/link_preview";
 import { PROJECTS } from "../../data/projects";
 import ContributionGraph from "./github";
@@ -45,6 +45,7 @@ import { Highlights } from "../components/Highlights";
 import TTMLogo from "../../public/Images/ttm.png";
 import NextLearnLogo from "../../public/Images/NextLearn.png";
 import HarnavVenturesLogo from "../../public/Images/logo.png";
+
 /* ------------------------------------------------------------------ */
 /* Data                                                                */
 /* ------------------------------------------------------------------ */
@@ -95,9 +96,10 @@ const LINKS = [
     Icon: TwitterXIcon,
   },
 ];
+
 type ExperienceItem = {
-  logo: any;
   id: string;
+  logo: StaticImageData;
   title: string;
   subtitle: string;
   period: string;
@@ -105,13 +107,26 @@ type ExperienceItem = {
   tags: string[];
 };
 
-// Add your other roles here. The first item opens by default.
+// Newest first. The first item opens by default.
 const EXPERIENCE: ExperienceItem[] = [
+  {
+    id: "harnav-ventures",
+    title: "Harnav Ventures",
+    subtitle: "Tech Intern",
+    logo: HarnavVenturesLogo,
+    period: "Sep 2026 – Present",
+    bullets: [
+      "Built and deployed a responsive business website with Next.js and TypeScript, including product catalog pages to showcase product offerings and manufacturing capabilities.",
+      "Achieved Lighthouse scores above 90 on both mobile and desktop audits through performance and responsive UI optimizations.",
+      "Implemented technical SEO: metadata, canonical URLs, Open Graph tags, and structured data.",
+    ],
+    tags: ["Next.js", "TypeScript", "Technical SEO", "Performance"],
+  },
   {
     id: "tasty-millets",
     title: "The Tasty Millets",
     subtitle: "Shopify Developer",
-    logo: TTMLogo.src,
+    logo: TTMLogo,
     period: "Jun 2026 – Aug 2026",
     bullets: [
       "Building custom Shopify theme components for production sites.",
@@ -121,30 +136,17 @@ const EXPERIENCE: ExperienceItem[] = [
     tags: ["Shopify Liquid", "Performance", "Technical SEO"],
   },
   {
-    id: "NextLearn Technologies",
+    id: "nextlearn-technologies",
     title: "NextLearn Technologies",
-    subtitle: "FullStack Intern",
-    logo: NextLearnLogo.src,
+    subtitle: "Full-Stack Intern",
+    logo: NextLearnLogo,
     period: "Mar 2026 – Jun 2026",
     bullets: [
-      "Developed full-stack application features using React, REST APIs, and a database-backed backend",
-      "Implemented backend functionality and API integrations",
-      "collaborated on debugging and testing to improve application reliability.",
+      "Developed full-stack application features using React, REST APIs, and a database-backed backend.",
+      "Implemented backend functionality and API integrations.",
+      "Collaborated on debugging and testing to improve application reliability.",
     ],
-    tags: ["Full Stack", "API Design", "Team Work"],
-  },
-  {
-    id: "Harnav Ventures",
-    title: "Harnav Ventures",
-    subtitle: "Tech Intern",
-    logo: HarnavVenturesLogo.src,
-    period: "Sep 2026 – Present",
-    bullets: [
-      "Built and deployed a responsive business website with Next.js and TypeScript, including product catalog pages to showcase product offerings and manufacturing capabilities",
-      "Achieved Lighthouse scores above 90 on both mobile and desktop audits through performance and responsive UI optimizations",
-      "Implemented technical SEO: metadata, canonical URLs, Open Graph tags, and structured data",
-    ],
-    tags: ["Technical Seo", "API Design", "Performance"],
+    tags: ["Full Stack", "API Design", "Teamwork"],
   },
 ];
 
@@ -422,9 +424,10 @@ export default function Portfolio() {
     .map(toProjectView);
 
   return (
-    <div className="mx-auto w-full max-w-[44rem] px-5 pb-32 pt-10 text-[13px] sm:px-8 md:pt-14">
-      {/* Header: name left, socials right, tabs underneath */}
-      <header>
+    <div className="mx-auto w-full max-w-[44rem] px-5 pb-32 pt-6 text-[13px] sm:px-8 md:pt-8">
+      <Navbar />
+      {/* Header: name left, socials right */}
+      <header className="mt-10">
         <div className="flex items-start justify-between gap-4">
           <h1 className="text-[20px] font-semibold tracking-[-0.01em] text-[var(--foreground)]">
             Rishit Sinha
@@ -453,11 +456,11 @@ export default function Portfolio() {
       </header>
 
       {/* Intro */}
-      <div className="mt-7 max-w-[80ch] space-y-3.5 leading-[1.7] text-balance text-[var(--muted)]">
+      <div className="mt-5 max-w-[62ch] space-y-3.5 leading-[1.7] text-pretty text-[var(--muted)]">
         <p>
-          I'm a CS student who cares about the details and enjoys turning ideas
-          into working software. I work as a Technical Intern at Harnav Ventures
-          and build projects in the open, including{" "}
+          I&apos;m a CS student who cares about the details and enjoys turning
+          ideas into working software. I work as a Technical Intern at Harnav
+          Ventures and build projects in the open, including{" "}
           <LinkPreview url="https://tunnel-sable.vercel.app/">
             Tunnel
           </LinkPreview>{" "}
@@ -465,8 +468,8 @@ export default function Portfolio() {
           <LinkPreview url="https://github.com/Rishit-Sinha10/OpenLink">
             OpenLink
           </LinkPreview>
-          . I'm focused on building reliable, useful software and getting better
-          with every release.
+          . I&apos;m focused on building reliable, useful software and getting
+          better with every release.
         </p>
       </div>
 
@@ -493,7 +496,15 @@ export default function Portfolio() {
           {EXPERIENCE.map((item, index) => (
             <AccordionCard
               key={item.id}
-              logo={<img src={item.logo} />}
+              logo={
+                <Image
+                  src={item.logo}
+                  alt=""
+                  width={20}
+                  height={20}
+                  className="h-5 w-5 rounded-sm object-contain"
+                />
+              }
               title={item.title}
               subtitle={item.subtitle}
               meta={item.period}
@@ -591,6 +602,7 @@ export default function Portfolio() {
           ))}
         </ul>
       </Section>
+
       {/* GitHub */}
       <Section id="activity" icon={Activity} title="contributions">
         <ContributionGraph />
