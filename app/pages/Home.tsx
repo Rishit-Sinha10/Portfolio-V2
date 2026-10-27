@@ -595,9 +595,6 @@ export default function Portfolio() {
       <Section id="activity" icon={Activity} title="contributions">
         <ContributionGraph />
       </Section>
-      <Section id="Highlights" icon={Star} title="Highlights">
-        <Highlights />
-      </Section>
     </div>
   );
 }
