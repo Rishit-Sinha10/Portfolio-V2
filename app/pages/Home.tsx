@@ -515,9 +515,6 @@ export default function Portfolio() {
             </AccordionCard>
           ))}
         </div>
-        <div className="mt-4 flex justify-center">
-          <PillLink href="/experience">View all</PillLink>
-        </div>
       </Section>
 
       {/* Projects */}

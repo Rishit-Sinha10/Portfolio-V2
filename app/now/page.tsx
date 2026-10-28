@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { title } from "process";
+import Link from "next/link";
 export const metadata: Metadata = {
   title: "Now",
   description:
@@ -8,26 +8,25 @@ export const metadata: Metadata = {
 const FOCUS = [
   {
     title: "Final year of Computer Science",
-    note: " Open to full-time software engineering roles starting in 2026.",
+    note: "Open to full-time software engineering roles.",
   },
   {
     title: "Production storefronts",
-    note: " Building and maintaining Shopify storefronts, with hands-on work across frontend development, integrations, SEO, and performance.",
+    note: "Building and maintaining Shopify storefronts: frontend, integrations, SEO, and performance.",
   },
   {
     title: "Going deeper",
     note: "TypeScript, Node.js, backend architecture, and AI systems.",
   },
   {
-    title: "Currently Building",
-    note: "Developing OpenLink, an AI API platform, and Tunnel, alongside my work on production websites.",
+    title: "Currently building",
+    note: "OpenLink, an AI API platform, and Tunnel, alongside production websites.",
   },
   {
-    title: "Learning Goal",
-    note: "Learning Go & Rust Going Deeper in Low Level System",
+    title: "Learning goal",
+    note: "Go and Rust, with a focus on low-level systems.",
   },
 ];
-
 const PROJECTS = [
   {
     name: "Klryo",
@@ -55,6 +54,12 @@ const PROJECTS = [
 export default function NowPage() {
   return (
     <section className="mx-auto w-full max-w-[768px] px-5 py-12">
+      <Link
+        href="/"
+        className="inline-flex w-fit items-center gap-1.5 rounded-md px-3 py-1.5 text-[12px] font-medium"
+      >
+        Back To Portfolio
+      </Link>
       <header className="border-b border-[var(--border)] pb-8">
         <h1 className="heading-section text-[var(--foreground)]">Now</h1>
         <p className="mt-3 text-body">Where my attention goes, right now.</p>
@@ -76,12 +81,12 @@ export default function NowPage() {
           {FOCUS.map((item) => (
             <li
               key={item.title}
-              className="flex flex-col gap-1 border-b border-[var(--border)] py-3.5 last:border-b-0 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6"
+              className="flex flex-col gap-1 border-b border-[var(--border)] py-3.5 last:border-b-0"
             >
               <span className="text-[15px] font-medium text-[var(--foreground)]">
                 {item.title}
               </span>
-              <span className="font-mono text-xs text-[var(--muted)] sm:text-right">
+              <span className="text-sm leading-relaxed text-[var(--muted)]">
                 {item.note}
               </span>
             </li>

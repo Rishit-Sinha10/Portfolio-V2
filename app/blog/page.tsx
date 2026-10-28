@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { getAllBlogPosts } from "../../lib/blog";
+import { ChevronLeft } from "lucide-react";
 export const metadata = {
   title: "Blog",
   description:
@@ -9,6 +10,13 @@ export default function BlogPage() {
   const posts = getAllBlogPosts();
   return (
     <section className="mx-auto w-full max-w-[768px] px-5 py-12">
+      <Link
+        href="/"
+        className="inline-flex w-fit items-center gap-1.5 rounded-md px-2 py-1 text-[12px] font-medium text-[var(--muted)] no-underline transition-colors hover:bg-[var(--accent-light)] hover:text-[var(--foreground)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--foreground)] sm:px-2.5 sm:py-1.5 sm:text-[13px]"
+      >
+        <ChevronLeft size={12} strokeWidth={2} aria-hidden="true" />
+        Back To Portfolio
+      </Link>
       <div className="mb-12">
         <h1 className="heading-section text-[var(--foreground)]">Blog</h1>
         <p className="mt-3 text-body">

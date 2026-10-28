@@ -42,32 +42,30 @@ const highlights = [
 
 export function Highlights() {
   return (
-    <section className="mx-auto flex w-full max-w-4xl flex-col px-4 py-8 sm:px-6 md:px-8 lg:px-10">
-      <div className="divide-y divide-[var(--border)] border-y border-[var(--border)] border-none">
-        {highlights.map((highlight) => (
-          <article
-            key={highlight.id}
-            className="group flex items-center justify-between gap-4 py-5"
+    <div className="divide-y divide-[var(--border)] border-y border-[var(--border)] border-none">
+      {highlights.map((highlight) => (
+        <article
+          key={highlight.id}
+          className="group flex items-center justify-between gap-4 py-5"
+        >
+          <div className="flex min-w-0 flex-col gap-1.5">
+            <h3 className="text-sm font-medium leading-relaxed text-[var(--foreground)] transition-colors group-hover:text-[var(--muted)] sm:text-base">
+              {highlight.title}
+            </h3>
+
+            <p className="text-xs text-[var(--muted)] sm:text-sm">
+              {highlight.subtitle}
+            </p>
+          </div>
+
+          <span
+            aria-hidden="true"
+            className="shrink-0 text-lg text-[var(--muted)] transition-transform group-hover:translate-x-1"
           >
-            <div className="flex min-w-0 flex-col gap-1.5">
-              <h3 className="text-sm font-medium leading-relaxed text-[var(--foreground)] transition-colors group-hover:text-[var(--muted)] sm:text-base">
-                {highlight.title}
-              </h3>
-
-              <p className="text-xs text-[var(--muted)] sm:text-sm">
-                {highlight.subtitle}
-              </p>
-            </div>
-
-            <span
-              aria-hidden="true"
-              className="shrink-0 text-lg text-[var(--muted)] transition-transform group-hover:translate-x-1"
-            >
-              ↗
-            </span>
-          </article>
-        ))}
-      </div>
-    </section>
+            ↗
+          </span>
+        </article>
+      ))}
+    </div>
   );
 }
