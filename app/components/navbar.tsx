@@ -38,7 +38,7 @@ export default function Navbar() {
   const iconButton =
     "inline-flex items-center justify-center rounded-full p-1.5 text-[var(--muted)] transition hover:bg-[var(--surface)] hover:text-[var(--foreground)] sm:p-2";
 
-  const iconSize = "h-[15px] w-[15px] sm:h-[17px] sm:w-[17px]";
+  const iconSize = "flex items-center gap-0.5 sm:gap-1";
 
   return (
     <div className="flex items-center justify-between">
@@ -65,9 +65,9 @@ export default function Navbar() {
           title={soundEnabled ? "Interface sounds on" : "Interface sounds off"}
         >
           {soundEnabled ? (
-            <Volume2 className={iconSize} />
+            <p className={iconSize}>Mute</p>
           ) : (
-            <VolumeX className={iconSize} />
+            <p className={iconSize}>Unmute</p>
           )}
         </button>
 
@@ -87,9 +87,9 @@ export default function Navbar() {
           }
         >
           {mounted && resolvedTheme === "dark" ? (
-            <Sun className={iconSize} />
+            <p className={iconSize}>Light</p>
           ) : (
-            <Moon className={iconSize} />
+            <p className={iconSize}>Dark</p>
           )}
         </button>
       </div>
