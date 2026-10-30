@@ -106,7 +106,8 @@ type ExperienceItem = {
   bullets: string[];
   tags: string[];
 };
-
+const iconLinkClass =
+  "inline-flex h-6 w-6 shrink-0 items-center justify-center rounded text-[var(--muted)] transition-colors hover:text-[var(--foreground)]";
 // Newest first. The first item opens by default.
 const EXPERIENCE: ExperienceItem[] = [
   {
@@ -150,67 +151,24 @@ const EXPERIENCE: ExperienceItem[] = [
   },
 ];
 
-const FEATURED_PROJECT_IDS = ["claritycxr", "tunnel", "openlink"];
+const FEATURED_PROJECT_IDS = ["claritycxr", "tunnel", "openlink", "klyro"];
 
 /* ------------------------------------------------------------------ */
 /* Project adapter: reads common field names from data/projects        */
 /* ------------------------------------------------------------------ */
-
-type ProjectView = {
-  id: string;
-  name: string;
-  description?: string;
-  href?: string;
-  repo?: string;
-  stars?: number;
-  bullets: string[];
-  tags: string[];
+export type ProjectTechStack = {
+  skill: string[];
 };
-
-const asString = (value: unknown) =>
-  typeof value === "string" && value.length > 0 ? value : undefined;
-
-const asStringArray = (value: unknown) =>
-  Array.isArray(value)
-    ? value.filter((item): item is string => typeof item === "string")
-    : [];
-
-function firstString(record: Record<string, unknown>, keys: string[]) {
-  for (const key of keys) {
-    const value = asString(record[key]);
-    if (value) return value;
-  }
-  return undefined;
-}
-
-function firstArray(record: Record<string, unknown>, keys: string[]) {
-  for (const key of keys) {
-    const value = asStringArray(record[key]);
-    if (value.length > 0) return value;
-  }
-  return [];
-}
-
-function toProjectView(project: unknown): ProjectView {
-  const record = project as Record<string, unknown>;
-  const id = firstString(record, ["id"]) ?? "project";
-  return {
-    id,
-    name: firstString(record, ["name", "title"]) ?? id,
-    description: firstString(record, [
-      "description",
-      "summary",
-      "tagline",
-      "shortDescription",
-    ]),
-    href: firstString(record, ["link", "url", "liveUrl", "website", "demo"]),
-    repo: firstString(record, ["github", "repo", "repoUrl", "sourceUrl"]),
-    stars: typeof record.stars === "number" ? record.stars : undefined,
-    bullets: firstArray(record, ["highlights", "bullets", "points"]),
-    tags: firstArray(record, ["tech", "stack", "tags", "technologies"]),
-  };
-}
-
+export type ProjectCaseStudy = {
+  id: string;
+  title: string;
+  status: "Live" | "In dev" | "Abandoned";
+  summary: string;
+  techStack: ProjectTechStack;
+  liveUrl: string;
+  githubUrl: string;
+  accent: string;
+};
 /* ------------------------------------------------------------------ */
 /* Small building blocks                                               */
 /* ------------------------------------------------------------------ */
@@ -380,36 +338,35 @@ function ViewToggle({
   );
 }
 
-function ProjectLinks({ project }: { project: ProjectView }) {
-  const target = project.repo ?? project.href;
+function ProjectLinks({ project }: { project: ProjectCaseStudy }) {
+  if (!project.githubUrl && !project.liveUrl) return null;
   return (
-    <>
-      {project.href ? (
+    <div className="flex items-center gap-1">
+      {project.githubUrl ? (
         <a
-          href={project.href}
+          href={project.githubUrl}
           target="_blank"
           rel="noopener noreferrer"
-          aria-label={`Open ${project.name}`}
-          className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded text-[var(--muted)] transition-colors hover:text-[var(--foreground)]"
+          aria-label={`View ${project.title} on GitHub`}
+          className={iconLinkClass}
+        >
+          <GithubIcon size={13} aria-hidden="true" />
+        </a>
+      ) : null}
+      {project.liveUrl ? (
+        <a
+          href={project.liveUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`Open ${project.title}`}
+          className={iconLinkClass}
         >
           <ExternalLink size={13} strokeWidth={1.75} aria-hidden="true" />
         </a>
       ) : null}
-      {typeof project.stars === "number" && target ? (
-        <a
-          href={target}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex shrink-0 items-center gap-1 text-[11px] tabular-nums text-[var(--muted)] transition-colors hover:text-[var(--foreground)] [&_svg]:h-3 [&_svg]:w-3"
-        >
-          <GithubIcon aria-hidden="true" />
-          {project.stars}
-        </a>
-      ) : null}
-    </>
+    </div>
   );
 }
-
 /* ------------------------------------------------------------------ */
 /* Page                                                                */
 /* ------------------------------------------------------------------ */
@@ -419,9 +376,7 @@ export default function Portfolio() {
 
   const projects = FEATURED_PROJECT_IDS.map((id) =>
     PROJECTS.find((item) => item.id === id),
-  )
-    .filter(Boolean)
-    .map(toProjectView);
+  ).filter((project): project is (typeof PROJECTS)[number] => Boolean(project));
 
   return (
     <div className="mx-auto w-full max-w-[44rem] px-5 pb-32 pt-6 text-[13px] sm:px-8 md:pt-8">
@@ -529,17 +484,15 @@ export default function Portfolio() {
             {projects.map((project) => (
               <AccordionCard
                 key={project.id}
-                logo={<Initial name={project.name} />}
-                title={project.name}
+                logo={<Initial name={project.title} />}
+                title={project.title}
                 trailing={<ProjectLinks project={project} />}
               >
-                {project.description ? (
+                {project.summary ? (
                   <p className="mb-3 text-[12px] leading-[1.6] text-[var(--muted)]">
-                    {project.description}
+                    {project.summary}
                   </p>
                 ) : null}
-                <Bullets items={project.bullets} />
-                <Tags items={project.tags} />
               </AccordionCard>
             ))}
           </div>
@@ -552,16 +505,13 @@ export default function Portfolio() {
               >
                 <div className="flex items-center gap-2">
                   <span className="min-w-0 flex-1 truncate text-[13px] font-medium text-[var(--foreground)]">
-                    {project.name}
+                    {project.title}
                   </span>
                   <ProjectLinks project={project} />
                 </div>
-                {project.description ? (
-                  <p className="mt-1.5 line-clamp-3 text-[12px] leading-[1.6] text-[var(--muted)]">
-                    {project.description}
-                  </p>
+                {project.techStack.skill ? (
+                  <Tags items={project.techStack.skill} />
                 ) : null}
-                <Tags items={project.tags.slice(0, 4)} />
               </div>
             ))}
           </div>
