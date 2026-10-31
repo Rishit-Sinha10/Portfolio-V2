@@ -408,7 +408,7 @@ export default function Portfolio() {
                 quality={90}
                 priority
                 sizes="(min-width: 640px) 80px, 64px"
-                className="h-full w-full translate-y-1 scale-[1.1] object-cover object-center mix-blend-multiply grayscale dark:mix-blend-normal"
+                className="h-full w-full translate-y-1 scale-[1.1] object-cover object-center grayscale"
               />
             </div>
           </div>
