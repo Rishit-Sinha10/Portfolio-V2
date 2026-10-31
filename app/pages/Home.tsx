@@ -1,6 +1,6 @@
 "use client";
 import Image, { type StaticImageData } from "next/image";
-import { useState, type ReactNode } from "react";
+import { useState, type ReactNode, type SVGProps } from "react";
 import {
   siReact,
   siNextdotjs,
@@ -15,8 +15,15 @@ import {
   siSupabase,
   siZod,
   siSocketdotio,
+  siLeetcode,
 } from "simple-icons";
 import type { SimpleIcon } from "simple-icons";
+
+const LeetcodeIcon = (props: SVGProps<SVGSVGElement>) => (
+  <svg {...props} viewBox="0 0 24 24" fill="currentColor">
+    <path d={siLeetcode.path} />
+  </svg>
+);
 import {
   Activity,
   ArrowUpRight,
@@ -45,7 +52,8 @@ import { Highlights } from "../components/Highlights";
 import TTMLogo from "../../public/Images/ttm.png";
 import NextLearnLogo from "../../public/Images/NextLearn.png";
 import HarnavVenturesLogo from "../../public/Images/logo.png";
-
+import Profile from "../../public/fonts/image.png";
+import NowPlaying from "../components/playlist";
 /* ------------------------------------------------------------------ */
 /* Data                                                                */
 /* ------------------------------------------------------------------ */
@@ -94,6 +102,11 @@ const LINKS = [
     label: "X",
     href: "https://x.com/RishitSinh41144",
     Icon: TwitterXIcon,
+  },
+  {
+    label: "Leetcode",
+    href: "https://leetcode.com/u/rizz4566",
+    Icon: LeetcodeIcon,
   },
 ];
 
@@ -382,34 +395,54 @@ export default function Portfolio() {
     <div className="mx-auto w-full max-w-[44rem] px-5 pb-32 pt-6 text-[13px] sm:px-8 md:pt-8">
       <Navbar />
       {/* Header: name left, socials right */}
-      <header className="mt-10">
-        <div className="flex items-start justify-between gap-4">
-          <h1 className="text-[20px] font-semibold tracking-[-0.01em] text-[var(--foreground)]">
-            Rishit Sinha
-          </h1>
 
-          <ul className="-mr-1.5 flex items-center gap-0.5">
-            {LINKS.map(({ label, href, Icon }) => {
-              const isExternal = !href.startsWith("mailto:");
-              return (
-                <li key={label}>
-                  <a
-                    href={href}
-                    target={isExternal ? "_blank" : undefined}
-                    rel={isExternal ? "noopener noreferrer" : undefined}
-                    aria-label={label}
-                    title={label}
-                    className="inline-flex h-7 w-7 items-center justify-center rounded-md text-[var(--muted)] transition-colors hover:text-[var(--foreground)] focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-[var(--foreground)] [&_svg]:h-[15px] [&_svg]:w-[15px]"
-                  >
-                    <Icon aria-hidden="true" />
-                  </a>
-                </li>
-              );
-            })}
-          </ul>
+      <div className="flex w-full mb-8 mt-8 items-center justify-between">
+        <div className="flex items-center gap-4 sm:gap-5">
+          <div className="relative shrink-0 rounded-[6px] border-[1.5px] border-black/30 p-[3px] sm:rounded-[8px] dark:border-white/[0.15]">
+            <div className="relative h-16 w-16 overflow-hidden rounded-[3px] sm:h-20 sm:w-20 sm:rounded-[5px]">
+              <Image
+                src={Profile}
+                alt="Rishit Sinha"
+                width={160}
+                height={160}
+                quality={90}
+                priority
+                sizes="(min-width: 640px) 80px, 64px"
+                className="h-full w-full translate-y-1 scale-[1.1] object-cover object-center mix-blend-multiply grayscale dark:mix-blend-normal"
+              />
+            </div>
+          </div>
+
+          <div className="flex flex-col justify-center">
+            <h1 className="heading-hero mb-0.5 leading-none tracking-tight">
+              Rishit Sinha
+            </h1>
+            <p className="text-small">21</p>
+          </div>
         </div>
-      </header>
-
+      </div>
+      <div className="mt-4">
+        <NowPlaying />
+      </div>
+      <ul className="-mr-1.5 flex items-center gap-0.5 mt-2 mx-auto">
+        {LINKS.map(({ label, href, Icon }) => {
+          const isExternal = !href.startsWith("mailto:");
+          return (
+            <li key={label}>
+              <a
+                href={href}
+                target={isExternal ? "_blank" : undefined}
+                rel={isExternal ? "noopener noreferrer" : undefined}
+                aria-label={label}
+                title={label}
+                className="inline-flex h-7 w-7 items-center justify-center rounded-md text-[var(--muted)] transition-colors hover:text-[var(--foreground)] focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-[var(--foreground)] [&_svg]:h-[20px] [&_svg]:w-[20px]"
+              >
+                <Icon aria-hidden="true" />
+              </a>
+            </li>
+          );
+        })}
+      </ul>
       {/* Intro */}
       <div className="mt-5 max-w-[62ch] space-y-3.5 leading-[1.7] text-pretty text-[var(--muted)]">
         <p>

@@ -6,6 +6,13 @@ const nextConfig: NextConfig = {
   experimental: {
     optimizePackageImports: ["simple-icons", "lucide-react"],
   },
+  images: {
+    remotePatterns: [
+      { protocol: "https", hostname: "lastfm.freetls.fastly.net" },
+      { protocol: "https", hostname: "lastfm-img.freetls.fastly.net" },
+      { protocol: "https", hostname: "i.scdn.co" }, // only if you use Spotify/Lanyard art
+    ],
+  },
   turbopack: {
     rules: {
       "*.svg": {
