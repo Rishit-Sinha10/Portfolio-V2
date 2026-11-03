@@ -203,6 +203,14 @@ export default function ContributionGraph({
 
   return (
     <section id="github" className="w-full">
+      <p>
+        <a href="https://github.com/Rishit-Sinha10">@{GITHUB_HANDLE}</a> has
+        made{" "}
+        <span className="font-semibold">
+          {totalContributions.toLocaleString()}
+        </span>{" "}
+        contributions in the last year.
+      </p>
       <div className="rounded-lg border border-[var(--border)] bg-[var(--surface)] p-4">
         <div className="relative flex items-center gap-1">
           <button
@@ -275,12 +283,6 @@ export default function ContributionGraph({
         </div>
 
         <div className="mt-2 flex items-center justify-between text-[10px] text-[var(--muted)] sm:text-xs">
-          <span>
-            <span className="text-[var(--foreground)]">
-              {totalContributions}
-            </span>{" "}
-            contributions in the last year
-          </span>
           <div className="flex items-center gap-1">
             <span className="hidden sm:inline">Less</span>
             <div className="flex items-center gap-[2px] sm:gap-[3px]">

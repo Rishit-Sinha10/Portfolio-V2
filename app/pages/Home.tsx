@@ -1,6 +1,6 @@
 "use client";
 import Image, { type StaticImageData } from "next/image";
-import { useState, type ReactNode, type SVGProps } from "react";
+import { useEffect, useState, type ReactNode, type SVGProps } from "react";
 import {
   siReact,
   siNextdotjs,
@@ -18,7 +18,6 @@ import {
   siLeetcode,
 } from "simple-icons";
 import type { SimpleIcon } from "simple-icons";
-
 const LeetcodeIcon = (props: SVGProps<SVGSVGElement>) => (
   <svg {...props} viewBox="0 0 24 24" fill="currentColor">
     <path d={siLeetcode.path} />
@@ -386,10 +385,20 @@ function ProjectLinks({ project }: { project: ProjectCaseStudy }) {
 
 export default function Portfolio() {
   const [projectView, setProjectView] = useState<"list" | "grid">("list");
+  const utc = new Date();
 
   const projects = FEATURED_PROJECT_IDS.map((id) =>
     PROJECTS.find((item) => item.id === id),
   ).filter((project): project is (typeof PROJECTS)[number] => Boolean(project));
+  const [time, setTime] = useState(new Date());
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTime(new Date());
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <div className="mx-auto w-full max-w-[44rem] px-5 pb-32 pt-6 text-[13px] sm:px-8 md:pt-8">
@@ -418,6 +427,14 @@ export default function Portfolio() {
               Rishit Sinha
             </h1>
             <p className="text-small">21</p>
+            <p className="mt-2 text-lg text-muted capitalize">
+              {new Date().toLocaleTimeString("en-IN", {
+                timeZone: "Asia/Kolkata",
+                hour: "2-digit",
+                minute: "2-digit",
+                second: "2-digit",
+              })}
+            </p>
           </div>
         </div>
       </div>
