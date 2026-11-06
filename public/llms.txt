@@ -2,7 +2,7 @@
 
 > Final-year Computer Science student and A software engineer with a growing focus on backend engineering and AI. Currently working as a Shopify Developer on production storefronts, and building independent products.
 
-Rishit ships full-stack products: Klryo (selected for Sentry's Open Source Program), Financcino, and Tunnel are live; ClarityCXR and OpenLink are in development. Stack: React, Next.js, TypeScript, Tailwind CSS, Node.js, Express, MongoDB, MySQL.
+Rishit ships full-stack products: klyro (selected for Sentry's Open Source Program), Financcino, and Tunnel are live; ClarityCXR and OpenLink are in development. Stack: React, Next.js, TypeScript, Tailwind CSS, Node.js, Express, MongoDB, MySQL.
 
 ## Pages
 
@@ -14,7 +14,7 @@ Rishit ships full-stack products: Klryo (selected for Sentry's Open Source Progr
 
 ## Project case studies
 
-- [Klryo](https://www.rishitsinha.online/work/klryo): Browser-based development environment — Monaco editor, multi-language execution via Judge0, AI assistance, real-time collaboration. Status: Live. Selected for Sentry's Open Source Program.
+- [klyro](https://www.rishitsinha.online/work/klyro): Browser-based development environment — Monaco editor, multi-language execution via Judge0, AI assistance, real-time collaboration. Status: Live. Selected for Sentry's Open Source Program.
 - [OpenLink](https://www.rishitsinha.online/work/openlink): Provider-agnostic AI API layer with adapters, response normalization, and schema validation. Status: In development.
 - [Financcino](https://www.rishitsinha.online/work/financcino): Personal finance workspace — expenses, OCR receipt processing, budgets, analytics, and AI insights. Status: Live.
 - [ClarityCXR](https://www.rishitsinha.online/work/ClarityCXR): Multimodal AI workspace for chest X-rays. Status: In development.

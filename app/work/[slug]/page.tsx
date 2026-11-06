@@ -115,12 +115,6 @@ export default async function ProjectPage({
   return (
     <main className="flex min-h-screen justify-center px-5 py-8">
       <div className="w-full max-w-[768px]">
-        <Link
-          href="/"
-          className="mb-6 inline-flex items-center gap-1.5 text-sm font-medium text-[var(--muted)] no-underline transition hover:text-[var(--foreground)]"
-        >
-          ← Back to portfolio
-        </Link>
         <ProjectCaseStudyView project={project} />
       </div>
     </main>

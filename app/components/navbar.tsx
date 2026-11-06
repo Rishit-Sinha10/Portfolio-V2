@@ -1,8 +1,7 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
-import { Moon, Sun, Volume2, VolumeX } from "lucide-react";
+import { useState, useSyncExternalStore } from "react";
 import { useTheme } from "next-themes";
 import { cn } from "../../lib/utils";
 import { playSound } from "../../lib/sound-engine";
@@ -14,15 +13,18 @@ const NAV_LINKS = [
   { label: "Now", href: "/now" },
 ];
 
+const subscribeToNothing = () => () => {};
+
 export default function Navbar() {
   const { setTheme, resolvedTheme } = useTheme();
   const pathname = usePathname();
-  const [mounted, setMounted] = useState(false);
+  const mounted = useSyncExternalStore(
+    subscribeToNothing,
+    () => true,
+    () => false,
+  );
   const [soundEnabled, setSoundEnabled] = useState(true);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  const theme = mounted ? resolvedTheme : undefined;
 
   const isActive = (href: string) => pathname === href;
 
@@ -37,62 +39,62 @@ export default function Navbar() {
 
   const iconButton =
     "inline-flex items-center justify-center rounded-full p-1.5 text-[var(--muted)] transition hover:bg-[var(--surface)] hover:text-[var(--foreground)] sm:p-2";
-
   const iconSize = "flex items-center gap-0.5 sm:gap-1";
-
   return (
-    <div className="flex items-center justify-between">
-      <nav aria-label="Main" className="flex items-center gap-0.5 sm:gap-1">
-        {NAV_LINKS.map((link) => (
-          <Link
-            key={link.href}
-            href={link.href}
-            className={linkClass(isActive(link.href))}
-            aria-current={isActive(link.href) ? "page" : undefined}
-          >
-            {link.label}
-          </Link>
-        ))}
-      </nav>
+    <section className=" mx-auto w-full max-w-[34rem] font-sans">
+      <div className="flex items-center justify-between">
+        <nav aria-label="Main" className="flex items-center gap-0.5 sm:gap-1">
+          {NAV_LINKS.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className={linkClass(isActive(link.href))}
+              aria-current={isActive(link.href) ? "page" : undefined}
+            >
+              {link.label}
+            </Link>
+          ))}
+        </nav>
 
-      <div className="flex items-center gap-0.5 sm:gap-1">
-        <button
-          type="button"
-          onClick={() => setSoundEnabled((enabled) => !enabled)}
-          className={iconButton}
-          aria-label="Interface sounds"
-          aria-pressed={soundEnabled}
-          title={soundEnabled ? "Interface sounds on" : "Interface sounds off"}
-        >
-          {soundEnabled ? (
-            <p className={iconSize}>Mute</p>
-          ) : (
-            <p className={iconSize}>Unmute</p>
-          )}
-        </button>
-
-        <button
-          type="button"
-          onClick={() => {
-            if (soundEnabled) {
-              void playSound(click003Sound.dataUri, { volume: 0.5 });
+        <div className="flex items-center gap-0.5 sm:gap-1">
+          <button
+            type="button"
+            onClick={() => setSoundEnabled((enabled) => !enabled)}
+            className={iconButton}
+            aria-label="Interface sounds"
+            aria-pressed={soundEnabled}
+            title={
+              soundEnabled ? "Interface sounds on" : "Interface sounds off"
             }
-            setTheme(resolvedTheme === "dark" ? "light" : "dark");
-          }}
-          className={iconButton}
-          aria-label={
-            resolvedTheme === "dark"
-              ? "Switch to light mode"
-              : "Switch to dark mode"
-          }
-        >
-          {mounted && resolvedTheme === "dark" ? (
-            <p className={iconSize}>Light</p>
-          ) : (
-            <p className={iconSize}>Dark</p>
-          )}
-        </button>
+          >
+            {soundEnabled ? (
+              <p className={iconSize}>Mute</p>
+            ) : (
+              <p className={iconSize}>Unmute</p>
+            )}
+          </button>
+
+          <button
+            type="button"
+            onClick={() => {
+              if (soundEnabled) {
+                void playSound(click003Sound.dataUri, { volume: 0.5 });
+              }
+              setTheme(resolvedTheme === "dark" ? "light" : "dark");
+            }}
+            className={iconButton}
+            aria-label={
+              theme === "dark" ? "Switch to light mode" : "Switch to dark mode"
+            }
+          >
+            {theme === "dark" ? (
+              <p className={iconSize}>Light</p>
+            ) : (
+              <p className={iconSize}>Dark</p>
+            )}
+          </button>
+        </div>
       </div>
-    </div>
+    </section>
   );
 }

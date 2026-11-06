@@ -5,6 +5,7 @@ import CalendarHeatmap from "react-calendar-heatmap";
 import { Tooltip } from "react-tooltip";
 import "react-calendar-heatmap/dist/styles.css";
 import "react-tooltip/dist/react-tooltip.css";
+import { SectionHeading } from "../components/section-heading";
 
 const GITHUB_HANDLE = "Rishit-Sinha10";
 // `?y=last` returns only the trailing 12 months instead of every year.
@@ -124,16 +125,15 @@ export default function ContributionGraph({
   values?: HeatmapValue[];
 }) {
   const scrollRef = useRef<HTMLDivElement>(null);
-  // Keep the latest fallback without re-triggering the fetch on every render.
-  const fallbackRef = useRef<HeatmapValue[]>(
-    Array.isArray(values) && values.length > 0 ? values : sampleData,
-  );
-  fallbackRef.current =
+  const fallbackValues =
     Array.isArray(values) && values.length > 0 ? values : sampleData;
+  const fallbackRef = useRef(fallbackValues);
+  const [activityValues, setActivityValues] =
+    useState<HeatmapValue[]>(fallbackValues);
 
-  const [activityValues, setActivityValues] = useState<HeatmapValue[]>(
-    fallbackRef.current,
-  );
+  useEffect(() => {
+    fallbackRef.current = fallbackValues;
+  }, [fallbackValues]);
 
   useEffect(() => {
     let isMounted = true;
@@ -202,8 +202,13 @@ export default function ContributionGraph({
   };
 
   return (
-    <section id="github" className="w-full">
-      <p>
+    <section
+      id="github"
+      aria-labelledby="github-heading"
+      className="mx-auto w-full max-w-[34rem] font-sans"
+    >
+      <SectionHeading id="github-heading">GitHub activity</SectionHeading>
+      <p className="text-[16px] leading-snug text-[var(--neutral)] text-pretty">
         <a href="https://github.com/Rishit-Sinha10">@{GITHUB_HANDLE}</a> has
         made{" "}
         <span className="font-semibold">

@@ -1,12 +1,19 @@
 "use client";
-import dynamic from "next/dynamic";
-import Portfolio from "../app/pages/Home";
-import Work from "./projects/page";
-import Experience from "./experience/[[...rest]]/page";
+import Hero from "./pages/profile";
+import Exp from "./pages/experience";
+import Projects from "./pages/projects";
+import { Highlights } from "./components/Highlights";
+import { TechnicalSkills } from "./pages/skill";
+import ContributionGraph from "./pages/github";
 export default function App() {
   return (
-    <>
-      <Portfolio />
-    </>
+    <div className="flex flex-col gap-12 pt-12">
+      <Hero />
+      <Exp />
+      <Projects />
+      <Highlights />
+      <TechnicalSkills />
+      <ContributionGraph />
+    </div>
   );
 }

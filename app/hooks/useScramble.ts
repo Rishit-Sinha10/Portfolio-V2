@@ -4,10 +4,7 @@ export function useScramble(text: string, trigger: boolean) {
   const [display, setDisplay] = useState(text);
   const ref = useRef<ReturnType<typeof setInterval> | null>(null);
   useEffect(() => {
-    if (!trigger) {
-      setDisplay(text);
-      return;
-    }
+    if (!trigger) return;
     let frame = 0;
     const total = text.length * 4;
     if (ref.current !== null) {
@@ -42,5 +39,5 @@ export function useScramble(text: string, trigger: boolean) {
       }
     };
   }, [trigger, text]);
-  return display;
+  return trigger ? display : text;
 }

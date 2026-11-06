@@ -43,14 +43,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   }
 
   return (
-    <article className="mx-auto w-full max-w-[768px] px-5 py-12 sm:px-6">
-      <Link
-        href="/blog"
-        className="mb-8 flex w-fit items-center gap-1 text-sm text-[var(--muted)] transition hover:text-[var(--foreground)]"
-      >
-        ← Back to blog
-      </Link>
-
+    <article className="mx-auto w-full max-w-[34rem] pt-12 pb-10 font-sans">
       <header className="mb-10">
         <time
           dateTime={post.date}
@@ -62,16 +55,13 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             year: "numeric",
           })}
         </time>
-        <h1 className="mt-2 text-[clamp(2.25rem,5vw,3.5rem)] leading-[1.05] font-bold tracking-[-0.03em] text-[var(--foreground)]">
+        <h1 className="heading-hero font-serif text-[2rem] font-normal leading-none tracking-[-0.02em] text-[var(--foreground)] sm:text-[2.5rem]">
           {post.title}
         </h1>
       </header>
 
       <div className="article-content min-w-0 text-[17px] leading-[1.8] text-[var(--muted)] sm:text-[18px]">
-        <MDXRemote
-          source={post.content}
-          components={mdxComponents}
-        />
+        <MDXRemote source={post.content} components={mdxComponents} />
       </div>
     </article>
   );

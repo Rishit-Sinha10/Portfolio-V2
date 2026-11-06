@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import * as HoverCardPrimitive from "@radix-ui/react-hover-card";
 import { encode } from "qss";
 import React from "react";
@@ -16,11 +17,8 @@ type LinkPreviewProps = {
   className?: string;
   width?: number;
   height?: number;
-  quality?: number;
-  layout?: string;
 } & (
-  | { isStatic: true; imageSrc: string }
-  | { isStatic?: false; imageSrc?: never }
+  { isStatic: true; imageSrc: string } | { isStatic?: false; imageSrc?: never }
 );
 
 export const LinkPreview = ({
@@ -29,8 +27,6 @@ export const LinkPreview = ({
   className,
   width = 200,
   height = 125,
-  quality = 50,
-  layout = "fixed",
   isStatic = false,
   imageSrc = "",
 }: LinkPreviewProps) => {
@@ -52,10 +48,10 @@ export const LinkPreview = ({
     src = imageSrc;
   }
   const [isOpen, setOpen] = React.useState(false);
-  const [isMounted, setIsMounted] = React.useState(false);
   React.useEffect(() => {
-    setIsMounted(true);
-  }, []);
+    const preloadImage = new window.Image();
+    preloadImage.src = src;
+  }, [src]);
   const springConfig = { stiffness: 100, damping: 15 };
   const x = useMotionValue(0);
   const translateX = useSpring(x, springConfig);
@@ -67,16 +63,6 @@ export const LinkPreview = ({
   };
   return (
     <>
-      {isMounted ? (
-        <div className="hidden" aria-hidden="true">
-          <img
-            src={src}
-            width={width}
-            height={height}
-            alt=""
-          />
-        </div>
-      ) : null}
       <HoverCardPrimitive.Root
         openDelay={50}
         closeDelay={100}
@@ -122,12 +108,13 @@ export const LinkPreview = ({
                   className="block p-1 bg-[var(--surface)] border-2 border-transparent shadow rounded-xl hover:border-[var(--border)]"
                   style={{ fontSize: 0 }}
                 >
-                  <img
+                  <Image
                     src={isStatic ? imageSrc : src}
                     width={width}
                     height={height}
+                    unoptimized
                     className="rounded-lg"
-                    alt="Link preview"
+                    alt=""
                   />
                 </a>
               </motion.div>

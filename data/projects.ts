@@ -87,7 +87,7 @@ export const PROJECTS: ProjectCaseStudy[] = [
       skill: ["React", "Tailwind CSS", "Node.js", "Docker", "Vercel"],
     },
     liveUrl: "https://code.rishitsinha.online/",
-    githubUrl: "https://github.com/Rishit-Sinha10/klryo",
+    githubUrl: "https://github.com/Rishit-Sinha10/klyro",
     accent: "#0000FF",
   },
 ];

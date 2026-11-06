@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState, type ReactNode } from "react";
+import type { ReactNode } from "react";
 import { ChevronLeft, Folder, type LucideIcon } from "lucide-react";
 import { PROJECTS } from "../../data/projects";
 import ProjectOverviewCard from "../components/project-card";
@@ -57,21 +57,11 @@ function Section({
 }
 
 export function Work() {
-  const [openId, setOpenId] = useState<string | null>(null);
-
   return (
     <section
       id="work"
-      className="mx-auto flex w-full max-w-4xl flex-col px-4 py-6 sm:px-6 md:px-8 lg:px-10"
+      className="mx-auto w-full max-w-[34rem] pt-12 pb-10 font-sans"
     >
-      <Link
-        href="/"
-        className="inline-flex w-fit items-center gap-1.5 rounded-md px-2 py-1 text-[12px] font-medium text-[var(--muted)] no-underline transition-colors hover:bg-[var(--accent-light)] hover:text-[var(--foreground)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--foreground)] sm:px-2.5 sm:py-1.5 sm:text-[13px]"
-      >
-        <ChevronLeft size={12} strokeWidth={2} aria-hidden="true" />
-        Back To Portfolio
-      </Link>
-
       <Section id="projects" icon={Folder} title="projects">
         <div className="flex flex-col gap-0 overflow-hidden rounded-lg border border-[var(--border)]">
           {PROJECTS.map((project) => (

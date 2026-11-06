@@ -2,6 +2,25 @@
 import { NextResponse } from "next/server";
 export const dynamic = "force-dynamic";
 const { LASTFM_API_KEY, LASTFM_USERNAME } = process.env;
+
+type LastFmImage = {
+  size?: string;
+  "#text"?: string;
+};
+
+type LastFmTrack = {
+  image?: LastFmImage[];
+  "@attr"?: { nowplaying?: string };
+  name?: string;
+  artist?: { "#text"?: string };
+  album?: { "#text"?: string };
+  url?: string;
+};
+
+type LastFmResponse = {
+  recenttracks?: { track?: LastFmTrack[] };
+};
+
 export async function GET() {
   try {
     const url = new URL("https://ws.audioscrobbler.com/2.0/");
@@ -14,14 +33,14 @@ export async function GET() {
     }).toString();
 
     const res = await fetch(url, { cache: "no-store" });
-    const data = await res.json();
+    const data = (await res.json()) as LastFmResponse;
     const track = data.recenttracks?.track?.[0];
 
     if (!track) return NextResponse.json({ isPlaying: false });
 
     const images = track.image ?? [];
     const cover =
-      images.find((i: any) => i.size === "extralarge")?.["#text"] ||
+      images.find((image) => image.size === "extralarge")?.["#text"] ||
       images.at(-1)?.["#text"] ||
       "";
 

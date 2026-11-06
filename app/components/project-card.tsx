@@ -1,7 +1,6 @@
 "use client";
 
 import { ExternalLink } from "lucide-react";
-import { useState } from "react";
 import type { ProjectCaseStudy } from "../../data/projects";
 import AccordionCard from "./accordion-card";
 import GithubIcon from "./github";
@@ -34,7 +33,7 @@ function ProjectLinks({ project }: { project: ProjectCaseStudy }) {
           aria-label={`View ${project.title} on GitHub`}
           className={iconLinkClass}
         >
-          <GithubIcon />
+          <GithubIcon size={13} strokeWidth={1.7} aria-hidden="true" />
         </a>
       ) : null}
       {project.liveUrl ? (
@@ -86,7 +85,6 @@ export default function ProjectOverviewList({
 }: {
   projects: ProjectCaseStudy[];
 }) {
-  const [openId, setOpenId] = useState<string | null>(null);
   return (
     <div className="space-y-2">
       {projects.map((project) => (

@@ -29,7 +29,7 @@ const FOCUS = [
 ];
 const PROJECTS = [
   {
-    name: "Klryo",
+    name: "klyro",
     status: "Live",
     note: "Selected for Sentry’s Open Source Program.",
   },
@@ -53,15 +53,11 @@ const PROJECTS = [
 
 export default function NowPage() {
   return (
-    <section className="mx-auto w-full max-w-[768px] px-5 py-12">
-      <Link
-        href="/"
-        className="inline-flex w-fit items-center gap-1.5 rounded-md px-3 py-1.5 text-[12px] font-medium"
-      >
-        Back To Portfolio
-      </Link>
+    <section className="mx-auto w-full max-w-[34rem] pt-12 pb-10 font-sans">
       <header className="border-b border-[var(--border)] pb-8">
-        <h1 className="heading-section text-[var(--foreground)]">Now</h1>
+        <h1 className="heading-hero font-serif text-[2rem] font-normal leading-none tracking-[-0.02em] text-[var(--foreground)] sm:text-[2.5rem]">
+          Now
+        </h1>
         <p className="mt-3 text-body">Where my attention goes, right now.</p>
       </header>
 

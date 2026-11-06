@@ -1,18 +1,16 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { Providers } from "./providers";
-import Navbar from "./components/navbar";
 import Footer from "./components/footer";
 import { Analytics } from "@vercel/analytics/next";
 import TransitionLayout from "./components/transitionpage";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { SmoothScroll } from "../app/components/smoothscroll";
 import {
   Instrument_Serif,
-  Geist,
   Geist_Mono,
   Familjen_Grotesk,
 } from "next/font/google";
+import Navbar from "./components/navbar";
 const SITE_URL = "https://www.rishitsinha.online";
 const instrumentSerif = Instrument_Serif({
   weight: "400",
@@ -146,6 +144,7 @@ export default function RootLayout({
         <SpeedInsights />
         <Providers>
           <TransitionLayout>
+            <Navbar />
             <main id="main-content" className="flex-1">
               {children}
             </main>
