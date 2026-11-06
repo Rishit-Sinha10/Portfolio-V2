@@ -60,7 +60,7 @@ export default function Exp() {
     <>
       <section
         aria-labelledby="experience-heading"
-        className="mx-auto w-full max-w-[34rem] font-sans"
+        className="w-full min-w-0"
       >
         <SectionHeading id="experience-heading">Experience</SectionHeading>
         <div className="space-y-2">
