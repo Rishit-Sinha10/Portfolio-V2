@@ -42,7 +42,7 @@ export default function Navbar() {
   const iconSize =
     "rounded-md px-2 py-1 text-[12px] font-medium no-underline transition sm:px-2.5 sm:py-1.5 sm:text-[13px]";
   return (
-    <section className=" mx-auto w-full max-w-[34rem] font-sans">
+    <section className="w-full min-w-0 md:mx-auto w-full max-w-[34rem]">
       <div className="flex items-center justify-between">
         <nav aria-label="Main" className="flex items-center gap-0.5 sm:gap-1">
           {NAV_LINKS.map((link) => (

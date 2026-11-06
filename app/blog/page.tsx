@@ -9,7 +9,7 @@ export const metadata = {
 export default function BlogPage() {
   const posts = getAllBlogPosts();
   return (
-    <section className="w-full min-w-0">
+    <section className="w-full min-w-0 md:mx-auto w-full max-w-[34rem] pt-12">
       <div className="mb-12">
         <h1 className="heading-hero font-serif text-[2rem] font-normal leading-none tracking-[-0.02em] text-[var(--foreground)] sm:text-[2.5rem]">
           Blog

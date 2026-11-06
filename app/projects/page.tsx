@@ -60,7 +60,7 @@ export function Work() {
   return (
     <section
       id="work"
-      className="mx-auto w-full max-w-[34rem] pt-12 pb-10 font-sans"
+      className="w-full min-w-0 md:mx-auto w-full max-w-[34rem] pt-12"
     >
       <Section id="projects" icon={Folder} title="projects">
         <div className="flex flex-col gap-0 overflow-hidden rounded-lg border border-[var(--border)]">

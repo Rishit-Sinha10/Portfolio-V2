@@ -43,7 +43,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   }
 
   return (
-    <article className="w-full min-w-0">
+    <article className="w-full min-w-0 md:mx-auto w-full max-w-[34rem] pt-12">
       <header className="mb-10">
         <time
           dateTime={post.date}
@@ -60,7 +60,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         </h1>
       </header>
 
-      <div className="article-content min-w-0 text-[17px] leading-[1.8] text-[var(--muted)] sm:text-[18px]">
+      <div className="article-content min-w-0 text-[17px] leading-[1.8] text-[var(--muted)] md:text-small">
         <MDXRemote source={post.content} components={mdxComponents} />
       </div>
     </article>

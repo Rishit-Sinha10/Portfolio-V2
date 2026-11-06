@@ -53,7 +53,7 @@ const PROJECTS = [
 
 export default function NowPage() {
   return (
-    <section className="w-full min-w-0">
+    <section className="w-full min-w-0 md:mx-auto w-full max-w-[34rem] pt-12">
       <header className="border-b border-[var(--border)] pb-8">
         <h1 className="heading-hero font-serif text-[2rem] font-normal leading-none tracking-[-0.02em] text-[var(--foreground)] sm:text-[2.5rem]">
           Now
@@ -67,7 +67,7 @@ export default function NowPage() {
           dateTime="2026-09-24"
           className="font-mono text-[clamp(26px,5vw,40px)] tabular-nums tracking-tight text-[var(--foreground)]"
         >
-          September 2026
+          November 2026
         </time>
       </div>
 
