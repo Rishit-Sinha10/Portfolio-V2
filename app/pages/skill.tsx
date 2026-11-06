@@ -39,7 +39,7 @@ export function TechnicalSkills() {
     <>
       <section
         aria-labelledby="skills-heading"
-        className="mx-auto w-full max-w-[34rem] font-sans"
+        className="w-full min-w-0"
       >
         <SectionHeading id="skills-heading">Tools I use</SectionHeading>
         <ul className="flex flex-wrap gap-x-5 gap-y-2.5">
