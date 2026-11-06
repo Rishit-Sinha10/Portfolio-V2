@@ -205,7 +205,7 @@ export default function ContributionGraph({
     <section
       id="github"
       aria-labelledby="github-heading"
-      className="mx-auto w-full max-w-[34rem] font-sans"
+      className="w-full min-w-0"
     >
       <SectionHeading id="github-heading">GitHub activity</SectionHeading>
       <p className="text-[15px] leading-[1.75] text-[var(--muted)]">
