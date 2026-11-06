@@ -43,7 +43,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   }
 
   return (
-    <article className="mx-auto w-full max-w-[34rem] pt-12 pb-10 font-sans">
+    <article className="w-full min-w-0">
       <header className="mb-10">
         <time
           dateTime={post.date}
