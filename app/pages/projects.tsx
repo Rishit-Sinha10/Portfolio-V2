@@ -19,7 +19,7 @@ export default function Projects() {
     <>
       <section
         aria-labelledby="projects-heading"
-        className="mx-auto w-full max-w-[34rem] font-sans"
+        className="w-full min-w-0"
       >
         <SectionHeading id="projects-heading">Projects</SectionHeading>
         <div id="projects">
