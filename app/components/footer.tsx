@@ -29,6 +29,62 @@ export default function Footer() {
                 GitHub
               </a>
               <a
+                href="https://x.com/RishitSinh41144"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="transition-colors hover:text-[var(--foreground)]"
+              >
+                Twitter
+              </a>
+              <a
+                href="https://leetcode.com/u/rizz4566/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="transition-colors hover:text-[var(--foreground)]"
+              >
+                Leetcode
+              </a>
+              <a
+                href="https://codeforces.com/profile/rs9379842"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="transition-colors hover:text-[var(--foreground)]"
+              >
+                Codeforces
+              </a>
+              <a
+                href="https://in.pinterest.com/sinharishit04/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="transition-colors hover:text-[var(--foreground)]"
+              >
+                Pintrest
+              </a>
+              <a
+                href="https://open.spotify.com/user/31gb7sg44lchyz5ljlbkr2t7dsma"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="transition-colors hover:text-[var(--foreground)]"
+              >
+                Spotify
+              </a>
+              <a
+                href="https://www.youtube.com/@gwlucifer5818"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="transition-colors hover:text-[var(--foreground)]"
+              >
+                Youtube
+              </a>
+              <a
+                href="https://www.producthunt.com/@rishit_sinha3"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="transition-colors hover:text-[var(--foreground)]"
+              >
+                Product Hunt
+              </a>
+              <a
                 href="https://www.linkedin.com/in/rishit-sinha-6953ab363"
                 target="_blank"
                 rel="noopener noreferrer"

@@ -39,7 +39,8 @@ export default function Navbar() {
 
   const iconButton =
     "inline-flex items-center justify-center rounded-full p-1.5 text-[var(--muted)] transition hover:bg-[var(--surface)] hover:text-[var(--foreground)] sm:p-2";
-  const iconSize = "flex items-center gap-0.5 sm:gap-1";
+  const iconSize =
+    "rounded-md px-2 py-1 text-[12px] font-medium no-underline transition sm:px-2.5 sm:py-1.5 sm:text-[13px]";
   return (
     <section className=" mx-auto w-full max-w-[34rem] font-sans">
       <div className="flex items-center justify-between">

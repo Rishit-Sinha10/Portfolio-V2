@@ -24,7 +24,7 @@ import {
   siProducthunt,
   siCodeforces,
 } from "simple-icons";
-import Navbar from "../components/navbar";
+import { SectionHeading } from "../components/section-heading";
 const LeetcodeIcon = (props: SVGProps<SVGSVGElement>) => (
   <svg {...props} viewBox="0 0 24 24" fill="currentColor">
     <path d={siLeetcode.path} />
@@ -170,13 +170,12 @@ export default function Hero() {
 
       {/* Intro */}
       <div className="mt-8 border-t border-black/10 pt-4 dark:border-white/10">
-        <h2 className="mb-3 font-mono text-[12px] font-normal text-[var(--muted)]">
-          About
-        </h2>
+        <SectionHeading id="About">About</SectionHeading>
         <p className="text-[15px] leading-[1.75] text-[var(--muted)]">
-          I&apos;m a CS student who cares about the details and enjoys turning
-          ideas into working software. I work as a Technical Intern at Harnav
-          Ventures and build projects in the open, including{" "}
+          I&apos;m a frontend-focused software engineer who enjoys building
+          thoughtful interfaces and turning ideas into working
+          software.Currently work as a Technical Intern at Harnav Ventures and
+          build projects in the open, including{" "}
           <LinkPreview url="https://tunnel-sable.vercel.app/">
             Tunnel
           </LinkPreview>{" "}
@@ -184,10 +183,10 @@ export default function Hero() {
           <LinkPreview url="https://github.com/Rishit-Sinha10/OpenLink">
             OpenLink
           </LinkPreview>
-          . Outside of work I build products with React, Next.js, and
-          TypeScript, and I&apos;m pushing deeper into backend and architecture,
-          aiming to take a product from polished interface to reliable
-          production system.
+          . I work primarily with React, Next.js, and TypeScript, while
+          exploring backend systems, application architecture, and the
+          engineering decisions behind reliable software. My goal is to build
+          products that are as solid under the hood as they are on the surface.
         </p>
       </div>
 

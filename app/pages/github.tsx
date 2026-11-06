@@ -208,7 +208,7 @@ export default function ContributionGraph({
       className="mx-auto w-full max-w-[34rem] font-sans"
     >
       <SectionHeading id="github-heading">GitHub activity</SectionHeading>
-      <p className="text-[16px] leading-snug text-[var(--neutral)] text-pretty">
+      <p className="text-[15px] leading-[1.75] text-[var(--muted)]">
         <a href="https://github.com/Rishit-Sinha10">@{GITHUB_HANDLE}</a> has
         made{" "}
         <span className="font-semibold">
