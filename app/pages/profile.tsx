@@ -88,26 +88,6 @@ const LINKS = [
     Icon: LeetcodeIcon,
   },
   {
-    label: "Spotify",
-    href: "https://open.spotify.com/user/31gb7sg44lchyz5ljlbkr2t7dsma",
-    Icon: SpotifyIcon,
-  },
-  {
-    label: "Pintrest",
-    href: "https://in.pinterest.com/sinharishit04/",
-    Icon: PintrestIcon,
-  },
-  {
-    label: "Youtube",
-    href: "https://www.youtube.com/@gwlucifer5818",
-    Icon: YoutubeIcon,
-  },
-  {
-    label: "Product Hunt",
-    href: "https://www.producthunt.com/@rishit_sinha3",
-    Icon: ProductHuntIcon,
-  },
-  {
     label: "Codeforces",
     href: "https://codeforces.com/profile/rs9379842",
     Icon: CodeForcesIcon,
@@ -139,7 +119,7 @@ export default function Hero() {
             Rishit Sinha
           </h1>
           <p className="font-mono text-[12px] leading-none text-[var(--muted)]">
-            CS student, age 21
+            Frontend Focused Software Engineer, CS'2027
           </p>
         </div>
       </header>
@@ -172,31 +152,23 @@ export default function Hero() {
       <div className="mt-8 border-t border-black/10 pt-4 dark:border-white/10">
         <SectionHeading id="About">About</SectionHeading>
         <p className="text-[15px] leading-[1.75] text-[var(--muted)]">
-          I&apos;m a frontend-focused software engineer who enjoys building
-          thoughtful interfaces and turning ideas into working
-          software.Currently work as a Technical Intern at Harnav Ventures and
-          build projects in the open, including{" "}
-          <LinkPreview url="https://tunnel-sable.vercel.app/">
-            Tunnel
-          </LinkPreview>{" "}
-          and{" "}
-          <LinkPreview url="https://github.com/Rishit-Sinha10/OpenLink">
-            OpenLink
-          </LinkPreview>
-          . I work primarily with React, Next.js, and TypeScript, while
-          exploring backend systems, application architecture, and the
-          engineering decisions behind reliable software. My goal is to build
-          products that are as solid under the hood as they are on the surface.
+          I'm a frontend-focused software engineer building production web
+          experiences with React, Next.js and TypeScript. I've delivered 8
+          production Shopify components.Outside client work, I build independent
+          projects like Tunnel, exploring live-streaming infrastructure, and
+          OpenLink, a unified API for AI providers. I'm particularly interested
+          in application architecture, backend systems, performance and building
+          reliable software.
         </p>
       </div>
 
       {/* Actions */}
       <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-3">
         <a
-          href="https://cal.com/rishit-sinha-eku02v/30min?overlayCalendar=true"
+          href="#projects-heading"
           className="inline-flex items-center gap-2 rounded-sm bg-[var(--foreground)] px-3.5 py-2 text-[13px] font-medium text-[var(--background)] transition-opacity hover:opacity-85 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--foreground)]"
         >
-          Book a call
+          View Project
           <SendIcon size={10} className="h-3 w-3" />
         </a>
         <a
