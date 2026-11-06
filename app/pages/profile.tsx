@@ -116,7 +116,7 @@ const LINKS = [
 
 export default function Hero() {
   return (
-    <section className="mx-auto w-full max-w-[34rem] font-sans">
+    <section className="w-full min-w-0">
       {/* Nameplate */}
       <header className="flex items-center gap-4 sm:gap-5">
         <div className="relative shrink-0 rounded-[3px] border border-black/20 p-[3px] dark:border-white/15">
