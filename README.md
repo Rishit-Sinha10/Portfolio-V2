@@ -1,3 +1,4 @@
+
 # rishit
 
 A personal portfolio built with Next.js. It displays projects, blog posts, and work experience through a responsive, animated interface.
@@ -15,12 +16,11 @@ A personal portfolio built with Next.js. It displays projects, blog posts, and w
 
 - Static and dynamic blog routing with MDX content.
 - Animated SVG icons with hover interactions.
-- Project overview cards with skill badges and status indicators.
+- Project overview cards linked to evidence-backed case studies with skill badges and status indicators.
 - Smooth scroll and page transition animations.
 - Dark mode toggle.
 - Contact section with social links.
 - Experience timeline with collapsible responsibilities.
-
 ## Requirements
 
 - Node.js 20+ (implied by `@types/node` in `devDependencies`).
