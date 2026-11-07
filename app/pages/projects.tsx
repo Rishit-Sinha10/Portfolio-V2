@@ -6,10 +6,13 @@ import {
   PillLink,
   Initial,
 } from "../components/bullets";
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 import { PROJECTS } from "../../data/projects";
 import AccordionCard from "../components/accordion-card";
 import { SectionHeading } from "../components/section-heading";
-const FEATURED_PROJECT_IDS = ["claritycxr", "tunnel", "openlink", "klyro"];
+const FEATURED_PROJECT_IDS = ["claritycxr", "tunnel", "financcino"];
+
 export default function Projects() {
   const [projectView, setProjectView] = useState<"list" | "grid">("list");
   const projects = FEATURED_PROJECT_IDS.map((id) =>
@@ -21,8 +24,12 @@ export default function Projects() {
         aria-labelledby="projects-heading"
         className="w-full min-w-0"
       >
-        <SectionHeading id="projects-heading">Projects</SectionHeading>
+        <SectionHeading id="projects-heading">Selected projects</SectionHeading>
         <div id="projects">
+          <p className="mb-4 text-[13px] leading-6 text-[var(--muted)]">
+            Three end-to-end builds, with implementation notes and links to
+            inspect the work.
+          </p>
           <div className="mb-4 flex justify-end">
             <ViewToggle view={projectView} onChange={setProjectView} />
           </div>
@@ -39,6 +46,15 @@ export default function Projects() {
                     <p className="mb-3 text-[12px] leading-[1.6] text-[var(--muted)]">
                       {project.summary}
                     </p>
+                  ) : null}
+                  {project.caseStudy ? (
+                    <Link
+                      href={`/work/${project.id}`}
+                      className="inline-flex items-center gap-1.5 text-[11px] font-medium text-[var(--foreground)] transition-colors hover:text-[var(--muted)] focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-3 focus-visible:outline-[var(--foreground)]"
+                    >
+                      Read the case study
+                      <ArrowUpRight size={12} aria-hidden="true" />
+                    </Link>
                   ) : null}
                 </AccordionCard>
               ))}
@@ -58,6 +74,15 @@ export default function Projects() {
                   </div>
                   {project.techStack.skill ? (
                     <Tags items={project.techStack.skill} />
+                  ) : null}
+                  {project.caseStudy ? (
+                    <Link
+                      href={`/work/${project.id}`}
+                      className="mt-4 inline-flex items-center gap-1.5 text-[11px] font-medium text-[var(--foreground)] transition-colors hover:text-[var(--muted)] focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-3 focus-visible:outline-[var(--foreground)]"
+                    >
+                      Read the case study
+                      <ArrowUpRight size={12} aria-hidden="true" />
+                    </Link>
                   ) : null}
                 </div>
               ))}

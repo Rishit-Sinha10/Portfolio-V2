@@ -1,84 +1,24 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowUpRight, Code2, ChevronDown } from "lucide-react";
+import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
 import { PROJECTS } from "../../../data/projects";
-function StatusDot({ status, accent }: { status: string; accent: string }) {
+
+function StatusDot({
+  status,
+  accent,
+}: {
+  status: (typeof PROJECTS)[number]["status"];
+  accent: string;
+}) {
   return (
-    <span className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-[0.14em]">
+    <span className="inline-flex items-center gap-2 text-[11px] font-medium text-[var(--muted)]">
       <span
+        aria-hidden="true"
         className="h-1.5 w-1.5 rounded-full"
         style={{ background: status === "Live" ? accent : "var(--muted)" }}
       />
-      <span style={{ color: status === "Live" ? accent : "var(--muted)" }}>
-        {status}
-      </span>
+      {status}
     </span>
-  );
-}
-
-function ProjectCaseStudyView({ project }: { project: (typeof PROJECTS)[0] }) {
-  return (
-    <div className="flex flex-col gap-6">
-      <div className="border-b border-[var(--border)] pb-6">
-        <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between sm:gap-3">
-          <div className="min-w-0 flex-1">
-            <p className="text-label mb-2">Selected work</p>
-            <h1
-              className="heading-section text-[var(--foreground)]"
-              style={{ lineHeight: 1.2 }}
-            >
-              {project.title}
-            </h1>
-          </div>
-          <div className="flex flex-wrap items-center gap-3">
-            <StatusDot status={project.status} accent={project.accent} />
-            {project.liveUrl && (
-              <a
-                href={project.liveUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-1 text-xs font-semibold no-underline text-[var(--muted)] transition hover:text-[var(--foreground)]"
-              >
-                Visit
-                <ArrowUpRight size={12} />
-              </a>
-            )}
-            {project.githubUrl && (
-              <a
-                href={project.githubUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-1 text-xs font-semibold text-[var(--muted)] no-underline transition hover:text-[var(--foreground)]"
-              >
-                <Code2 size={12} />
-                Code
-              </a>
-            )}
-          </div>
-        </div>
-        <details className="mt-4 group">
-          <summary className="inline-flex cursor-pointer list-none items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.12em] text-[var(--muted)] transition-colors hover:text-[var(--foreground)]">
-            Key responsibilities
-            <ChevronDown
-              size={14}
-              aria-hidden="true"
-              className="transition-transform duration-200 group-open:rotate-180"
-            />
-          </summary>
-          <div
-            id={`responsibilities-content-${project.id}`}
-            className="mt-4 border-t border-[var(--border)] pt-4 text-sm leading-relaxed text-[var(--muted)]"
-          >
-            <ul className="space-y-3">
-              <li className="flex gap-3">
-                <span className="mt-[0.65em] h-1 w-1 shrink-0 rounded-full bg-[var(--foreground)]" />
-                <span>{project.summary}</span>
-              </li>
-            </ul>
-          </div>
-        </details>
-      </div>
-    </div>
   );
 }
 
@@ -90,14 +30,22 @@ export async function generateMetadata({
   const { slug } = await params;
   const project = PROJECTS.find((item) => item.id === slug);
   if (!project) return {};
+
+  const description =
+    project.caseStudy?.overview ?? project.summary;
+
   return {
     title: `${project.title} — Case Study`,
-    description: project.summary,
+    description,
     openGraph: {
       title: `${project.title} | Rishit Sinha`,
-      description: project.summary,
+      description,
     },
   };
+}
+
+export function generateStaticParams() {
+  return PROJECTS.map((project) => ({ slug: project.id }));
 }
 
 export default async function ProjectPage({
@@ -108,15 +56,239 @@ export default async function ProjectPage({
   const { slug } = await params;
   const project = PROJECTS.find((item) => item.id === slug);
 
-  if (!project) {
-    notFound();
-  }
+  if (!project) notFound();
+
+  const caseStudy = project.caseStudy;
+  const evidence =
+    caseStudy?.evidence ??
+    [
+      ...(project.liveUrl
+        ? [
+            {
+              label: "Open the deployed project",
+              href: project.liveUrl,
+              detail: "Live product",
+            },
+          ]
+        : []),
+      ...(project.githubUrl
+        ? [
+            {
+              label: "Inspect the source repository",
+              href: project.githubUrl,
+              detail: "Source code",
+            },
+          ]
+        : []),
+    ];
 
   return (
-    <main className="flex min-h-screen justify-center px-5 py-8">
-      <div className="w-full max-w-[768px]">
-        <ProjectCaseStudyView project={project} />
-      </div>
-    </main>
+    <div className="mx-auto w-full max-w-[48rem] px-5 py-10 sm:py-14">
+      <Link
+        href="/projects"
+        className="mb-10 inline-flex items-center gap-2 text-xs text-[var(--muted)] transition-colors hover:text-[var(--foreground)] focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-4 focus-visible:outline-[var(--foreground)]"
+      >
+        <ArrowLeft size={13} aria-hidden="true" />
+        All projects
+      </Link>
+
+      <article>
+        <header className="border-b border-[var(--border)] pb-8">
+          <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
+            <p className="font-mono text-[11px] uppercase tracking-[0.12em] text-[var(--muted)]">
+              {caseStudy?.focus ?? "Project overview"}
+            </p>
+            <StatusDot status={project.status} accent={project.accent} />
+          </div>
+          <h1 className="font-serif text-5xl font-normal leading-none tracking-[-0.04em] text-[var(--foreground)] sm:text-6xl">
+            {project.title}
+          </h1>
+          <p className="mt-5 max-w-[40rem] text-[15px] leading-7 text-[var(--muted)]">
+            {caseStudy?.overview ?? project.summary}
+          </p>
+          <ul
+            aria-label="Technology stack"
+            className="mt-6 flex flex-wrap gap-2"
+          >
+            {project.techStack.skill.map((skill) => (
+              <li
+                key={skill}
+                className="border border-[var(--border)] px-2.5 py-1 font-mono text-[10px] text-[var(--muted)]"
+              >
+                {skill}
+              </li>
+            ))}
+          </ul>
+        </header>
+
+        <section
+          aria-labelledby="overview-heading"
+          className="grid gap-3 border-b border-[var(--border)] py-8 sm:grid-cols-[minmax(0,1fr)_12rem] sm:gap-10"
+        >
+          <div>
+            <h2
+              id="overview-heading"
+              className="font-serif text-2xl font-normal text-[var(--foreground)]"
+            >
+              The problem
+            </h2>
+            <p className="mt-3 text-sm leading-7 text-[var(--muted)]">
+              {caseStudy?.challenge ?? project.summary}
+            </p>
+          </div>
+          <div className="border-t border-[var(--border)] pt-4 sm:border-l sm:border-t-0 sm:pl-5 sm:pt-0">
+            <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-[var(--muted)]">
+              Project status
+            </p>
+            <p className="mt-2 text-sm text-[var(--foreground)]">
+              {project.status}
+            </p>
+            <p className="mt-5 font-mono text-[10px] uppercase tracking-[0.12em] text-[var(--muted)]">
+              Overview
+            </p>
+            <p className="mt-2 text-sm leading-6 text-[var(--muted)]">
+              {caseStudy
+                ? "Product scope and implementation, with source links."
+                : "Project summary and available links."}
+            </p>
+          </div>
+        </section>
+
+        {caseStudy ? (
+          <>
+            <section
+              aria-labelledby="flow-heading"
+              className="border-b border-[var(--border)] py-8"
+            >
+              <div className="mb-5">
+                <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-[var(--muted)]">
+                  System path
+                </p>
+                <h2
+                  id="flow-heading"
+                  className="mt-1 font-serif text-2xl font-normal text-[var(--foreground)]"
+                >
+                  How it fits together
+                </h2>
+              </div>
+              <ol className="grid gap-2 sm:grid-cols-[1fr_auto_1fr_auto_1fr] sm:items-center">
+                {caseStudy.productFlow.map((step, index) => (
+                  <li key={step} className="contents">
+                    <div className="flex min-h-16 items-center border border-[var(--border)] px-3.5 py-3 text-[12px] leading-5 text-[var(--foreground)]">
+                      <span
+                        aria-hidden="true"
+                        className="mr-3 h-1.5 w-1.5 shrink-0 rounded-full"
+                        style={{ backgroundColor: project.accent }}
+                      />
+                      {step}
+                    </div>
+                    {index < caseStudy.productFlow.length - 1 ? (
+                      <ArrowRight
+                        size={14}
+                        aria-hidden="true"
+                        className="mx-auto hidden text-[var(--muted)] sm:block"
+                      />
+                    ) : null}
+                  </li>
+                ))}
+              </ol>
+            </section>
+
+            <section
+              aria-labelledby="approach-heading"
+              className="border-b border-[var(--border)] py-8"
+            >
+              <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-[var(--muted)]">
+                Build notes
+              </p>
+              <h2
+                id="approach-heading"
+                className="mt-1 font-serif text-2xl font-normal text-[var(--foreground)]"
+              >
+                The approach
+              </h2>
+              <div className="mt-5 divide-y divide-[var(--border)] border-y border-[var(--border)]">
+                {caseStudy.approach.map((item) => (
+                  <div
+                    key={item.title}
+                    className="grid gap-1 py-4 sm:grid-cols-[12rem_minmax(0,1fr)] sm:gap-6"
+                  >
+                    <h3 className="text-[13px] font-medium text-[var(--foreground)]">
+                      {item.title}
+                    </h3>
+                    <p className="text-[13px] leading-6 text-[var(--muted)]">
+                      {item.detail}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </section>
+          </>
+        ) : null}
+
+        <section
+          aria-labelledby="evidence-heading"
+          className="border-b border-[var(--border)] py-8"
+        >
+          <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-[var(--muted)]">
+            References
+          </p>
+          <h2
+            id="evidence-heading"
+            className="mt-1 font-serif text-2xl font-normal text-[var(--foreground)]"
+          >
+            Evidence &amp; links
+          </h2>
+          <ul className="mt-5 divide-y divide-[var(--border)] border-y border-[var(--border)]">
+            {evidence.map((item) => (
+              <li key={item.href}>
+                <a
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-center justify-between gap-4 py-3.5 focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-[var(--foreground)]"
+                >
+                  <span>
+                    <span className="block text-[13px] font-medium text-[var(--foreground)]">
+                      {item.label}
+                    </span>
+                    <span className="mt-1 block text-[11px] text-[var(--muted)]">
+                      {item.detail}
+                    </span>
+                  </span>
+                  <ArrowUpRight
+                    size={14}
+                    aria-hidden="true"
+                    className="shrink-0 text-[var(--muted)] transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-[var(--foreground)]"
+                  />
+                </a>
+              </li>
+            ))}
+          </ul>
+          {caseStudy ? (
+            <p className="mt-4 text-[11px] leading-5 text-[var(--muted)]">
+              {caseStudy.evidenceNote}
+            </p>
+          ) : null}
+        </section>
+
+        <nav
+          aria-label="Other selected case studies"
+          className="flex flex-wrap gap-x-5 gap-y-2 pt-6"
+        >
+          {PROJECTS.filter(
+            (item) => item.caseStudy && item.id !== project.id,
+          ).map((item) => (
+            <Link
+              key={item.id}
+              href={`/work/${item.id}`}
+              className="text-xs text-[var(--muted)] transition-colors hover:text-[var(--foreground)] focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-4 focus-visible:outline-[var(--foreground)]"
+            >
+              Read {item.title}
+            </Link>
+          ))}
+        </nav>
+      </article>
+    </div>
   );
 }

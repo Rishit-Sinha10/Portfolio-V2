@@ -24,4 +24,4 @@ Keep the monochrome system. If you want one signature accent, the existing blue 
 - The homepage component has grown to contain substantial content data and UI logic in one file. Split it selectively as you add case studies, and make the experience/project data single-source so the pages don’t drift.
 - The root layout already provides a `<main>`, but the case-study route renders another `<main>` in `work/[slug]/page.tsx`. Use a non-main wrapper there.
 - Several imports in `app/page.tsx` are unused; that route only renders the portfolio.
-**Recommended order:** improve the hero → make the best projects into linked, evidence-backed case studies → refine mobile social links and text sizing. I reviewed the routes and components, but didn’t make changes.
+**Recommended order:**  → make the best projects into linked, evidence-backed case studies → refine mobile social links and text sizing. I reviewed the routes and components, but didn’t make changes.

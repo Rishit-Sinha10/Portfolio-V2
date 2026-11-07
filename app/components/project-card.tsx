@@ -1,6 +1,7 @@
 "use client";
 
-import { ExternalLink } from "lucide-react";
+import Link from "next/link";
+import { ArrowUpRight, ExternalLink } from "lucide-react";
 import type { ProjectCaseStudy } from "../../data/projects";
 import AccordionCard from "./accordion-card";
 import GithubIcon from "./github";
@@ -99,6 +100,15 @@ export default function ProjectOverviewList({
             {project.summary}
           </p>
           <Tags items={project.techStack.skill} />
+          {project.caseStudy ? (
+            <Link
+              href={`/work/${project.id}`}
+              className="mt-4 inline-flex items-center gap-1.5 text-[11px] font-medium text-[var(--foreground)] transition-colors hover:text-[var(--muted)] focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-3 focus-visible:outline-[var(--foreground)]"
+            >
+              Read the case study
+              <ArrowUpRight size={12} aria-hidden="true" />
+            </Link>
+          ) : null}
         </AccordionCard>
       ))}
     </div>
