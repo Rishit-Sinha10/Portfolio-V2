@@ -64,6 +64,18 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+@media (max-width: 639px) {
+  body {
+    font-size: 16px;
+    line-height: 1.65;
+  }
+
+  .text-body {
+    font-size: 16px;
+    line-height: 1.7;
+  }
+}
+
 * {
   box-sizing: border-box;
 }

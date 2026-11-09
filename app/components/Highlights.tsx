@@ -4,20 +4,14 @@ const Highlight = {
   title: {
     openSource: "Klyro Selected for Sentry's OSS Program",
     leetcode: "Solved 430+ Problems on LeetCode",
-    harnav: "Delivered a Live Business Website for Harnav Ventures",
-    experience:
-      "Worked as a Full Stack Developer Intern at NextLearn Technologies",
   },
   link: {
     opensource: "https://lnkd.in/p/db2sBWiJ",
     leetcode: "https://leetcode.com/u/rizz4566",
-    harnav: "https://www.harnavventures.com/",
   },
   subtitle: {
     openSource: "Sentry OSS",
     leetcode: "LeetCode",
-    harnav: "Production Website",
-    experience: "Internship",
   },
 };
 const highlights = [
@@ -32,18 +26,6 @@ const highlights = [
     title: Highlight.title.leetcode,
     subtitle: Highlight.subtitle.leetcode,
     link: Highlight.link.leetcode,
-  },
-  {
-    id: "previousExperience",
-    title: Highlight.title.experience,
-    subtitle: Highlight.subtitle.experience,
-    link: undefined,
-  },
-  {
-    id: "business",
-    title: Highlight.title.harnav,
-    subtitle: Highlight.subtitle.harnav,
-    link: Highlight.link.harnav,
   },
 ];
 

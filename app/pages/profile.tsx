@@ -118,7 +118,7 @@ export default function Hero() {
           <h1 className="heading-hero font-serif text-[2rem] font-normal leading-none tracking-[-0.02em] text-[var(--foreground)] sm:text-[2.5rem]">
             Rishit Sinha
           </h1>
-          <p className="font-mono text-[12px] leading-none text-[var(--muted)]">
+          <p className="max-w-[15rem] font-mono text-[12px] leading-snug text-[var(--muted)] sm:max-w-none sm:text-[13px]">
             Frontend Focused Software Engineer, CS'2027
           </p>
         </div>
@@ -126,7 +126,7 @@ export default function Hero() {
 
       {/* Links + now playing */}
       <div className="mt-6 flex flex-col gap-3 border-t border-black/10 pt-4 dark:border-white/10">
-        <ul className="-ml-1.5 flex items-center gap-0.5">
+        <ul className="grid grid-cols-4 gap-1 sm:-ml-1.5 sm:flex sm:items-center sm:gap-0.5">
           {LINKS.map(({ label, href, Icon }) => {
             const isExternal = !href.startsWith("mailto:");
             return (
@@ -137,9 +137,12 @@ export default function Hero() {
                   rel={isExternal ? "noopener noreferrer" : undefined}
                   aria-label={label}
                   title={label}
-                  className="inline-flex h-8 w-8 items-center justify-center rounded-sm text-[var(--muted)] transition-colors hover:text-[var(--foreground)] focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-[var(--foreground)] [&_svg]:h-[18px] [&_svg]:w-[18px]"
+                  className="inline-flex min-h-12 w-full flex-col items-center justify-center gap-1 rounded-sm text-[var(--muted)] transition-colors hover:text-[var(--foreground)] focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-[var(--foreground)] sm:h-9 sm:min-h-0 sm:w-9 sm:flex-row sm:gap-0 [&_svg]:h-[18px] [&_svg]:w-[18px]"
                 >
                   <Icon aria-hidden="true" />
+                  <span className="text-[10px] leading-none sm:sr-only">
+                    {label}
+                  </span>
                 </a>
               </li>
             );
@@ -151,14 +154,14 @@ export default function Hero() {
       {/* Intro */}
       <div className="mt-8 border-t border-black/10 pt-4 dark:border-white/10">
         <SectionHeading id="About">About</SectionHeading>
-        <p className="text-[15px] leading-[1.75] text-[var(--muted)]">
+        <p className="text-[15px] leading-[1.7] text-[var(--muted)] sm:text-base sm:leading-[1.75]">
           I'm a frontend-focused software engineer building production web
           experiences with React, Next.js and TypeScript. I've delivered 8
-          production Shopify components.Outside client work, I build independent
-          projects like Tunnel, exploring live-streaming infrastructure, and
-          OpenLink, a unified API for AI providers. I'm particularly interested
-          in application architecture, backend systems, performance and building
-          reliable software.
+          production Shopify components. Outside client work, I build
+          independent projects like Tunnel, exploring live-streaming
+          infrastructure, and OpenLink, a unified API for AI providers. I'm
+          particularly interested in application architecture, backend systems,
+          performance and building reliable software.
         </p>
       </div>
 
